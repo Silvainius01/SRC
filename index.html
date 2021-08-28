@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html>
+    <!--
+        Mixed crafting suggestions, so it calculates X object 1, Y object 2
+          - to avoid going too far over the desired amount.
+          - to focus on avoiding some material if finding another is easier or cheaper (create stats by finding mats)
+          * Exceeded Crafting Example 1000 cube, 1000 power, 6000 gear
+              Currently suggests
+                59 Small Fuel Rod Rack - for the cubes. 5.87 stacks
+                20 FCUs. - 80 cube and 1,000 power. 7.47 stacks
+                84 Box Thruster Body T1 - 1428 cubes and 6000 gears. 42.71 stacks
+              Totalling 56.05 stacks
+              Searching separately:
+                -- 1000 cubes - 143 pilot chairs. 8.24 stacks -- not necessary, the thruster bodies covers it.
+                1000 power - 20 FCUs. 7.47 stacks
+                6000 gears - 84 Box Thruster Body T1 - extra 1428 cubes. 42.71 stacks
+              Totalling 50.18 stacks, about 6 stacks less.
+          Take first object (A), if there is an unfulfilled research target, look for the very next one that fulfills it (B)
+            if A and B share a required research, and the total exceeds A's single craft points for that research
+              then reduce object A's crafts
+                until the remainder is less than A's single craft points (because I have to craft Object B anyway)
+            if there is another unfulfilled research target, repeat
+            
+        Add a JSON editor.
+    -->
+    <head>
+        <style>
+            #calcTbl, #calcTbl th, #calcTbl td {
+                border: 1px solid lightgray;
+                border-collapse: collapse;
+                white-space: nowrap;
+            }
+
+            .leftAlign {
+                text-align:left;
+            }
+
+            .rightAlign {
+                text-align: right;
+            }
+
+            .centerAlign {
+                text-align: center;
+            }
+
+            .rightFloat {
+                float:right;
+            }
+
+            .blueBackground {
+                background-color:midnightblue;
+                color:papayawhip;
+            }
+
+            #calcTbl tr:hover, #calcTbl td:hover, #calcTbl th:hover {
+                background-color: rgba(255, 255, 0, 0.5);
+                color: black;
+                z-index: 1;
+            }
+
+            p.inTable {
+                padding: 0;
+                margin: 0;
+            }
+
+            .materialTd {
+                width: 200px;
+            }
+
+            .researchTd {
+                width: 160px;
+            }
+
+            .missingRequirement {
+                background-color: lightsalmon;
+            }
+
+            .notRequired {
+                background-color: darkseagreen;
+            }
+
+            #separatorRow {
+                font-weight: bold;
+            }
+        </style>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+        <script>
+            var stackConstant = 1728;
+            var nf = new Intl.NumberFormat();
+            var prioritize = "totalMaterials";
+            var researchTypes = ['Cube', 'Power', 'Shield', 'Gear'];
+
+            $(function() {
+                //#region Initialize data.
+                /*
+                 * Object structure:
+                 *  {
+                 *      craftingTime: 0,
+                 *      efficiency: 0.0,
+                 *      estimatedCost: 0.0,
+                 *      materials: {
+                 *          Aegisium: 0.0,
+                 *          ...,
+                 *          Vokarium: 0.0
+                 *      },
+                 *      name: "Name here",
+                 *      research: {
+                 *          Cube: 0,
+                 *          Power: 0,
+                 *          Shield: 0,
+                 *          Gear: 0
+                 *      },
+                 *      totalCrafts: {
+                 *          All: 0,
+                 *          Cube: 0,
+                 *          Power: 0,
+                 *          Shield: 0,
+                 *          Gear: 0,
+                 *          Use: 0
+                 *      },
+                 *      totalMaterials: 0.0,
+                 *      totalResearch: 0
+                 *  }
+                 */
+                var materials = [];
+                var objects = [];
+                var tableRows = [];
+
+                // JSON file updated prices on 2021-08-05. *A value of 1,000,000,000 means no price found.
+                $.getJSON('data.json', function(data) {
+                    $.each(data.materials, function(i, m) {
+                        materials[i] = m;
+                    });
+                    $.each(data.objects, function(i, o) {
+                        var object = new Object();
+                        var researchText = "";
+                        var materialsText = "";
+                        object["name"] = o.Name;
+                        object["craftingTime"] = o.CraftingTime; //In seconds.
+                        object["materials"] = o.Materials;
+                        object["totalMaterials"] = 0;
+                        object["research"] = o.Research;
+                        object["totalResearch"] = 0;
+                        object["efficiency"] = 0.00;
+                        object["estimatedCost"] = 0.00;
+                        object["totalCrafts"] = { "All": 0, "Cube": 0, "Power": 0, "Gear": 0, "Shield": 0, "Use": 0 };
+                        $.each(o.Research, function(j, r) {
+                            researchText += '<p class="leftAlign researchTd inTable">' + j + ":"
+                                + "<span class='rightFloat'>" + r + " points</span></p>";
+                            object["totalResearch"] += r;
+                        });
+                        $.each(o.Materials, function(j, m) {
+                            var qtyInStacks = (m / stackConstant).toFixed(2);
+                            materialsText += '<p class="leftAlign materialTd inTable">' + j + ":"
+                                + "<span class='rightFloat' title='" + m + "'>" + qtyInStacks + " stacks</span></p>";
+                            object["totalMaterials"] += m;
+                            var stackQty = m/stackConstant;
+                            object["estimatedCost"] += materials[j]*stackQty;
+                        });
+                        object["efficiency"] = (object["totalResearch"] / object["totalMaterials"]) * 100;
+                        // Add each object to be displayed.
+                        tableRows.push([
+                            object["name"],
+                            object["efficiency"].toFixed(2) + '%',
+                            nf.format(object["estimatedCost"].toFixed(2)) + ' credits',
+                            researchText,
+                            materialsText
+                        ]);
+                        // Add each object to the array for subsequent queries.
+                        if(o.Hide == 0)
+                            objects.push(object);
+                    });
+                    // Initialize object table as DataTable.
+                    $('#objectData').DataTable({
+                        data: tableRows,
+                        columns: [
+                            { title: "Name", width: "34%" },
+                            { title: "Efficiency", width: "10%" },
+                            { title: "Estimated Cost", width: "15%" },
+                            { title: "Research", width: "18%" },
+                            { title: "Materials", width: "23%" }
+                        ],
+                        columnDefs: [
+                            {
+                                targets: [1, 2],
+                                className: 'dt-body-right',
+                            }
+                        ],
+                        scrollY: "300px"
+                    });
+                });
+                //#endregion
+
+                // Handle calculation request.
+                $('#calcBtn').click(function() {
+                    //#region Variable initialization.
+                    var useableObjs = [];
+                    var relevantMaterials = [];
+                    var maxSingleObjectMatches = $('#maxResults').val();
+                    var onlyAllResearch = $('#onlyAllResearch').is(":checked");
+                    var combinedSets = [];
+                    prioritize = $('#priority').val();
+                    if (prioritize == 'efficiency') // Descending order if set by efficiency.
+                        prioritize = '-' + prioritize;
+                    //#endregion
+
+                    //#region Initialize research targets.
+                    var cubes = $('#cubeIn').val();
+                    var powers = $('#powerIn').val();
+                    var shields = $('#shieldIn').val();
+                    var gears = $('#gearIn').val();
+                    var targetResearch = [];
+                    if (cubes > 0)
+                        targetResearch['Cube'] = cubes;
+                    if (powers > 0)
+                        targetResearch['Power'] = powers;
+                    if (shields > 0)
+                        targetResearch['Shield'] = shields;
+                    if (gears > 0)
+                        targetResearch['Gear'] = gears;
+
+                    // If no research was requested, do nothing.
+                    if (Object.keys(targetResearch).length == 0)
+                        return;
+                    //#endregion
+
+                    //#region Find matching objects.
+                    var distinctResearchQty = Object.keys(targetResearch).length;
+                    $.each(objects, function(i, obj) {
+                        var objResearchTypesQty = 0;
+                        $.each(obj.research, function(name, qty) {
+                            if (name in targetResearch) {
+                                objResearchTypesQty++;
+                                if (objResearchTypesQty == distinctResearchQty || !onlyAllResearch) {
+                                    useableObjs.push(obj);
+                                    return false; // Break out of the loop since this object is usable.
+                                }
+                            }
+                        });
+                    });
+                    //#endregion
+
+                    //#region Calculate how many objects need to be crafted to fulfill all research targets.
+                    $.each(useableObjs, function(i, obj) {
+                        obj.totalCrafts["All"] = 0;
+                        for (const [key, targetQty] of Object.entries(targetResearch)) {
+                            if (key in obj.research) {
+                                var amountPerCraft = obj.research[key];
+                                var craftsQty = Math.ceil(targetQty/amountPerCraft);
+                                useableObjs[i]["totalCrafts"][key] = craftsQty;
+                                if (!("totalCrafts" in useableObjs[i]) || useableObjs[i]["totalCrafts"]["All"] < craftsQty)
+                                    useableObjs[i]["totalCrafts"]["All"] = craftsQty;
+                            }
+                        }
+                    });
+                    //#endregion
+
+                    //#region Look for object combinations.
+                    // Only applies when user requested more than one research type.
+                    if ((Object.keys(targetResearch).length > 1) && prioritize == "totalMaterials") {
+                        // Try to find combinations that are more efficient than single objects.
+                        var set = {
+                            "material": 0,
+                            "cost": 0,
+                            "time": 0,
+                            "objects": []
+                        };
+                        for (var prop in targetResearch) {
+                            var object = getBestMatchSingleResearch(prop, useableObjs);
+                            if (object == null) {
+                                break;
+                            }
+                            set.material += object["totalCrafts"][prop] * object["totalMaterials"];
+                            set.cost += object["totalCrafts"][prop] * object["estimatedCost"];
+                            set.time += object["totalCrafts"][prop] * object["craftingTime"];
+                            object["totalCrafts"]["Use"] = object["totalCrafts"][prop];
+                            set.objects.push(object);
+                        }
+                        // If the set is complete, add it to the results.
+                        if (Object.keys(targetResearch).length == set.objects.length) {
+                            combinedSets.push(set);
+                        }
+                    }
+                    //#endregion
+
+                    //#region Prepare to display.
+                    // Sort usable objects by priority.
+                    useableObjs.sort(dynamicSort(prioritize));
+
+                    // Enforce maxSingleObjectMatches.
+                    if (useableObjs.length > maxSingleObjectMatches) {
+                        useableObjs.length = maxSingleObjectMatches;
+                    }
+
+                    // Get relevant materials to be displayed.
+                    $.each(useableObjs, function(i, obj) {
+                        $.each(obj.materials, function(name, qty) {
+                            if (!relevantMaterials.includes(name)) {
+                                relevantMaterials.push(name);
+                            }
+                        });
+                    });
+                    // Sort relevant materials to display them in alphabetical order.
+                    relevantMaterials.sort();
+
+                    // Clear previous results.
+                    $('.deleteMe').remove();
+
+                    // Add separator TR/current materials header.
+                    $('#calcTbl tr:last')
+                        .after('<tr id="separatorRow" class="deleteMe centerAlign">'
+                        + '<td>Current materials in '
+                            + '<select id="ownedMatsUOM" onchange="updateOwnedMats()">'
+                                + '<option value="stacks">stacks</option>'
+                                + '<option value="volume">volume</option>'
+                            + '</select>'
+                        + ' &darr;</td></tr>');
+                    //#endregion
+                    
+                    //#region Load results into table.
+
+                    // Add material "header" rows.
+                    for (var i = 0; i < relevantMaterials.length; i++) {
+                        generateMaterialRows(relevantMaterials[i]);
+                    }
+                    // Add total material row.
+                    $('#calcTbl tr:last')
+                        .after('<tr id="totalMaterialRow" class="deleteMe"><td>Total Material &rarr;</td></tr>');                    
+                    //Add stats rows.
+                    $('#calcTbl tr:last')
+                        .after('<tr id="efficiencyRow" class="deleteMe"><td>Research/Object efficiency &rarr;</td></tr>');
+                    $('#calcTbl tr:last')
+                        .after('<tr id="costRow" class="deleteMe"><td>Material estimated cost &rarr;</td></tr>');
+                    $('#calcTbl tr:last')
+                        .after('<tr id="timeRow" class="deleteMe"><td>Crafting time &rarr;</td></tr>');
+
+                    // Print any combinations found.
+                    for (var i = 0; i < combinedSets.length; i++) {
+                        generateColumn(combinedSets[i], i + 2, relevantMaterials);
+                    }
+
+                    // Iterate each usable object to be displayed.
+                    $.each(useableObjs, function(i, obj) {
+                        generateColumn({
+                            "material": 0,
+                            "cost": obj.estimatedCost,
+                            "time": obj.craftingTime * obj.totalCrafts["All"],
+                            "objects": [ obj ]
+                        }, combinedSets.length + i + 2, relevantMaterials);
+                    });
+                    //#endregion
+                });
+            });
+
+            function dynamicSort(property, secondary) {
+                var sortOrder = 1;
+                secondary = (typeof secondary === 'undefined') ? "All" : secondary;
+                if (property[0] === "-") {
+                    sortOrder = -1;
+                    property = property.substr(1);
+                }
+                return function (a,b) {
+                    var x = a[property];
+                    var y = b[property];
+                    if (property == "estimatedCost" || property == "craftingTime" || property == "totalMaterials") {
+                        x = a[property] * a["totalCrafts"][secondary];
+                        y = b[property] * b["totalCrafts"][secondary];
+                    }
+                    
+                    var result = (x < y) ? -1 : (x > y) ? 1 : 0;
+                    return result * sortOrder;
+                }
+            }
+
+            function toggleBgColorByColumn(element) {
+                var columnIndex = element.getAttribute("data-index");
+                element.classList.toggle("blueBackground");
+                $('#calcTbl tr:not(#separatorRow, #totalMaterialRow) td:nth-child(' + columnIndex + ')').toggleClass("blueBackground");
+            }
+
+            function toggleBgColorByRow(element) {
+                element.parentElement.parentElement.classList.toggle("blueBackground");
+            }
+
+            function updateOwnedMats(element) {
+                var ownedMatsUOM = $('#ownedMatsUOM').val();
+                var rowsToUpdate = [];
+                if (typeof element === 'undefined') {
+                    $('input[id$="MatCell"]').each(function(i, o) {
+                        rowsToUpdate.push(o);
+                    });
+                } else {
+                    rowsToUpdate.push($('#' + element.getAttribute("id")));
+                }
+
+                for (var i = 0; i < rowsToUpdate.length; i++) {
+                    var alreadyOwned = parseFloat($(rowsToUpdate[i]).val());
+                    if (alreadyOwned == 'NaN') {
+                        continue;
+                    }
+                    if (ownedMatsUOM == 'volume') {
+                        alreadyOwned = (alreadyOwned / this.stackConstant).toFixed(2);
+                    }
+
+                    var cells = $(rowsToUpdate[i]).closest('tr').find('.updateMe');
+                    $(cells).each(function(i, o) {
+                        // update each cell, subtract the new value from rowsToUpdate[i]
+                        var currentValue = $(o).attr('data-originalVal');
+                        var newValue = (currentValue - alreadyOwned).toFixed(2);
+                        newValue = (newValue < 0 ? 0 : newValue) + ' stacks';
+                        $(o).text(newValue);
+                    });
+                }
+            }
+
+            function getBestMatchSingleResearch(researchType, objectArray) {
+                var object = null;
+                if (objectArray.length == 0)
+                    return object;
+                objectArray.sort(dynamicSort(prioritize, researchType));
+                $.each(objectArray, function(i, obj) {
+                    if (obj.totalCrafts[researchType] > 0) {
+                        object = obj;
+                        return false; // Break the each loop.
+                    }
+                });
+                return object;
+            }
+
+            function generateMaterialRows(name) {
+                $('#calcTbl tr:last')
+                    .after('<tr id="' + name + 'Row" class="deleteMe rightAlign">'
+                    + '<td>'
+                        + '<span onclick="toggleBgColorByRow(this)">' + name + '</span>'
+                        + ' <input type="number" step="0.01" value="0" min="0" onclick="this.select();" '
+                        + ' onblur="updateOwnedMats(this)" id="' + name + 'MatCell">'
+                    + '</td></tr>');
+            }
+
+            function generateColumn(sets, indexMod, relevantMaterials) {
+                addHeaderCell(sets.objects, indexMod);
+
+                // Add total generated points for each research type:
+                for (var j = 0; j < researchTypes.length; j++) {
+                    addResearchCell(researchTypes[j], sets.objects);
+                }
+
+                // Add separator row cell.
+                $('#separatorRow td:last').after('<td>Materials needed &darr;</td>');
+
+                // Calculate and display required materials for each object.
+                var totalMaterial = 0;
+                for (var j = 0; j < relevantMaterials.length; j++) {
+                    totalMaterial += addMaterialCell(relevantMaterials[j], sets.objects);
+                }
+
+                // Add totals row.
+                var totalInStacks = (totalMaterial / stackConstant).toFixed(2);
+                $('#totalMaterialRow').find('td').eq(-1)
+                    .after('<td title="' + nf.format(totalMaterial) + '" class="rightAlign">'
+                    + nf.format(totalInStacks) + ' stacks' + '</td>');
+
+                addStatsCell("efficiency", sets.objects);
+                addStatsCell("material", sets.material);
+                addStatsCell("cost", sets.cost);
+                addStatsCell("time", sets.time);
+            }
+
+            function addHeaderCell(objects, colIndex) {
+                var craftIndex = (objects.length > 1) ? "Use" : "All";
+                var headerText = "";
+                $.each(objects, function(i, obj) {
+                    headerText += obj.totalCrafts[craftIndex] + " x " + obj.name + "<br>";
+                });
+                headerText = headerText.substring(0, headerText.length - 4);
+                $('#calcTbl').find('tr').find('th').eq(-1)
+                    .after('<th class="deleteMe" onclick="toggleBgColorByColumn(this)" '
+                        + 'data-index="' + (colIndex) + '">' + headerText + '<br></th>');
+            }
+
+            function addStatsCell(cell, value) {
+                var text = "";
+                if (isNaN(value) && cell == "efficiency") {
+                    if (value.length == 1) {
+                        text = nf.format(value[0].efficiency.toFixed(2)) + '% efficiency';
+                    } else {
+                        var efficiencySum = 0;
+                        for (var i = 0; i < value.length; i++) {
+                            efficiencySum += value[i].efficiency;
+                        }
+                        text = nf.format((efficiencySum / value.length).toFixed(2)) + "% avg."
+                    }
+                } else if (cell == "cost") {
+                    text = nf.format(value.toFixed(2)) + ' credits';
+                } else if (cell == "time") {
+                    var time = (value / 60).toFixed(2);
+                    if (time > 120) {
+                        time = nf.format((time / 60).toFixed(2));
+                        text = time + ' hrs.';
+                    } else
+                        text = nf.format(time) + ' mins.';
+                }
+
+                $('#' + cell + 'Row').find('td').eq(-1)
+                    .after('<td class="deleteMe rightAlign">' + text + '</td>');
+            }
+
+            /**
+             * Creates research quantity cells for each object/research combination.
+             *
+             * Calculates the generated research depending on crafting quantities.
+             *
+             * @param {string}     researchType      The name of the research type row on which the cell should be added.
+             * @param {Object[]}   objects           The object array containing all the calculation relevant data.
+             */
+            function addResearchCell(targetResearch, objects) {
+                var missingMarker = "";
+                var totalPoints = 0;
+                var craftIndex = (objects.length > 1) ? "Use" : "All";
+                $.each(objects, function(i, obj) {
+                    var pointsPerCraft = isNaN(obj.research[targetResearch]) ? 0 : obj.research[targetResearch];
+                    totalPoints += obj.totalCrafts[craftIndex] * pointsPerCraft;
+                });
+                if ($("#" + targetResearch.toLowerCase() + "In").val() > 0 && totalPoints < 1) {
+                    missingMarker = " missingRequirement";
+                }
+                $('#' + targetResearch + 'Row').find('td').eq(-1)
+                    .after('<td class="deleteMe rightAlign' + missingMarker + '">'
+                    + nf.format(totalPoints) + ' points</td>');
+            }
+
+            /**
+             * Creates material quantity cells for each object/material combination.
+             *
+             * Calculates the required material depending on crafting quantities.
+             *
+             * @param {string}     material        The name of the material row on which the new cell should be added.
+             * @param {Object[]}   objects         The object array containing all the calculation relevant data.
+             *
+             * @return {float} Returns the total material calculated so it can be added to the grand total for the object.
+             */
+            function addMaterialCell(material, objects) {
+                var craftIndex = (objects.length > 1) ? "Use" : "All";
+                var materialSubtotal = 0;
+                var craftQty = 0;
+                $.each(objects, function(i, obj) {
+                    var materialQty = (isNaN(obj.materials[material])     ? 0 : obj.materials[material]);
+                    craftQty =    (isNaN(obj.totalCrafts[craftIndex])     ? 0 : obj.totalCrafts[craftIndex]);
+                    materialSubtotal += materialQty * craftQty;
+                });
+                materialSubtotal = (isNaN(materialSubtotal) ? 0 : materialSubtotal);
+                var subtotalInStacks = (materialSubtotal / stackConstant).toFixed(2);
+                var notRequiredMarker = "";
+                if (materialSubtotal == 0) {
+                    notRequiredMarker = " notRequired";
+                }
+                
+                $('#' + material + 'Row').find('td').eq(-1)
+                    .after('<td title="' + nf.format(materialSubtotal) + '"'
+                        + ' class="rightAlign' + notRequiredMarker
+                        + (subtotalInStacks > 0 ? ' updateMe' : '') + '"'
+                        + ' data-originalVal="' + subtotalInStacks + '">'
+                        + nf.format(subtotalInStacks) + ' stacks' + '</td>');
+                return materialSubtotal;
+            }
+        </script>
+    </head>
+    <body>
+        <h2>Calculate Crafting v0.3</h2>
+        <form onsubmit="return false">
+            <table id="calcTbl">
+                <thead>
+                    <th>Target Research Points &darr;</th>
+                </thead>
+                <tbody>
+                    <tr id="CubeRow">
+                        <td class="rightAlign">Cube <input type="text" id="cubeIn"></td>
+                    </tr>
+                    <tr id="PowerRow">
+                        <td class="rightAlign">Power <input type="text" id="powerIn"></td>
+                    </tr>
+                    <tr id="ShieldRow">
+                        <td class="rightAlign">Shield <input type="text" id="shieldIn"></td>
+                    </tr>
+                    <tr id="GearRow">
+                        <td class="rightAlign">Gear <input type="text" id="gearIn"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>
+                Priority: <select id="priority">
+                    <option value="totalMaterials">Total Material Spent</option>
+                    <option value="efficiency">Efficiency</option>
+                    <option value="estimatedCost">Material Cost</option>
+                    <option value="craftingTime">Crafting Time</option>
+                </select>
+            </p>
+            <p>
+                <input type="checkbox" id="onlyAllResearch">
+                <label for="onlyAllResearch">Only use objects that fulfill all research targets.</label>
+            </p>
+            <p>
+                Max results <input type="number" id="maxResults" min="1" value="5"/>
+                | <span class="missingRequirement">Salmon</span> means Research Target is not fulfilled.
+                | <span class="notRequired">Green</span> means the material is not required.
+            </p>
+            <p>
+                <button type="reset">Reset Fields</button>
+                <button type="submit" id="calcBtn">Submit</button>
+            </p>
+        </form>
+        <hr>
+        <h2>All Objects Table</h2>
+        <table id= "objectData" class="hover cell-border compact row-border stripe">
+        </table>
+    </body>
+</html>
