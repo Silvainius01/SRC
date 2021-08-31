@@ -329,7 +329,7 @@
                             set.value += object["totalCrafts"][prop] * object["vendorPrice"];
                             object["totalCrafts"]["Use"] = object["totalCrafts"][prop];
                             set.objects.push(object);
-                            // Add set's materials so they get listed.
+                            // Add object's materials so they get listed.
                             $.each(object.materials, function(name, qty) {
                                 if (!relevantMaterials.includes(name)) {
                                     relevantMaterials.push(name);
