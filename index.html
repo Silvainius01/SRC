@@ -429,9 +429,12 @@
                 return function (a,b) {
                     var x = a[property];
                     var y = b[property];
-                    if (property == "estimatedCost" || property == "craftingTime" || property == "totalMaterials") {
+                    if (property == "estimatedCost" || property == "totalMaterials") {
                         x = a[property] * a["totalCrafts"][secondary];
                         y = b[property] * b["totalCrafts"][secondary];
+                    } else if (property == "craftingTime") {
+                        x = (a[property] == 0 ? 90000 : a[property]) * a["totalCrafts"][secondary];
+                        y = (b[property] == 0 ? 90000 : b[property]) * b["totalCrafts"][secondary];
                     }
                     
                     var result = (x < y) ? -1 : (x > y) ? 1 : 0;
@@ -783,7 +786,7 @@
         </script>
     </head>
     <body>
-        <h2>Starbase Research Crafting Calculator v0.4.1</h2>
+        <h2>Starbase Research Crafting Calculator v0.4.2</h2>
         <form onsubmit="return false">
             <table id="calcTbl">
                 <thead>
