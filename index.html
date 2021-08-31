@@ -79,27 +79,36 @@
                 background-color: darkseagreen;
             }
 
-            #separatorRow {
+            #statsSeparatorRow, #materialsSeparatorRow {
                 font-weight: bold;
             }
         </style>
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <!-- Datatables -->
         <script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+        <!-- jQuery UI Dialog -->
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/ui-darkness/jquery-ui.css" />
         <script>
             var stackConstant = 1728;
             var nf = new Intl.NumberFormat();
             var prioritize = "totalMaterials";
             var researchTypes = ['Cube', 'Power', 'Shield', 'Gear'];
-
+            var objects = [];
+            var materials = [];
+            var json = null;
+            var hiddenMaterials = [];
+            
             $(function() {
-                //#region Initialize data.
-                /*
-                 * Object structure:
+                //#region Initialize object data.
+                /* Object structure:
                  *  {
                  *      craftingTime: 0,
                  *      efficiency: 0.0,
                  *      estimatedCost: 0.0,
+                 *      favourite: 0,
+                 *      hide: 0,
                  *      materials: {
                  *          Aegisium: 0.0,
                  *          ...,
@@ -121,19 +130,20 @@
                  *          Use: 0
                  *      },
                  *      totalMaterials: 0.0,
-                 *      totalResearch: 0
+                 *      totalResearch: 0,
+                 *      vendorPrice: 0
                  *  }
                  */
-                var materials = [];
-                var objects = [];
                 var tableRows = [];
 
                 // JSON file updated prices on 2021-08-05. *A value of 1,000,000,000 means no price found.
                 $.getJSON('data.json', function(data) {
+                    json = data;
                     $.each(data.materials, function(i, m) {
                         materials[i] = m;
                     });
                     $.each(data.objects, function(i, o) {
+                        //#region Initialize vars
                         var object = new Object();
                         var researchText = "";
                         var materialsText = "";
@@ -146,6 +156,12 @@
                         object["efficiency"] = 0.00;
                         object["estimatedCost"] = 0.00;
                         object["totalCrafts"] = { "All": 0, "Cube": 0, "Power": 0, "Gear": 0, "Shield": 0, "Use": 0 };
+                        object["favourite"] = o.Favourite;
+                        object["hide"] = o.Hide;
+                        object["vendorPrice"] = o.VendorPrice;
+                        //#endregion
+                        
+                        //#region Process object cells.
                         $.each(o.Research, function(j, r) {
                             researchText += '<p class="leftAlign researchTd inTable">' + j + ":"
                                 + "<span class='rightFloat'>" + r + " points</span></p>";
@@ -160,19 +176,20 @@
                             object["estimatedCost"] += materials[j]*stackQty;
                         });
                         object["efficiency"] = (object["totalResearch"] / object["totalMaterials"]) * 100;
+                        //#endregion
+                        
                         // Add each object to be displayed.
                         tableRows.push([
-                            object["name"],
+                            '<span onclick="modalOpen(this)">' + object["name"] + "</span>",
                             object["efficiency"].toFixed(2) + '%',
                             nf.format(object["estimatedCost"].toFixed(2)) + ' credits',
                             researchText,
                             materialsText
                         ]);
                         // Add each object to the array for subsequent queries.
-                        if(o.Hide == 0)
-                            objects.push(object);
+                        objects.push(object);
                     });
-                    // Initialize object table as DataTable.
+                    //#region Initialize object table as DataTable.
                     $('#objectData').DataTable({
                         data: tableRows,
                         columns: [
@@ -190,11 +207,13 @@
                         ],
                         scrollY: "300px"
                     });
+                    //#endregion
                 });
                 //#endregion
+            });
 
                 // Handle calculation request.
-                $('#calcBtn').click(function() {
+                function RunCalculation(hiddenMats) {
                     //#region Variable initialization.
                     var useableObjs = [];
                     var relevantMaterials = [];
@@ -202,8 +221,14 @@
                     var onlyAllResearch = $('#onlyAllResearch').is(":checked");
                     var combinedSets = [];
                     prioritize = $('#priority').val();
+
+                    // Clear previous results.
+                    $('.deleteMe').remove();
                     if (prioritize == 'efficiency') // Descending order if set by efficiency.
                         prioritize = '-' + prioritize;
+                    if (typeof hiddenMats === 'undefined') {
+                        hiddenMaterials = [];
+                    }
                     //#endregion
 
                     //#region Initialize research targets.
@@ -229,6 +254,20 @@
                     //#region Find matching objects.
                     var distinctResearchQty = Object.keys(targetResearch).length;
                     $.each(objects, function(i, obj) {
+                        if(obj.hide == 1) {
+                            return; // Object is marked as hidden, skip it.
+                        }
+
+                        // If user requested certain materials be hidden, check object.
+                        if (typeof hiddenMats !== 'undefined') {
+                            var objectMaterials = Object.keys(obj.materials);
+                            for (var i = 0; i < objectMaterials.length; i++) {
+                                if (hiddenMats.includes(objectMaterials[i])) {
+                                    return; // Object uses a material that has been hidden, skip it.
+                                }
+                            }
+                        }
+
                         var objResearchTypesQty = 0;
                         $.each(obj.research, function(name, qty) {
                             if (name in targetResearch) {
@@ -240,6 +279,17 @@
                             }
                         });
                     });
+                    
+                    if (useableObjs.length == 0) {
+                        var text = "No results found";
+                        if (typeof hiddenMats !== 'undefined') {
+                            text += "<br>Press Submit to reset"
+                        }
+                        // No matching objects found.
+                        $('#calcTbl').find('tr').find('th').eq(-1)
+                            .after('<th class="deleteMe">' + text + '</th>');
+                        return;
+                    }
                     //#endregion
 
                     //#region Calculate how many objects need to be crafted to fulfill all research targets.
@@ -265,7 +315,8 @@
                             "material": 0,
                             "cost": 0,
                             "time": 0,
-                            "objects": []
+                            "objects": [],
+                            "value": 0
                         };
                         for (var prop in targetResearch) {
                             var object = getBestMatchSingleResearch(prop, useableObjs);
@@ -275,6 +326,7 @@
                             set.material += object["totalCrafts"][prop] * object["totalMaterials"];
                             set.cost += object["totalCrafts"][prop] * object["estimatedCost"];
                             set.time += object["totalCrafts"][prop] * object["craftingTime"];
+                            set.value += object["totalCrafts"][prop] * object["vendorPrice"];
                             object["totalCrafts"]["Use"] = object["totalCrafts"][prop];
                             set.objects.push(object);
                         }
@@ -305,12 +357,9 @@
                     // Sort relevant materials to display them in alphabetical order.
                     relevantMaterials.sort();
 
-                    // Clear previous results.
-                    $('.deleteMe').remove();
-
                     // Add separator TR/current materials header.
                     $('#calcTbl tr:last')
-                        .after('<tr id="separatorRow" class="deleteMe centerAlign">'
+                        .after('<tr id="materialsSeparatorRow" class="deleteMe centerAlign">'
                         + '<td>Current materials in '
                             + '<select id="ownedMatsUOM" onchange="updateOwnedMats()">'
                                 + '<option value="stacks">stacks</option>'
@@ -320,21 +369,28 @@
                     //#endregion
                     
                     //#region Load results into table.
-
                     // Add material "header" rows.
                     for (var i = 0; i < relevantMaterials.length; i++) {
                         generateMaterialRows(relevantMaterials[i]);
                     }
                     // Add total material row.
                     $('#calcTbl tr:last')
-                        .after('<tr id="totalMaterialRow" class="deleteMe"><td>Total Material &rarr;</td></tr>');                    
-                    //Add stats rows.
+                        .after('<tr id="totalMaterialRow" class="deleteMe"><td>Total Material &rarr;</td></tr>');
+
+                    //#region Add stats rows.
+                    // Add separator TR.
                     $('#calcTbl tr:last')
-                        .after('<tr id="efficiencyRow" class="deleteMe"><td>Research/Object efficiency &rarr;</td></tr>');
+                        .after('<tr id="statsSeparatorRow" class="deleteMe centerAlign"><td>Other stats</td></tr>');
+                    // Add 'header' rows for each stat.
                     $('#calcTbl tr:last')
-                        .after('<tr id="costRow" class="deleteMe"><td>Material estimated cost &rarr;</td></tr>');
+                        .after('<tr id="efficiencyRow" class="deleteMe"><td>Research/material efficiency</td></tr>');
                     $('#calcTbl tr:last')
-                        .after('<tr id="timeRow" class="deleteMe"><td>Crafting time &rarr;</td></tr>');
+                        .after('<tr id="costRow" class="deleteMe"><td>Material estimated cost</td></tr>');
+                    $('#calcTbl tr:last')
+                        .after('<tr id="valueRow" class="deleteMe"><td>Total vendor price</td></tr>');
+                    $('#calcTbl tr:last')
+                        .after('<tr id="timeRow" class="deleteMe"><td>Crafting time</td></tr>');
+                    //#endregion
 
                     // Print any combinations found.
                     for (var i = 0; i < combinedSets.length; i++) {
@@ -344,15 +400,18 @@
                     // Iterate each usable object to be displayed.
                     $.each(useableObjs, function(i, obj) {
                         generateColumn({
-                            "material": 0,
-                            "cost": obj.estimatedCost,
-                            "time": obj.craftingTime * obj.totalCrafts["All"],
-                            "objects": [ obj ]
-                        }, combinedSets.length + i + 2, relevantMaterials);
+                                "material": 0,
+                                "cost": obj.estimatedCost,
+                                "time": obj.craftingTime * obj.totalCrafts["All"],
+                                "objects": [ obj ],
+                                "value": obj.vendorPrice * obj.totalCrafts["All"]
+                            },
+                            combinedSets.length + i + 2,
+                            relevantMaterials
+                        );
                     });
                     //#endregion
-                });
-            });
+                }
 
             function dynamicSort(property, secondary) {
                 var sortOrder = 1;
@@ -377,7 +436,7 @@
             function toggleBgColorByColumn(element) {
                 var columnIndex = element.getAttribute("data-index");
                 element.classList.toggle("blueBackground");
-                $('#calcTbl tr:not(#separatorRow, #totalMaterialRow) td:nth-child(' + columnIndex + ')').toggleClass("blueBackground");
+                $('#calcTbl tr:not(#materialsSeparatorRow, #totalMaterialRow) td:nth-child(' + columnIndex + ')').toggleClass("blueBackground");
             }
 
             function toggleBgColorByRow(element) {
@@ -435,7 +494,9 @@
                     + '<td>'
                         + '<span onclick="toggleBgColorByRow(this)">' + name + '</span>'
                         + ' <input type="number" step="0.01" value="0" min="0" onclick="this.select();" '
-                        + ' onblur="updateOwnedMats(this)" id="' + name + 'MatCell">'
+                            + ' onblur="updateOwnedMats(this)" id="' + name + 'MatCell">'
+                        + '<img src="img/hide.png" alt="Hide this material from results." title="Hide this material from results.\nResets on Submit."'
+                            + 'width="20" height="20" id="' + name + 'Hide" onclick="omitMaterialFromResults(this);">'
                     + '</td></tr>');
             }
 
@@ -448,7 +509,7 @@
                 }
 
                 // Add separator row cell.
-                $('#separatorRow td:last').after('<td>Materials needed &darr;</td>');
+                $('#materialsSeparatorRow td:last').after('<td>Materials needed &darr;</td>');
 
                 // Calculate and display required materials for each object.
                 var totalMaterial = 0;
@@ -456,16 +517,28 @@
                     totalMaterial += addMaterialCell(relevantMaterials[j], sets.objects);
                 }
 
-                // Add totals row.
+                // Check if any object has an unknown crafting time to set the warning flag.
+                var warn = false;
+                $.each(sets.objects, function(i, obj) {
+                    if (obj.craftingTime == 0) {
+                        warn = true;
+                        return false;
+                    }
+                });
+
+                // Add total materials row.
                 var totalInStacks = (totalMaterial / stackConstant).toFixed(2);
                 $('#totalMaterialRow').find('td').eq(-1)
                     .after('<td title="' + nf.format(totalMaterial) + '" class="rightAlign">'
                     + nf.format(totalInStacks) + ' stacks' + '</td>');
-
+                // Add stats separator cell
+                $('#statsSeparatorRow td:last').after('<td>-</td>');
+                // Add stats cells.
                 addStatsCell("efficiency", sets.objects);
                 addStatsCell("material", sets.material);
                 addStatsCell("cost", sets.cost);
-                addStatsCell("time", sets.time);
+                addStatsCell("value", { "cost": sets.cost, "sell": sets.value });
+                addStatsCell("time", sets.time, warn);
             }
 
             function addHeaderCell(objects, colIndex) {
@@ -480,7 +553,7 @@
                         + 'data-index="' + (colIndex) + '">' + headerText + '<br></th>');
             }
 
-            function addStatsCell(cell, value) {
+            function addStatsCell(cell, value, warn = false) {
                 var text = "";
                 if (isNaN(value) && cell == "efficiency") {
                     if (value.length == 1) {
@@ -501,6 +574,16 @@
                         text = time + ' hrs.';
                     } else
                         text = nf.format(time) + ' mins.';
+                } else if (cell == "value") {
+                    value.cost
+                    text = nf.format(value.sell.toFixed(2)) + ' credits'
+                        + ' (' + nf.format((value.sell-value.cost).toFixed(2))
+                        + ' ' + ((value.sell-value.cost) < 0 ? 'loss' : 'gain') + ')'
+                }
+
+                var warning = '<img src="img/warning.png" alt="Warning: missing crafting time." width="16" height="14">';
+                if (warn) {
+                    text = '<span title="Unknown crafting time detected.">' + text + " " + warning + '</span>';
                 }
 
                 $('#' + cell + 'Row').find('td').eq(-1)
@@ -565,10 +648,136 @@
                         + nf.format(subtotalInStacks) + ' stacks' + '</td>');
                 return materialSubtotal;
             }
+
+            function omitMaterialFromResults(element) {
+                var elementID = element.getAttribute("id");
+                var material = elementID.substring(0, elementID.length-4);
+                if (!hiddenMaterials.includes(material))
+                    hiddenMaterials.push(material);
+
+                RunCalculation(hiddenMaterials);
+            }
+
+            function initObject(o) {
+                var object = new Object();
+                object["name"] = o.Name;
+                object["craftingTime"] = o.CraftingTime; //In seconds.
+                object["materials"] = o.Materials;
+                object["totalMaterials"] = 0;
+                object["research"] = o.Research;
+                object["totalResearch"] = 0;
+                object["efficiency"] = 0.00;
+                object["estimatedCost"] = 0.00;
+                object["totalCrafts"] = { "All": 0, "Cube": 0, "Power": 0, "Gear": 0, "Shield": 0, "Use": 0 };
+                object["favourite"] = o.Favourite;
+                object["hide"] = o.Hide;
+
+                $.each(o.Research, function(j, r) {
+                    // ToDo: Update datatable.
+                    researchText += '<p class="leftAlign researchTd inTable">' + j + ":"
+                        + "<span class='rightFloat'>" + r + " points</span></p>";
+                    object["totalResearch"] += r;
+                });
+                $.each(o.Materials, function(j, m) {
+                    var qtyInStacks = (m / stackConstant).toFixed(2);
+                    materialsText += '<p class="leftAlign materialTd inTable">' + j + ":"
+                        + "<span class='rightFloat' title='" + m + "'>" + qtyInStacks + " stacks</span></p>";
+                    object["totalMaterials"] += m;
+                    var stackQty = m/stackConstant;
+                    object["estimatedCost"] += materials[j] * stackQty;
+                });
+                object["efficiency"] = (object["totalResearch"] / object["totalMaterials"]) * 100;
+
+            }
+
+            function modalOpen(element) {
+                return;
+                $('<div></div>').dialog({
+                    modal: true,
+                    title: element.innerText,
+                    buttons: {
+                        Save: function () {
+                            var i = $('#modIndex').val();
+                            var oldName = json.objects[i].Name;
+                            json.objects[i].Name = $('#modName').val();
+                            json.objects[i].CraftingTime = $('#modCTime').val();
+                            json.objects[i].Favourite = $('#modFav').val();
+                            json.objects[i].Hide = $('#modHide').val();
+                            $('.modRes').each(function (j, e) {
+                                var researchName = $(e).attr('id').substring(3);
+                                json.objects[i].Research[researchName] = $(e).val();
+                            });
+
+                            $('.modMat').each(function (j, e) {
+                                var materialName = $(e).attr('id').substring(3);
+                                json.objects[i].Materials[materialName] = $(e).val();
+                            });
+                            
+                            // Save to file
+                            $.post({
+                                url: "json.php",
+                                data: { info: json }
+                            }).done(function(response) {
+                                var parsed = JSON.parse(response);
+                                console.log(response);
+                                console.log(parsed);
+                                console.log('ajax done');
+                            });
+                            $(this).dialog("close");
+                        },
+                        Cancel: function () {
+                            $(this).dialog("close");
+                        }
+                    },
+                    closeOnEscape: true,
+                    show: true,
+                    height: 400,
+                    width: 450,
+                    open: function () {
+                        var objName = element.innerText;
+                        var obj = null;
+                        var index = null;
+                        $.each(json.objects, function(i, o) {
+                            if (o["Name"] == objName) {
+                                obj = o;
+                                index = i;
+                            }
+                        });
+                        if (obj == null) {
+                            console.log('Object not found: ' + objName);
+                            return;
+                        }
+                        var indexTag = '<input type="hidden" class="modVals" id="modIndex" value="' + index + '">'
+                        var name = '<label for="modName">Name: </label>'
+                            + '<input type="text" class="modVals" id="modName" value="' + objName + '"><br>';
+                        var cTime = '<label for="modName">Crafting Time: </label>'
+                            + '<input type="text" id="modCTime" value="' + obj["CraftingTime"] + '"><br>';
+                        var fav = '<label for="modFav">Favourite: </label>'
+                            + '<input type="text" id="modFav" value="' + obj["Favourite"] + '"><br>';
+                        var hide = '<label for="modHide">Hidden: </label>'
+                            + '<input type="text" id="modHide" value="' + obj["Hide"] + '"><br>';
+                        // Iterate Research
+                        var research = "<span>Research</span><br>";
+                        $.each(obj.Research, function(i, r) {
+                            research += '<label for="mod' + i + '">' + i + ': </label>'
+                                + '<input type="text" class="modRes" id="mod' + i + '" value="' + r + '"><br>';
+                        });
+                        // Iterate Materials
+                        var materials = "<span>Materials</span><br>";
+                        $.each(obj.Materials, function(i, m) {
+                            materials += '<label for="mod' + i + '">' + i + ': </label>'
+                                + '<input type="text" class="modMat" id="mod' + i + '" value="' + m + '"><br>';
+                        });
+                        // Add Materials
+                        var markup = indexTag + name + cTime + fav + hide + research + materials;
+                        $(this).html(markup);
+                    }
+                }); // End dialog.
+            }
         </script>
     </head>
     <body>
-        <h2>Calculate Crafting v0.3</h2>
+        <h2>Starbase Research Crafting Calculator v0.4</h2>
         <form onsubmit="return false">
             <table id="calcTbl">
                 <thead>
@@ -608,7 +817,7 @@
             </p>
             <p>
                 <button type="reset">Reset Fields</button>
-                <button type="submit" id="calcBtn">Submit</button>
+                <button type="submit" onclick="RunCalculation();">Submit</button>
             </p>
         </form>
         <hr>
