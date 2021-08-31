@@ -279,7 +279,7 @@
                             }
                         });
                     });
-                    
+
                     if (useableObjs.length == 0) {
                         var text = "No results found";
                         if (typeof hiddenMats !== 'undefined') {
@@ -329,6 +329,12 @@
                             set.value += object["totalCrafts"][prop] * object["vendorPrice"];
                             object["totalCrafts"]["Use"] = object["totalCrafts"][prop];
                             set.objects.push(object);
+                            // Add set's materials so they get listed.
+                            $.each(object.materials, function(name, qty) {
+                                if (!relevantMaterials.includes(name)) {
+                                    relevantMaterials.push(name);
+                                }
+                            });
                         }
                         // If the set is complete, add it to the results.
                         if (Object.keys(targetResearch).length == set.objects.length) {
@@ -367,7 +373,7 @@
                             + '</select>'
                         + ' &darr;</td></tr>');
                     //#endregion
-                    
+
                     //#region Load results into table.
                     // Add material "header" rows.
                     for (var i = 0; i < relevantMaterials.length; i++) {
@@ -777,7 +783,7 @@
         </script>
     </head>
     <body>
-        <h2>Starbase Research Crafting Calculator v0.4</h2>
+        <h2>Starbase Research Crafting Calculator v0.4.1</h2>
         <form onsubmit="return false">
             <table id="calcTbl">
                 <thead>
