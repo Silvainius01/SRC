@@ -10,6 +10,9 @@ Current features:
 - Display material amounts, estimated cost in credits, estimated crafting time (most items still need this value).
 - Research efficiency, expressed as total research points divided by total kv.
 - All crafting object data table, searchable, for quick reference.
+- Unknown crafting time warning (all unknown crafting time is at zero).
+- Display vendor price (including diff). Must still feed vendor prices for this to work.
+- Filter by material. User may exclude certain objects if they require the material.
 
 Planned:
 Taking into consideration when an object generates more than one research type, specially for the "set functionality".
