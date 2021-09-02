@@ -1228,6 +1228,11 @@
         {
             "Name": "Station Foundation (Inside Safe Zone)",
             "CraftingTime": 310.0,
+            "VendorPrice": 0
+        },
+        {
+            "Name": "Station Foundation (Inside Safe Zone)",
+            "CraftingTime": 310,
             "Materials": {
                 "Bastium": 3403.5,
                 "Charodium": 7597.42,
@@ -1244,7 +1249,7 @@
         },
         {
             "Name": "Station Foundation (Outside Safe Zone)",
-            "CraftingTime": 0.0,
+            "CraftingTime": 0,
             "Materials": {
                 "Arkanium": 10256.52,
                 "Bastium": 3007.92,
