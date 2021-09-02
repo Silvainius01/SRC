@@ -1242,6 +1242,41 @@
             "Favourite": 0,
             "Hide": 0,
             "VendorPrice": 0
+        },
+        {
+            "Name": "Station Foundation (Inside Safe Zone)",
+            "CraftingTime": 310,
+            "Materials": {
+                "Bastium": 3403.5,
+                "Charodium": 7597.42,
+                "Vokarium": 22792.27
+            },
+            "Research": {
+                "Cube": 688,
+                "Gear": 1376,
+                "Power": 1376
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 31390.88
+        },
+        {
+            "Name": "Station Foundation (Outside Safe Zone)",
+            "CraftingTime": 0,
+            "Materials": {
+                "Arkanium": 10256.52,
+                "Bastium": 3403.5,
+                "Kutonium": 8547.09,
+                "Vokarium": 26780.92
+            },
+            "Research": {
+                "Cube": 1154,
+                "Gear": 2309,
+                "Power": 2309
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0
         }
     ]
 }
