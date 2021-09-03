@@ -1227,7 +1227,11 @@
         },
         {
             "Name": "Station Foundation (Inside Safe Zone)",
+<<<<<<< HEAD
             "CraftingTime": 310.0,
+=======
+            "CraftingTime": 310,
+>>>>>>> main
             "Materials": {
                 "Bastium": 3403.5,
                 "Charodium": 7597.42,
