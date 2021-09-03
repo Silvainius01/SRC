@@ -960,7 +960,7 @@
             "CraftingTime": 1.0,
             "Materials": {
                 "Ajatite": 13.21,
-                "Bastium": 4.07
+                "Bastium": 34.9
             },
             "Research": {
                 "Cube": 1,
@@ -1191,11 +1191,11 @@
             },
             "Favourite": 0,
             "Hide": 0,
-            "VendorPrice": 0.0
+            "VendorPrice": 932.48
         },
         {
             "Name": "Tripod Autocannon",
-            "CraftingTime": 0.0,
+            "CraftingTime": 29.9,
             "Materials": {
                 "Bastium": 463.6,
                 "Charodium": 2162.9,
@@ -1228,11 +1228,6 @@
         {
             "Name": "Station Foundation (Inside Safe Zone)",
             "CraftingTime": 310.0,
-            "VendorPrice": 0
-        },
-        {
-            "Name": "Station Foundation (Inside Safe Zone)",
-            "CraftingTime": 310,
             "Materials": {
                 "Bastium": 3403.5,
                 "Charodium": 7597.42,
@@ -1249,7 +1244,7 @@
         },
         {
             "Name": "Station Foundation (Outside Safe Zone)",
-            "CraftingTime": 0,
+            "CraftingTime": 0.0,
             "Materials": {
                 "Arkanium": 10256.52,
                 "Bastium": 3007.92,
@@ -1662,12 +1657,263 @@
         },
         {
             "Name": "Station Plate 216x432 cm",
-            "CraftingTime": 0.0,
+            "CraftingTime": 6.5,
             "Materials": {
                 "Valkite": 582.67
             },
             "Research": {
                 "Cube": 291
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 183.54
+        },
+        {
+            "Name": "Tool Bench Rifle Clamp Updrade",
+            "CraftingTime": 86.0,
+            "Materials": {
+                "Kutonium": 4634.5,
+                "Arkanium": 1390.25,
+                "Ymrium": 1853.75,
+                "Bastium": 1390.5
+            },
+            "Research": {
+                "Cube": 268,
+                "Gear": 1081
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Tool Bench Small Clamp Upgrade",
+            "CraftingTime": 31.0,
+            "Materials": {
+                "Aegisium": 1297.65,
+                "Vokarium": 324.3,
+                "Charodium": 973.2,
+                "Bastium": 649.05
+            },
+            "Research": {
+                "Cube": 69,
+                "Gear": 284
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Medium Hydrogen Propellant Tank",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Aegisium": 540.56,
+                "Vokarium": 231.67
+            },
+            "Research": {
+                "Cube": 34,
+                "Gear": 51
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Basic Crafting Bench Meter Upgrade",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Arkanium": 433.0,
+                "Vokarium": 311.75,
+                "Exorium": 381.0,
+                "Bastium": 347.0,
+                "Kutonium": 259.75
+            },
+            "Research": {
+                "Cube": 40,
+                "Power": 126,
+                "Gear": 40
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Tier 2 Generator Fuel Rod",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Vokarium": 34.57,
+                "Bastium": 34.57,
+                "Aegisium": 69.14
+            },
+            "Research": {
+                "Cube": 5,
+                "Gear": 8
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Generator Fuel Chamber Tier 2",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Ajatite": 121.2,
+                "Vokarium": 121.2,
+                "Charodium": 727.19,
+                "Aegisium": 242.4
+            },
+            "Research": {
+                "Cube": 23,
+                "Power": 23,
+                "Gear": 74
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Box Thruster Body Tier 2",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Aegisium": 395.37,
+                "Vokarium": 131.79,
+                "Charodium": 593.05,
+                "Bastium": 197.68
+            },
+            "Research": {
+                "Cube": 26,
+                "Gear": 113
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "box Thruster Nozzle Tier 2",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Charodium": 418.47,
+                "Aegisium": 225.33
+            },
+            "Research": {
+                "Cube": 14,
+                "Power": 14,
+                "Gear": 43
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Maneuver Thruster Tier 2",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Ajatite": 5.79,
+                "Vokarium": 8.69,
+                "Charodium": 32.59,
+                "Aegisium": 25.35
+            },
+            "Research": {
+                "Gear": 4
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Thruster Electricity Converter Tier 2",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Arkanium": 9.48,
+                "Vokarium": 23.7,
+                "Bastium": 14.23
+            },
+            "Research": {
+                "Power": 1,
+                "Gear": 1
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Thruster Propellant Converter Tier 2",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Vokarium": 26.56,
+                "Bastium": 15.94,
+                "Aegisium": 10.62
+            },
+            "Research": {
+                "Power": 1,
+                "Gear": 1
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Triangle Thruster Base Tier 2",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Aegisium": 265.32,
+                "Vokarium": 29.48,
+                "Charodium": 176.88,
+                "Bastium": 117.92
+            },
+            "Research": {
+                "Cube": 11,
+                "Gear": 51
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Triangle Thruster Nozzle Tier 2",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Charodium": 105.21,
+                "Aegisium": 56.65
+            },
+            "Research": {
+                "Cube": 3,
+                "Power": 3,
+                "Gear": 9
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Ship Diagnostic Scanner",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Ajatite": 265.99,
+                "Arkanium": 220.4,
+                "Vokarium": 197.6,
+                "Bastium": 76.04
+            },
+            "Research": {
+                "Cube": 5,
+                "Power": 63
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Generator Unit Tier 2",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Vokarium": 111.01,
+                "Charodium": 370.04,
+                "Aegisium": 111.01,
+                "Ajatite": 148.01
+            },
+            "Research": {
+                "Cube": 13,
+                "Power": 13,
+                "Gear": 41
             },
             "Favourite": 0,
             "Hide": 0,
