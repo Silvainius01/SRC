@@ -1227,11 +1227,6 @@
         },
         {
             "Name": "Station Foundation (Inside Safe Zone)",
-            "CraftingTime": 310.0,
-            "VendorPrice": 0
-        },
-        {
-            "Name": "Station Foundation (Inside Safe Zone)",
             "CraftingTime": 310,
             "Materials": {
                 "Bastium": 3403.5,
