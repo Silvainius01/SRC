@@ -168,19 +168,31 @@
                             object["totalResearch"] += r;
                         });
                         $.each(o.Materials, function(j, m) {
-                            var qtyInStacks = (m / stackConstant).toFixed(2);
+                            var qtyInStacks = m / stackConstant;
                             materialsText += '<p class="leftAlign materialTd inTable">' + j + ":"
-                                + "<span class='rightFloat' title='" + m + "'>" + qtyInStacks + " stacks</span></p>";
+                                + "<span class='rightFloat' title='" + m + "'>" + qtyInStacks.toFixed(2) + " stacks</span></p>";
                             object["totalMaterials"] += m;
-                            var stackQty = m/stackConstant;
-                            object["estimatedCost"] += materials[j]*stackQty;
+                            object["estimatedCost"] += materials[j] * qtyInStacks;
                         });
                         object["efficiency"] = (object["totalResearch"] / object["totalMaterials"]) * 100;
+                        var timeText = '';
+                        if (object["craftingTime"] == 0) {
+                            // Subtracting 0.1 to distinguish estimations from actual times.
+                            object["craftingTime"] = Math.ceil(object["totalMaterials"] / 100) - 0.1;
+                            timeText = "<span class='rightFloat' title='Guessed time: "
+                                + formatTime(Math.ceil(object["craftingTime"])) + "'>"
+                                + Math.ceil(object["craftingTime"])
+                                + '<img src="img/warning.png" alt="Warning: guessed crafting time." width="16" height="14"></span>';
+                        } else {
+                            timeText = "<span class='rightFloat' title='" + formatTime(object["craftingTime"]) + "'>"
+                                + object["craftingTime"] + '</span>';
+                        }
                         //#endregion
                         
                         // Add each object to be displayed.
                         tableRows.push([
                             '<span onclick="modalOpen(this)">' + object["name"] + "</span>",
+                            timeText,
                             object["efficiency"].toFixed(2) + '%',
                             nf.format(object["estimatedCost"].toFixed(2)) + ' credits',
                             researchText,
@@ -193,11 +205,12 @@
                     $('#objectData').DataTable({
                         data: tableRows,
                         columns: [
-                            { title: "Name", width: "34%" },
-                            { title: "Efficiency", width: "10%" },
-                            { title: "Estimated Cost", width: "15%" },
-                            { title: "Research", width: "18%" },
-                            { title: "Materials", width: "23%" }
+                            { title: "Name", width: "28%" },
+                            { title: "Crafting Time in Seconds", width: "10%" },
+                            { title: "Efficiency", width: "9%" },
+                            { title: "Estimated Cost", width: "14%" },
+                            { title: "Research", width: "17%" },
+                            { title: "Materials", width: "21%" }
                         ],
                         columnDefs: [
                             {
@@ -219,12 +232,14 @@
                     var relevantMaterials = [];
                     var maxSingleObjectMatches = $('#maxResults').val();
                     var onlyAllResearch = $('#onlyAllResearch').is(":checked");
+                    var pruneResults = $('#pruneResults').is(":checked");
                     var combinedSets = [];
                     prioritize = $('#priority').val();
 
                     // Clear previous results.
                     $('.deleteMe').remove();
-                    if (prioritize == 'efficiency') // Descending order if set by efficiency.
+                    // Set descending sort order if set by efficiency or vendor price.
+                    if (prioritize == 'efficiency' || prioritize == 'vendorPrice')
                         prioritize = '-' + prioritize;
                     if (typeof hiddenMats === 'undefined') {
                         hiddenMaterials = [];
@@ -309,7 +324,7 @@
 
                     //#region Look for object combinations.
                     // Only applies when user requested more than one research type.
-                    if ((Object.keys(targetResearch).length > 1) && prioritize == "totalMaterials") {
+                    if ((Object.keys(targetResearch).length > 1)) {
                         // Try to find combinations that are more efficient than single objects.
                         var set = {
                             "material": 0,
@@ -346,6 +361,33 @@
                     //#region Prepare to display.
                     // Sort usable objects by priority.
                     useableObjs.sort(dynamicSort(prioritize));
+
+                    // Prune "duplicate results" - objects that provide worse solutions depending on sorting priority.
+                    var fulfilledResearch = targetResearch;
+                    var objIndex = 0;
+                    var deleteIndexes = []
+
+                    $.each(useableObjs, function(i, obj) {
+                        var usableResearchTypesQty = 0;
+                        $.each(obj.research, function(name, qty) {
+                            if (name in fulfilledResearch && fulfilledResearch[name] > 0) {
+                                usableResearchTypesQty++;
+                                fulfilledResearch[name] -= obj.totalCrafts["All"] * qty;
+                            }
+                        });
+                        if (usableResearchTypesQty == 0 && pruneResults) {
+                            // Object is "worthless", a better solution has been found already.
+                            deleteIndexes.push(objIndex);
+                        }
+                        objIndex++;
+                    });
+                    var removedItemsCount = 0;
+//console.log(useableObjs);
+                    for (var i = 0; i < deleteIndexes.length; i++) {
+                        useableObjs.splice(deleteIndexes[i] - removedItemsCount, 1);
+                        removedItemsCount++;
+                    }
+//console.log(useableObjs);
 
                     // Enforce maxSingleObjectMatches.
                     if (useableObjs.length > maxSingleObjectMatches) {
@@ -407,7 +449,7 @@
                     $.each(useableObjs, function(i, obj) {
                         generateColumn({
                                 "material": 0,
-                                "cost": obj.estimatedCost,
+                                "cost": obj.estimatedCost * obj.totalCrafts["All"],
                                 "time": obj.craftingTime * obj.totalCrafts["All"],
                                 "objects": [ obj ],
                                 "value": obj.vendorPrice * obj.totalCrafts["All"]
@@ -433,8 +475,11 @@
                         x = a[property] * a["totalCrafts"][secondary];
                         y = b[property] * b["totalCrafts"][secondary];
                     } else if (property == "craftingTime") {
-                        x = (a[property] == 0 ? 90000 : a[property]) * a["totalCrafts"][secondary];
-                        y = (b[property] == 0 ? 90000 : b[property]) * b["totalCrafts"][secondary];
+                        x = (a[property] == 0 ? 90000 : a[property] * a["totalCrafts"][secondary]);
+                        y = (b[property] == 0 ? 90000 : b[property] * b["totalCrafts"][secondary]);
+                    } else if (property == "vendorPrice") {
+                        x = (a[property] == 0 ? -9000000 : a[property] * a["totalCrafts"][secondary]);
+                        y = (b[property] == 0 ? -9000000 : b[property] * b["totalCrafts"][secondary]);
                     }
                     
                     var result = (x < y) ? -1 : (x > y) ? 1 : 0;
@@ -529,7 +574,7 @@
                 // Check if any object has an unknown crafting time to set the warning flag.
                 var warn = false;
                 $.each(sets.objects, function(i, obj) {
-                    if (obj.craftingTime == 0) {
+                    if (obj.craftingTime % 1 > 0) {
                         warn = true;
                         return false;
                     }
@@ -577,12 +622,7 @@
                 } else if (cell == "cost") {
                     text = nf.format(value.toFixed(2)) + ' credits';
                 } else if (cell == "time") {
-                    var time = (value / 60).toFixed(2);
-                    if (time > 120) {
-                        time = nf.format((time / 60).toFixed(2));
-                        text = time + ' hrs.';
-                    } else
-                        text = nf.format(time) + ' mins.';
+                    text = formatTime(value);
                 } else if (cell == "value") {
                     value.cost
                     text = nf.format(value.sell.toFixed(2)) + ' credits'
@@ -783,10 +823,29 @@
                     }
                 }); // End dialog.
             }
+
+            function formatTime(seconds) {
+                if (isNaN(seconds))
+                    return 0;
+
+                // Under half a minute, return in seconds.
+                if (seconds < 31)
+                    return seconds.toFixed(2) + ' secs.';
+                
+                // Over 1.5 hours, return in hours.
+                var time = (seconds / 60).toFixed(2);
+                if (time > 90) {
+                    time = nf.format((time / 60).toFixed(2));
+                    return time + ' hrs.';
+                }
+
+                // Between 31 seconds and 90 minutes, retun in minutes.
+                return nf.format(time) + ' mins.';
+            }
         </script>
     </head>
     <body>
-        <h2>Starbase Research Crafting Calculator v0.4.2</h2>
+        <h2>Starbase Research Crafting Calculator v0.5</h2>
         <form onsubmit="return false">
             <table id="calcTbl">
                 <thead>
@@ -813,11 +872,14 @@
                     <option value="efficiency">Efficiency</option>
                     <option value="estimatedCost">Material Cost</option>
                     <option value="craftingTime">Crafting Time</option>
+                    <option value="vendorPrice">Vendor Price</option>
                 </select>
             </p>
             <p>
                 <input type="checkbox" id="onlyAllResearch">
                 <label for="onlyAllResearch">Only use objects that fulfill all research targets.</label>
+                <input type="checkbox" id="pruneResults">
+                <label for="pruneResults">Prune results so you get only one per research type.</label>
             </p>
             <p>
                 Max results <input type="number" id="maxResults" min="1" value="5"/>
