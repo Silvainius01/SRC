@@ -1424,7 +1424,7 @@
             "VendorPrice": 0.0
         },
         {
-            "Name": "Advanced Crafting Bench Saw Upgrade",
+            "Name": "Advanced Crafting Bench Metal Saw Upgrade",
             "CraftingTime": 0.0,
             "Materials": {
                 "Vokarium": 2736.75,
@@ -1914,6 +1914,40 @@
                 "Cube": 13,
                 "Power": 13,
                 "Gear": 41
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Grenade",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Ice": 53.4,
+                "Vokarium": 178.0,
+                "Nhurgite": 480.6,
+                "Bastium": 0.09
+            },
+            "Research": {
+                "Shield": 42
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Grenade Launcher",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Ajatite": 639.0,
+                "Kutonium": 1317.0,
+                "Vokarium": 676.0,
+                "Charodium": 1127.0
+            },
+            "Research": {
+                "Cube": 2,
+                "Shield": 6,
+                "Gear": 6
             },
             "Favourite": 0,
             "Hide": 0,
