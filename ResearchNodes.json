@@ -1,0 +1,2042 @@
+{
+    "objects": [
+        {
+            "Name": "Advanced Crafting Bench",
+            "Tree": "Advanced",
+            "IsOwned": false,
+            "Recipes": [
+                "Advanced Crafting Bench"
+            ],
+            "Dependencies": [],
+            "Children": [
+                "Advanced Bench Metal Bender Upgrade",
+                "Station Foundation (Inside Safe Zone)"
+            ],
+            "ResearchCosts": {
+                "Cube": 2000,
+                "Power": 2000,
+                "Gear": 2000
+            }
+        },
+        {
+            "Name": "Advanced Bench Metal Bender Upgrade",
+            "Tree": "Advanced",
+            "IsOwned": false,
+            "Recipes": [
+                "Advanced Crafting Bench Metal Bender Upgrade"
+            ],
+            "Dependencies": [
+                "Advanced Crafting Bench"
+            ],
+            "Children": [
+                "Station Plates",
+                "Station Beams"
+            ],
+            "ResearchCosts": {
+                "Cube": 2000,
+                "Power": 2000,
+                "Gear": 2000
+            }
+        },
+        {
+            "Name": "Station Plates",
+            "Tree": "Advanced",
+            "IsOwned": false,
+            "Recipes": [
+                "Station Plate 216x432 cm"
+            ],
+            "Dependencies": [
+                "Advanced Bench Metal Bender Upgrade"
+            ],
+            "Children": [
+                "Station Corner",
+                "Station Slanted",
+                "Station Angled"
+            ],
+            "ResearchCosts": {
+                "Cube": 5000
+            }
+        },
+        {
+            "Name": "Station Beams",
+            "Tree": "Advanced",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Advanced Bench Metal Bender Upgrade"
+            ],
+            "Children": [
+                "Station Corner",
+                "Station Slanted",
+                "Station Angled"
+            ],
+            "ResearchCosts": {
+                "Cube": 15000
+            }
+        },
+        {
+            "Name": "Station Corner",
+            "Tree": "Advanced",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Station Plates",
+                "Station Beams"
+            ],
+            "Children": [
+                "Station Decorative"
+            ],
+            "ResearchCosts": {
+                "Cube": 15000
+            }
+        },
+        {
+            "Name": "Station Slanted",
+            "Tree": "Advanced",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Station Plates",
+                "Station Beams"
+            ],
+            "Children": [
+                "Station Misc."
+            ],
+            "ResearchCosts": {
+                "Cube": 15000
+            }
+        },
+        {
+            "Name": "Station Angled",
+            "Tree": "Advanced",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Station Plates",
+                "Station Beams"
+            ],
+            "Children": [
+                "Station Windows"
+            ],
+            "ResearchCosts": {
+                "Cube": 150000
+            }
+        },
+        {
+            "Name": "Station Decorative",
+            "Tree": "Advanced",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Station Corner"
+            ],
+            "Children": [],
+            "ResearchCosts": {
+                "Cube": 20000
+            }
+        },
+        {
+            "Name": "Station Misc.",
+            "Tree": "Advanced",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Station Slanted"
+            ],
+            "Children": [],
+            "ResearchCosts": {
+                "Cube": 20000
+            }
+        },
+        {
+            "Name": "Station Windows",
+            "Tree": "Advanced",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Station Angled"
+            ],
+            "Children": [],
+            "ResearchCosts": {
+                "Cube": 20000
+            }
+        },
+        {
+            "Name": "Station Foundation (Inside Safe Zone)",
+            "Tree": "Advanced",
+            "IsOwned": false,
+            "Recipes": [
+                "Station Foundation (Inside Safe Zone)"
+            ],
+            "Dependencies": [
+                "Advanced Crafting Bench"
+            ],
+            "Children": [
+                "Basic Frames",
+                "Basic Block Modules"
+            ],
+            "ResearchCosts": {
+                "Power": 2000,
+                "Gear": 2000
+            }
+        },
+        {
+            "Name": "Basic Frames",
+            "Tree": "Advanced",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Station Foundation (Inside Safe Zone)"
+            ],
+            "Children": [
+                "Factory Hall"
+            ],
+            "ResearchCosts": {
+                "Power": 2000,
+                "Gear": 2000,
+                "Cube": 2000
+            }
+        },
+        {
+            "Name": "Basic Block Modules",
+            "Tree": "Advanced",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Station Foundation (Inside Safe Zone)"
+            ],
+            "Children": [
+                "Factory Hall"
+            ],
+            "ResearchCosts": {
+                "Cube": 1000
+            }
+        },
+        {
+            "Name": "Factory Hall",
+            "Tree": "Advanced",
+            "IsOwned": false,
+            "Recipes": [
+                "Factory Hall Corner Beam",
+                "Factory Hall Corner Half",
+                "Factory Hall Corner Full",
+                "Factory Hall Edge",
+                "Factory Hall Edge Beam",
+                "Factory Hall Edge Flat",
+                "Factory Hall Flat",
+                "Factory Hall Ramp"
+            ],
+            "Dependencies": [
+                "Basic Block Modules",
+                "Basic Frames"
+            ],
+            "Children": [
+                "Advanced Bench Metal Saw Upgrade"
+            ],
+            "ResearchCosts": {
+                "Cube": 20000,
+                "Gear": 2000
+            }
+        },
+        {
+            "Name": "Advanced Bench Metal Saw Upgrade",
+            "Tree": "Advanced",
+            "IsOwned": false,
+            "Recipes": [
+                "Advanced Crafting Bench Metal Saw Upgrade"
+            ],
+            "Dependencies": [
+                "Factory Hall"
+            ],
+            "Children": [
+                "Decorative Module Bundle 1",
+                "Decorative Module Bundle 2"
+            ],
+            "ResearchCosts": {
+                "Cube": 10000,
+                "Power": 1000,
+                "Gear": 2000
+            }
+        },
+        {
+            "Name": "Decorative Module Bundle 1",
+            "Tree": "Advanced",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Advanced Bench Metal Saw Upgrade"
+            ],
+            "Children": [
+                "Decorative Module Bundle 3"
+            ],
+            "ResearchCosts": {
+                "Cube": 20000
+            }
+        },
+        {
+            "Name": "Decorative Module Bundle 2",
+            "Tree": "Advanced",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Advanced Bench Metal Saw Upgrade"
+            ],
+            "Children": [
+                "Decorative Module Bundle 4"
+            ],
+            "ResearchCosts": {
+                "Cube": 20000
+            }
+        },
+        {
+            "Name": "Decorative Module Bundle 3",
+            "Tree": "Advanced",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Decorative Module Bundle 1"
+            ],
+            "Children": [
+                "Solar Panels"
+            ],
+            "ResearchCosts": {
+                "Cube": 25000
+            }
+        },
+        {
+            "Name": "Decorative Module Bundle 4",
+            "Tree": "Advanced",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Decorative Module Bundle 2"
+            ],
+            "Children": [
+                "Solar Panels"
+            ],
+            "ResearchCosts": {
+                "Cube": 25000
+            }
+        },
+        {
+            "Name": "Solar Panels",
+            "Tree": "Advanced",
+            "IsOwned": false,
+            "Recipes": [
+                "Solar Panel Support",
+                "Solar Panel Light Sensor",
+                "Solar Power Converter"
+            ],
+            "Dependencies": [
+                "Decorative Module Bundle 3",
+                "Decorative Module Bundle 4"
+            ],
+            "Children": [
+                "Station Foundation (Outside Safe Zone)"
+            ],
+            "ResearchCosts": {
+                "Cube": 50000,
+                "Power": 20000
+            }
+        },
+        {
+            "Name": "Station Foundation (Outside Safe Zone)",
+            "Tree": "Advanced",
+            "IsOwned": false,
+            "Recipes": [
+                "Station Foundation (Outside Safe Zone)"
+            ],
+            "Dependencies": [
+                "Solar Panels"
+            ],
+            "Children": [],
+            "ResearchCosts": {
+                "Cube": 100000,
+                "Gear": 20000
+            }
+        },
+        {
+            "Name": "Tools & Weapons Crafting Bench",
+            "Tree": "Tools/Weap.",
+            "IsOwned": false,
+            "Recipes": [
+                "Tools & Weapons Crafting Bench"
+            ],
+            "Dependencies": [],
+            "Children": [
+                "Pickaxe",
+                "Welding Tool",
+                "Infantry Basics"
+            ],
+            "ResearchCosts": {
+                "Power": 1000,
+                "Gear": 2000
+            }
+        },
+        {
+            "Name": "Pickaxe",
+            "Tree": "Tools/Weap.",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Tools & Weapons Crafting Bench"
+            ],
+            "Children": [
+                "Buzzsaw",
+                "Bolt Tool",
+                "Cable Tool"
+            ],
+            "ResearchCosts": {
+                "Cube": 400
+            }
+        },
+        {
+            "Name": "Welding Tool",
+            "Tree": "Tools/Weap.",
+            "IsOwned": false,
+            "Recipes": [
+                "Power Pack"
+            ],
+            "Dependencies": [
+                "Tools & Weapons Crafting Bench"
+            ],
+            "Children": [
+                "Buzzsaw",
+                "Bolt Tool",
+                "Cable Tool"
+            ],
+            "ResearchCosts": {
+                "Cube": 250,
+                "Power": 250
+            }
+        },
+        {
+            "Name": "Infantry Basics",
+            "Tree": "Tools/Weap.",
+            "IsOwned": false,
+            "Recipes": [
+                "Assault Rifle Magazine"
+            ],
+            "Dependencies": [
+                "Tools & Weapons Crafting Bench"
+            ],
+            "Children": [
+                "Shotgun",
+                "Long Rifle"
+            ],
+            "ResearchCosts": {
+                "Shield": 200,
+                "Gear": 1000
+            }
+        },
+        {
+            "Name": "Buzzsaw",
+            "Tree": "Tools/Weap.",
+            "IsOwned": false,
+            "Recipes": [
+                "Power Pack"
+            ],
+            "Dependencies": [
+                "Pickaxe",
+                "Welding Tool"
+            ],
+            "Children": [
+                "Cutting Tool"
+            ],
+            "ResearchCosts": {
+                "Cube": 250,
+                "Power": 200,
+                "Shield": 150,
+                "Gear": 200
+            }
+        },
+        {
+            "Name": "Bolt Tool",
+            "Tree": "Tools/Weap.",
+            "IsOwned": false,
+            "Recipes": [
+                "Bolt Tool Magazine",
+                "Bolt Tool"
+            ],
+            "Dependencies": [
+                "Pickaxe",
+                "Welding Tool"
+            ],
+            "Children": [
+                "Building Tool"
+            ],
+            "ResearchCosts": {
+                "Cube": 225,
+                "Gear": 450
+            }
+        },
+        {
+            "Name": "Cable Tool",
+            "Tree": "Tools/Weap.",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Pickaxe",
+                "Welding Tool"
+            ],
+            "Children": [
+                "Pipe Tool"
+            ],
+            "ResearchCosts": {
+                "Cube": 200,
+                "Power": 500
+            }
+        },
+        {
+            "Name": "Cutting Tool",
+            "Tree": "Tools/Weap.",
+            "IsOwned": false,
+            "Recipes": [
+                "Power Pack"
+            ],
+            "Dependencies": [
+                "Buzzsaw"
+            ],
+            "Children": [
+                "Tools & Weapons Bench Small Clamp Upgrade"
+            ],
+            "ResearchCosts": {
+                "Cube": 1000,
+                "Power": 500,
+                "Shield": 300,
+                "Gear": 1000
+            }
+        },
+        {
+            "Name": "Building Tool",
+            "Tree": "Tools/Weap.",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Bolt Tool"
+            ],
+            "Children": [
+                "Tools & Weapons Bench Small Clamp Upgrade"
+            ],
+            "ResearchCosts": {
+                "Cube": 500,
+                "Power": 500,
+                "Gear": 500
+            }
+        },
+        {
+            "Name": "Pipe Tool",
+            "Tree": "Tools/Weap.",
+            "IsOwned": false,
+            "Recipes": [
+                "Pipe Tool"
+            ],
+            "Dependencies": [
+                "Cable Tool"
+            ],
+            "Children": [
+                "Tools & Weapons Bench Small Clamp Upgrade"
+            ],
+            "ResearchCosts": {
+                "Cube": 200,
+                "Power": 500,
+                "Gear": 300
+            }
+        },
+        {
+            "Name": "Tools & Weapons Bench Small Clamp Upgrade",
+            "Tree": "Tools/Weap.",
+            "IsOwned": false,
+            "Recipes": [
+                "Tool Bench Small Clamp Upgrade"
+            ],
+            "Dependencies": [
+                "Cutting Tool",
+                "Pipe Tool",
+                "Building Tool"
+            ],
+            "Children": [
+                "Socket Tool"
+            ],
+            "ResearchCosts": {
+                "Cube": 2500,
+                "Shield": 2500,
+                "Power": 2500,
+                "Gear": 2500
+            }
+        },
+        {
+            "Name": "Socket Tool",
+            "Tree": "Tools/Weap.",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Tools & Weapons Bench Small Clamp Upgrade"
+            ],
+            "Children": [
+                "Paint Tool"
+            ],
+            "ResearchCosts": {
+                "Cube": 10000,
+                "Power": 12500
+            }
+        },
+        {
+            "Name": "Paint Tool",
+            "Tree": "Tools/Weap.",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Socket Tool"
+            ],
+            "Children": [
+                "Brown 1",
+                "Yellow 1",
+                "Green 1"
+            ],
+            "ResearchCosts": {
+                "Cube": 7500,
+                "Shield": 20000,
+                "Gear": 35000
+            }
+        },
+        {
+            "Name": "Brown 1",
+            "Tree": "Tools/Weap.",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Paint Tool"
+            ],
+            "Children": [
+                "Red 1"
+            ],
+            "ResearchCosts": {
+                "Cube": 4000,
+                "Power": 2000,
+                "Shield": 2000
+            }
+        },
+        {
+            "Name": "Yellow 1",
+            "Tree": "Tools/Weap.",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Paint Tool"
+            ],
+            "Children": [
+                "Blue 1"
+            ],
+            "ResearchCosts": {
+                "Power": 10000
+            }
+        },
+        {
+            "Name": "Green 1",
+            "Tree": "Tools/Weap.",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Paint Tool"
+            ],
+            "Children": [
+                "Gray 1"
+            ],
+            "ResearchCosts": {
+                "Power": 4000,
+                "Shield": 4000
+            }
+        },
+        {
+            "Name": "Red 1",
+            "Tree": "Tools/Weap.",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Brown 1"
+            ],
+            "Children": [
+                "Bright Reds",
+                "Bright Blues",
+                "White 1",
+                "Black 1"
+            ],
+            "ResearchCosts": {
+                "Cube": 20000
+            }
+        },
+        {
+            "Name": "Blue 1",
+            "Tree": "Tools/Weap.",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Yellow 1"
+            ],
+            "Children": [
+                "Bright Reds",
+                "Bright Blues",
+                "White 1",
+                "Black 1"
+            ],
+            "ResearchCosts": {
+                "Shield": 10000
+            }
+        },
+        {
+            "Name": "Gray 1",
+            "Tree": "Tools/Weap.",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Green 1"
+            ],
+            "Children": [
+                "Bright Reds",
+                "Bright Blues",
+                "White 1",
+                "Black 1"
+            ],
+            "ResearchCosts": {
+                "Cube": 2500,
+                "Power": 2500,
+                "Shield": 2500,
+                "Gear": 2500
+            }
+        },
+        {
+            "Name": "Bright Reds",
+            "Tree": "Tools/Weap.",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Red 1",
+                "Blue 1",
+                "Gray 1"
+            ],
+            "Children": [],
+            "ResearchCosts": {
+                "Cube": 25000,
+                "Gear": 25000
+            }
+        },
+        {
+            "Name": "Bright Blues",
+            "Tree": "Tools/Weap.",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Red 1",
+                "Blue 1",
+                "Gray 1"
+            ],
+            "Children": [],
+            "ResearchCosts": {
+                "Power": 10000,
+                "Shield": 30000
+            }
+        },
+        {
+            "Name": "White 1",
+            "Tree": "Tools/Weap.",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Red 1",
+                "Blue 1",
+                "Gray 1"
+            ],
+            "Children": [],
+            "ResearchCosts": {
+                "Cube": 10000,
+                "Power": 10000,
+                "Shield": 10000,
+                "Gear": 10000
+            }
+        },
+        {
+            "Name": "Black 1",
+            "Tree": "Tools/Weap.",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Red 1",
+                "Blue 1",
+                "Gray 1"
+            ],
+            "Children": [],
+            "ResearchCosts": {
+                "Cube": 10000,
+                "Power": 10000,
+                "Shield": 10000,
+                "Gear": 10000
+            }
+        },
+        {
+            "Name": "Shotgun",
+            "Tree": "Tools/Weap.",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Infantry Basics"
+            ],
+            "Children": [
+                "Remote Explosives"
+            ],
+            "ResearchCosts": {
+                "Cube": 5000,
+                "Shield": 10000
+            }
+        },
+        {
+            "Name": "Long Rifle",
+            "Tree": "Tools/Weap.",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Infantry Basics"
+            ],
+            "Children": [
+                "Repeater Pistol"
+            ],
+            "ResearchCosts": {
+                "Cube": 5000,
+                "Shield": 10000
+            }
+        },
+        {
+            "Name": "Repeater Pistol",
+            "Tree": "Tools/Weap.",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Long Rifle"
+            ],
+            "Children": [
+                "Revolver"
+            ],
+            "ResearchCosts": {
+                "Cube": 5000,
+                "Shield": 7500
+            }
+        },
+        {
+            "Name": "Revolver",
+            "Tree": "Tools/Weap.",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Repeater Pistol"
+            ],
+            "Children": [],
+            "ResearchCosts": {
+                "Cube": 5000,
+                "Shield": 12000
+            }
+        },
+        {
+            "Name": "Tools & Weapons Bench Rifle Clamp Upgrade",
+            "Tree": "Tools/Weap.",
+            "IsOwned": false,
+            "Recipes": [
+                "Tool Bench Rifle Clamp Upgrade"
+            ],
+            "Dependencies": [
+                "Remote Explosives"
+            ],
+            "Children": [
+                "Plasma Rifle",
+                "Battle Rifle",
+                "Bolter",
+                "Grenade Launcher"
+            ],
+            "ResearchCosts": {
+                "Cube": 25000,
+                "Shield": 50000
+            }
+        },
+        {
+            "Name": "Remote Explosives",
+            "Tree": "Tools/Weap.",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Shotgun"
+            ],
+            "Children": [
+                "Tools & Weapons Bench Rifle Clamp Upgrade"
+            ],
+            "ResearchCosts": {
+                "Cube": 15000,
+                "Shield": 30000
+            }
+        },
+        {
+            "Name": "Plasma Rifle",
+            "Tree": "Tools/Weap.",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Tools & Weapons Bench Rifle Clamp Upgrade"
+            ],
+            "Children": [
+                "Laser Rifle"
+            ],
+            "ResearchCosts": {
+                "Cube": 20000,
+                "Power": 20000,
+                "Shield": 35000
+            }
+        },
+        {
+            "Name": "Battle Rifle",
+            "Tree": "Tools/Weap.",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Tools & Weapons Bench Rifle Clamp Upgrade"
+            ],
+            "Children": [
+                "Laser Rifle"
+            ],
+            "ResearchCosts": {
+                "Cube": 20000,
+                "Shield": 35000,
+                "Gear": 10000
+            }
+        },
+        {
+            "Name": "Bolter",
+            "Tree": "Tools/Weap.",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Tools & Weapons Bench Rifle Clamp Upgrade"
+            ],
+            "Children": [
+                "Rail Rifle"
+            ],
+            "ResearchCosts": {
+                "Cube": 20000,
+                "Shield": 45000
+            }
+        },
+        {
+            "Name": "Grenade Launcher",
+            "Tree": "Tools/Weap.",
+            "IsOwned": false,
+            "Recipes": [
+                "Grenade",
+                "Grenade Launcher"
+            ],
+            "Dependencies": [
+                "Tools & Weapons Bench Rifle Clamp Upgrade"
+            ],
+            "Children": [
+                "Rocket Launcher"
+            ],
+            "ResearchCosts": {
+                "Cube": 25000,
+                "Shield": 55000,
+                "Gear": 20000
+            }
+        },
+        {
+            "Name": "Rocket Launcher",
+            "Tree": "Tools/Weap.",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Grenade Launcher"
+            ],
+            "Children": [],
+            "ResearchCosts": {
+                "Cube": 50000,
+                "Shield": 75000,
+                "Gear": 25000
+            }
+        },
+        {
+            "Name": "Rail Rifle",
+            "Tree": "Tools/Weap.",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Bolter"
+            ],
+            "Children": [],
+            "ResearchCosts": {
+                "Cube": 40000,
+                "Shield": 60000
+            }
+        },
+        {
+            "Name": "Laser Rifle",
+            "Tree": "Tools/Weap.",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Plasma Rifle",
+                "Battle Rifle"
+            ],
+            "Children": [
+                "Gauss Rifle",
+                "Antigel Rifle"
+            ],
+            "ResearchCosts": {
+                "Cube": 20000,
+                "Power": 35000,
+                "Shield": 40000
+            }
+        },
+        {
+            "Name": "Gauss Rifle",
+            "Tree": "Tools/Weap.",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Laser Rifle"
+            ],
+            "Children": [],
+            "ResearchCosts": {
+                "Cube": 80000,
+                "Shield": 20000
+            }
+        },
+        {
+            "Name": "Antigel Rifle",
+            "Tree": "Tools/Weap.",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Laser Rifle"
+            ],
+            "Children": [],
+            "ResearchCosts": {
+                "Cube": 60000,
+                "Shield": 60000
+            }
+        },
+        {
+            "Name": "Basic Crafting Bench",
+            "Tree": "Basic",
+            "IsOwned": true,
+            "Recipes": [
+                "Basic Crafting Bench"
+            ],
+            "Dependencies": [],
+            "Children": [
+                "Windows",
+                "Basic",
+                "Extension and Adapter Modules"
+            ],
+            "ResearchCosts": {}
+        },
+        {
+            "Name": "Windows",
+            "Tree": "Basic",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Basic Crafting Bench"
+            ],
+            "Children": [],
+            "ResearchCosts": {
+                "Cube": 300
+            }
+        },
+        {
+            "Name": "Basic",
+            "Tree": "Basic",
+            "IsOwned": false,
+            "Recipes": [
+                "Basic",
+                "Basic 1 Hardpoint",
+                "L-Shape 1 Hardpoint",
+                "L-Shape 2 Hardpoint",
+                "L-Shape Basic",
+                "L-Shape Basic Corner",
+                "Curved Basic",
+                "Curved Corner 2 Hardpoint"
+            ],
+            "Dependencies": [
+                "Basic Crafting Bench"
+            ],
+            "Children": [
+                "Cargo Box"
+            ],
+            "ResearchCosts": {
+                "Cube": 60
+            }
+        },
+        {
+            "Name": "Extension and Adapter Modules",
+            "Tree": "Basic",
+            "IsOwned": false,
+            "Recipes": [
+                "Extention Wing 5 Hardpoint (1 Connection)",
+                "Extention Hatch",
+                "Curved L-Shape Adapter",
+                "Bottleneck 4",
+                "Bottleneck 4 Curved",
+                "Bottleneck 2",
+                "Bottleneck 1",
+                "Inner Corner",
+                "Extention 5 Hardpoint (1 Connection)",
+                "Extention 3 Hardpoint (3 Connection)",
+                "Extention 2 Hardpoint (3 Connection)",
+                "Extention (3 Connection)",
+                "Extention 4 Hardpoint (2 Connection)"
+            ],
+            "Dependencies": [
+                "Basic Crafting Bench"
+            ],
+            "Children": [],
+            "ResearchCosts": {
+                "Cube": 300
+            }
+        },
+        {
+            "Name": "Cargo Box",
+            "Tree": "Basic",
+            "IsOwned": false,
+            "Recipes": [
+                "Modular Ore Cargo Crate",
+                "L-Shape 1 Ore Crate",
+                "Basic 1 Ore Crate (Corner)",
+                "Curved 1 Ore Crate",
+                "Block of 4 Ore Crates",
+                "Extention Corner 3 Ore Crate"
+            ],
+            "Dependencies": [
+                "Basic"
+            ],
+            "Children": [
+                "Extra Plates Bundle",
+                "Control Tables, Screens, Small Devices",
+                "Tier 1 Thrusters",
+                "Tier 1 Generators",
+                "Fuel Rods"
+            ],
+            "ResearchCosts": {
+                "Cube": 300,
+                "Gear": 50
+            }
+        },
+        {
+            "Name": "Extra Plates Bundle",
+            "Tree": "Basic",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Cargo Box"
+            ],
+            "Children": [
+                "Extra Beams Bundle"
+            ],
+            "ResearchCosts": {
+                "Cube": 1000
+            }
+        },
+        {
+            "Name": "Extra Beams Bundle",
+            "Tree": "Basic",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Extra Plates Bundle"
+            ],
+            "Children": [],
+            "ResearchCosts": {
+                "Cube": 1500
+            }
+        },
+        {
+            "Name": "Control Tables, Screens, Small Devices",
+            "Tree": "Basic",
+            "IsOwned": false,
+            "Recipes": [
+                "Pilot Chair Stand",
+                "Resource Bridge",
+                "Main Flight Computer",
+                "Pilot Chair",
+                "Flight Control Unit Basic"
+            ],
+            "Dependencies": [
+                "Cargo Box"
+            ],
+            "Children": [
+                "Hinges & Hatches"
+            ],
+            "ResearchCosts": {
+                "Power": 100,
+                "Gear": 100
+            }
+        },
+        {
+            "Name": "Hinges & Hatches",
+            "Tree": "Basic",
+            "IsOwned": false,
+            "Recipes": [
+                "Hinge A 48x144 cm",
+                "Hinge (C-profile) 48x144x36 cm",
+                "Hinge (L-profile) 24x144x36 cm",
+                "Slider Basic A 48x144 cm",
+                "Hinge B 48x144 cm"
+            ],
+            "Dependencies": [
+                "Control Tables, Screens, Small Devices"
+            ],
+            "Children": [],
+            "ResearchCosts": {
+                "Cube": 800,
+                "Power": 150,
+                "Gear": 100
+            }
+        },
+        {
+            "Name": "Tier 1 Thrusters",
+            "Tree": "Basic",
+            "IsOwned": false,
+            "Recipes": [
+                "Triangle Thruster Nozzle Tier 1",
+                "Box Thruster Nozzle Tier 1",
+                "Box Thruster Combustion Chamber",
+                "Triangle Thruster Base Tier 1",
+                "T1 Thruster Box",
+                "T1 Thruster Triangle",
+                "Box Thruster Body Tier 1"
+            ],
+            "Dependencies": [
+                "Cargo Box"
+            ],
+            "Children": [
+                "Cockpit Modules"
+            ],
+            "ResearchCosts": {
+                "Cube": 500,
+                "Power": 100,
+                "Gear": 300
+            }
+        },
+        {
+            "Name": "Tier 1 Generators",
+            "Tree": "Basic",
+            "IsOwned": false,
+            "Recipes": [
+                "Small Cooling Cell",
+                "Small Rechargeable Battery",
+                "Generator Fuel Chamber Tier 1"
+            ],
+            "Dependencies": [
+                "Cargo Box"
+            ],
+            "Children": [
+                "Radiators",
+                "Cockpit Modules"
+            ],
+            "ResearchCosts": {
+                "Cube": 1000,
+                "Power": 300,
+                "Gear": 1000
+            }
+        },
+        {
+            "Name": "Fuel Rods",
+            "Tree": "Basic",
+            "IsOwned": false,
+            "Recipes": [
+                "Tier 1 Generator Fuel Rod",
+                "Small Fuel Rod Rack"
+            ],
+            "Dependencies": [
+                "Cargo Box"
+            ],
+            "Children": [
+                "Small Propellant Tank",
+                "Cockpit Modules"
+            ],
+            "ResearchCosts": {
+                "Cube": 300,
+                "Power": 50,
+                "Gear": 300
+            }
+        },
+        {
+            "Name": "Small Propellant Tank",
+            "Tree": "Basic",
+            "IsOwned": false,
+            "Recipes": [
+                "Small Hydrogen Propellant Tank"
+            ],
+            "Dependencies": [
+                "Fuel Rods"
+            ],
+            "Children": [],
+            "ResearchCosts": {
+                "Cube": 1000,
+                "Power": 500,
+                "Gear": 1000
+            }
+        },
+        {
+            "Name": "Radiators",
+            "Tree": "Basic",
+            "IsOwned": false,
+            "Recipes": [
+                "Radiator Base",
+                "Radiator Extension"
+            ],
+            "Dependencies": [
+                "Tier 1 Generators"
+            ],
+            "Children": [],
+            "ResearchCosts": {
+                "Cube": 300,
+                "Power": 50,
+                "Gear": 200
+            }
+        },
+        {
+            "Name": "Cockpit Modules",
+            "Tree": "Basic",
+            "IsOwned": false,
+            "Recipes": [
+                "Top Cockpit Exposed 1x2 Wide",
+                "Cockpit 3 Medium Exposed",
+                "Top Cockpit Exposed 1x2 Long",
+                "Cockpit 3 Small",
+                "Cockpit 2 Small Exposed",
+                "Cockpit 2 Small Exposed (T1 Laborer)"
+            ],
+            "Dependencies": [
+                "Tier 1 Generators",
+                "Tier 1 Thrusters",
+                "Fuel Rods"
+            ],
+            "Children": [
+                "Tripod Autocannon",
+                "Basic Yolol Chip",
+                "Ship Diagnostic Scanner",
+                "Material Point Scanner"
+            ],
+            "ResearchCosts": {
+                "Cube": 1000,
+                "Power": 1000,
+                "Gear": 1000
+            }
+        },
+        {
+            "Name": "Basic Yolol Chip",
+            "Tree": "Basic",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Cockpit Modules"
+            ],
+            "Children": [
+                "Yolol Rack Chip Readers",
+                "Navigation Receivers & Transponders"
+            ],
+            "ResearchCosts": {
+                "Cube": 500,
+                "Power": 1000
+            }
+        },
+        {
+            "Name": "Ship Diagnostic Scanner",
+            "Tree": "Basic",
+            "IsOwned": false,
+            "Recipes": [
+                "Ship Diagnostic Scanner"
+            ],
+            "Dependencies": [
+                "Cockpit Modules"
+            ],
+            "Children": [
+                "Crafting Bench Meter Upgrade"
+            ],
+            "ResearchCosts": {
+                "Cube": 1000,
+                "Power": 4000
+            }
+        },
+        {
+            "Name": "Material Point Scanner",
+            "Tree": "Basic",
+            "IsOwned": false,
+            "Recipes": [
+                "Turret Turntable",
+                "Turret Cradle Advanced",
+                "Small Turntable Mount 2",
+                "Material Point Scanner",
+                "Fixed Weapon Mount 2",
+                "Material Point Scanner Fixed Mount"
+            ],
+            "Dependencies": [
+                "Cockpit Modules"
+            ],
+            "Children": [
+                "Mining Laser",
+                "Ore Collector"
+            ],
+            "ResearchCosts": {
+                "Power": 1000,
+                "Gear": 500
+            }
+        },
+        {
+            "Name": "Tripod Autocannon",
+            "Tree": "Basic",
+            "IsOwned": false,
+            "Recipes": [
+                "Tripod",
+                "Tripod Autocannon",
+                "Tripod Autocannon Magazine"
+            ],
+            "Dependencies": [
+                "Cockpit Modules"
+            ],
+            "Children": [
+                "Mounted Autocannon"
+            ],
+            "ResearchCosts": {
+                "Cube": 5000,
+                "Shield": 1000,
+                "Gear": 5000
+            }
+        },
+        {
+            "Name": "Mounted Autocannon",
+            "Tree": "Basic",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Tripod Autocannon"
+            ],
+            "Children": [
+                "Weapons and Tools Bench Large Clamp Upgrade"
+            ],
+            "ResearchCosts": {
+                "Cube": 30000,
+                "Shield": 10000,
+                "Gear": 30000
+            }
+        },
+        {
+            "Name": "Weapons and Tools Bench Large Clamp Upgrade",
+            "Tree": "Basic",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Mounted Autocannon"
+            ],
+            "Children": [
+                "Mounted Plasma Cannon",
+                "Mounted Laser Cannon"
+            ],
+            "ResearchCosts": {
+                "Cube": 5000,
+                "Power": 5000,
+                "Shield": 5000,
+                "Gear": 5000
+            }
+        },
+        {
+            "Name": "Mounted Plasma Cannon",
+            "Tree": "Basic",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Weapons and Tools Bench Large Clamp Upgrade"
+            ],
+            "Children": [
+                "Missles"
+            ],
+            "ResearchCosts": {
+                "Cube": 80000,
+                "Shield": 50000
+            }
+        },
+        {
+            "Name": "Mounted Laser Cannon",
+            "Tree": "Basic",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Weapons and Tools Bench Large Clamp Upgrade"
+            ],
+            "Children": [
+                "Torpedoes"
+            ],
+            "ResearchCosts": {
+                "Power": 80000,
+                "Shield": 80000,
+                "Gear": 60000
+            }
+        },
+        {
+            "Name": "Missles",
+            "Tree": "Basic",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Mounted Plasma Cannon"
+            ],
+            "Children": [
+                "Mounted Railgun"
+            ],
+            "ResearchCosts": {
+                "Cube": 100000,
+                "Shield": 100000
+            }
+        },
+        {
+            "Name": "Torpedoes",
+            "Tree": "Basic",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Mounted Laser Cannon"
+            ],
+            "Children": [
+                "Mounted Railgun"
+            ],
+            "ResearchCosts": {
+                "Power": 100000,
+                "Shield": 100000,
+                "Gear": 100000
+            }
+        },
+        {
+            "Name": "Mounted Railgun",
+            "Tree": "Basic",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Missles",
+                "Torpedoes"
+            ],
+            "Children": [],
+            "ResearchCosts": {
+                "Cube": 100000,
+                "Power": 100000,
+                "Shield": 100000,
+                "Gear": 100000
+            }
+        },
+        {
+            "Name": "Ore Collector",
+            "Tree": "Basic",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Material Point Scanner"
+            ],
+            "Children": [
+                "Crafting Bench Cables Upgrade"
+            ],
+            "ResearchCosts": {
+                "Cube": 2000,
+                "Gear": 2000
+            }
+        },
+        {
+            "Name": "Mining Laser",
+            "Tree": "Basic",
+            "IsOwned": false,
+            "Recipes": [
+                "Mining Laser",
+                "Mining Laser Fixed Mount"
+            ],
+            "Dependencies": [
+                "Material Point Scanner"
+            ],
+            "Children": [
+                "Crafting Bench Cables Upgrade"
+            ],
+            "ResearchCosts": {
+                "Cube": 2000,
+                "Power": 1000,
+                "Gear": 2000
+            }
+        },
+        {
+            "Name": "Crafting Bench Cables Upgrade",
+            "Tree": "Basic",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Ore Collector",
+                "Mining Laser"
+            ],
+            "Children": [
+                "Rangefinder",
+                "Laser Designator"
+            ],
+            "ResearchCosts": {
+                "Cube": 2000,
+                "Power": 4500,
+                "Shield": 1000,
+                "Gear": 5000
+            }
+        },
+        {
+            "Name": "Rangefinder",
+            "Tree": "Basic",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Crafting Bench Cables Upgrade"
+            ],
+            "Children": [
+                "Tractor Beam"
+            ],
+            "ResearchCosts": {
+                "Cube": 8000,
+                "Power": 5000
+            }
+        },
+        {
+            "Name": "Laser Designator",
+            "Tree": "Basic",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Crafting Bench Cables Upgrade"
+            ],
+            "Children": [
+                "Tractor Beam"
+            ],
+            "ResearchCosts": {
+                "Cube": 10000,
+                "Power": 6000,
+                "Shield": 6000
+            }
+        },
+        {
+            "Name": "Tractor Beam",
+            "Tree": "Basic",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Rangefinder",
+                "Laser Designator"
+            ],
+            "Children": [
+                "Cargo Lock Beam",
+                "Cargo Lock Frame"
+            ],
+            "ResearchCosts": {
+                "Cube": 6000,
+                "Power": 12000,
+                "Gear": 24000
+            }
+        },
+        {
+            "Name": "Cargo Lock Beam",
+            "Tree": "Basic",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Tractor Beam"
+            ],
+            "Children": [],
+            "ResearchCosts": {
+                "Cube": 8000,
+                "Power": 5000,
+                "Gear": 10000
+            }
+        },
+        {
+            "Name": "Cargo Lock Frame",
+            "Tree": "Basic",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Tractor Beam"
+            ],
+            "Children": [],
+            "ResearchCosts": {
+                "Cube": 6000,
+                "Power": 8000,
+                "Gear": 10000
+            }
+        },
+        {
+            "Name": "Crafting Bench Meter Upgrade",
+            "Tree": "Basic",
+            "IsOwned": false,
+            "Recipes": [
+                "Basic Crafting Bench Meter Upgrade"
+            ],
+            "Dependencies": [
+                "Ship Diagnostic Scanner"
+            ],
+            "Children": [
+                "Tier 2 Generator",
+                "Tier 2 Thrusters"
+            ],
+            "ResearchCosts": {
+                "Cube": 3000,
+                "Power": 1000,
+                "Gear": 2000
+            }
+        },
+        {
+            "Name": "Tier 2 Generator",
+            "Tree": "Basic",
+            "IsOwned": false,
+            "Recipes": [
+                "Generator Unit Tier 2",
+                "Tier 2 Generator Fuel Rod",
+                "Generator Fuel Chamber Tier 2"
+            ],
+            "Dependencies": [
+                "Crafting Bench Meter Upgrade"
+            ],
+            "Children": [
+                "Advanced Flight Control Unit"
+            ],
+            "ResearchCosts": {
+                "Cube": 12000,
+                "Power": 6000,
+                "Gear": 6000
+            }
+        },
+        {
+            "Name": "Tier 2 Thrusters",
+            "Tree": "Basic",
+            "IsOwned": false,
+            "Recipes": [
+                "Triangle Thruster Nozzle Tier 2",
+                "Triangle Thruster Base Tier 2",
+                "Thruster Propellant Converter Tier 2",
+                "Thruster Electricity Converter Tier 2",
+                "Maneuver Thruster Tier 2",
+                "Box Thruster Body Tier 2",
+                "Box Thruster Nozzle Tier 2"
+            ],
+            "Dependencies": [
+                "Crafting Bench Meter Upgrade"
+            ],
+            "Children": [
+                "Medium Propellant Tank"
+            ],
+            "ResearchCosts": {
+                "Cube": 10000,
+                "Power": 5000,
+                "Gear": 10000
+            }
+        },
+        {
+            "Name": "Advanced Flight Control Unit",
+            "Tree": "Basic",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Tier 2 Generator"
+            ],
+            "Children": [
+                "Fast Travel Core"
+            ],
+            "ResearchCosts": {
+                "Cube": 6000,
+                "Power": 8000,
+                "Gear": 5000
+            }
+        },
+        {
+            "Name": "Medium Propellant Tank",
+            "Tree": "Basic",
+            "IsOwned": false,
+            "Recipes": [
+                "Medium Hydrogen Propellant Tank"
+            ],
+            "Dependencies": [
+                "Tier 2 Thrusters"
+            ],
+            "Children": [
+                "Fast Travel Core"
+            ],
+            "ResearchCosts": {
+                "Cube": 20000,
+                "Gear": 6000
+            }
+        },
+        {
+            "Name": "Fast Travel Core",
+            "Tree": "Basic",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Advanced Flight Control Unit",
+                "Medium Propellant Tank"
+            ],
+            "Children": [
+                "Crafting Bench Monitor Upgrade"
+            ],
+            "ResearchCosts": {
+                "Cube": 5000,
+                "Power": 5000,
+                "Gear": 15000
+            }
+        },
+        {
+            "Name": "Crafting Bench Monitor Upgrade",
+            "Tree": "Basic",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Fast Travel Core"
+            ],
+            "Children": [
+                "Tier 3 Thrusters",
+                "Tier 3 Generator",
+                "Premium Flight Control Unit"
+            ],
+            "ResearchCosts": {
+                "Cube": 30000,
+                "Power": 40000,
+                "Gear": 80000
+            }
+        },
+        {
+            "Name": "Premium Flight Control Unit",
+            "Tree": "Basic",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Crafting Bench Monitor Upgrade"
+            ],
+            "Children": [],
+            "ResearchCosts": {
+                "Cube": 10000,
+                "Power": 20000,
+                "Gear": 25000
+            }
+        },
+        {
+            "Name": "Tier 3 Generator",
+            "Tree": "Basic",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Crafting Bench Monitor Upgrade"
+            ],
+            "Children": [],
+            "ResearchCosts": {
+                "Cube": 25000,
+                "Power": 35000,
+                "Gear": 35000
+            }
+        },
+        {
+            "Name": "Tier 3 Thrusters",
+            "Tree": "Basic",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Crafting Bench Monitor Upgrade"
+            ],
+            "Children": [
+                "Large Propellant Tank"
+            ],
+            "ResearchCosts": {
+                "Cube": 20000,
+                "Power": 20000,
+                "Gear": 20000
+            }
+        },
+        {
+            "Name": "Large Propellant Tank",
+            "Tree": "Basic",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Tier 3 Thrusters"
+            ],
+            "Children": [
+                "Plasma Thruster"
+            ],
+            "ResearchCosts": {
+                "Cube": 20000,
+                "Power": 20000,
+                "Gear": 20000
+            }
+        },
+        {
+            "Name": "Plasma Thruster",
+            "Tree": "Basic",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Large Propellant Tank"
+            ],
+            "Children": [],
+            "ResearchCosts": {
+                "Cube": 30000,
+                "Power": 30000,
+                "Gear": 30000
+            }
+        },
+        {
+            "Name": "Yolol Rack Chip Readers",
+            "Tree": "Basic",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Basic Yolol Chip"
+            ],
+            "Children": [
+                "Crafting Bench Soldering Iron Upgrade"
+            ],
+            "ResearchCosts": {
+                "Cube": 2000,
+                "Power": 3000
+            }
+        },
+        {
+            "Name": "Navigation Receivers & Transponders",
+            "Tree": "Basic",
+            "IsOwned": false,
+            "Recipes": [
+                "Ship Transponder",
+                "Navigation Receiver",
+                "Small Navigation Receiver"
+            ],
+            "Dependencies": [
+                "Basic Yolol Chip"
+            ],
+            "Children": [
+                "Audio Signal Device"
+            ],
+            "ResearchCosts": {
+                "Cube": 1500,
+                "Power": 2000,
+                "Gear": 2000
+            }
+        },
+        {
+            "Name": "Audio Signal Device",
+            "Tree": "Basic",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Navigation Receivers & Transponders"
+            ],
+            "Children": [],
+            "ResearchCosts": {
+                "Cube": 1000,
+                "Power": 2000
+            }
+        },
+        {
+            "Name": "Crafting Bench Soldering Iron Upgrade",
+            "Tree": "Basic",
+            "IsOwned": false,
+            "Recipes": [
+                "Basic Crafting Bench Soldering Iron Upgrade"
+            ],
+            "Dependencies": [
+                "Yolol Rack Chip Readers"
+            ],
+            "Children": [
+                "Advanced Yolol Chip"
+            ],
+            "ResearchCosts": {
+                "Cube": 6000,
+                "Power": 6000
+            }
+        },
+        {
+            "Name": "Advanced Yolol Chip",
+            "Tree": "Basic",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Crafting Bench Soldering Iron Upgrade"
+            ],
+            "Children": [
+                "Network Relay",
+                "Yolol Memory Chip"
+            ],
+            "ResearchCosts": {
+                "Cube": 6000,
+                "Power": 5000
+            }
+        },
+        {
+            "Name": "Yolol Memory Chip",
+            "Tree": "Basic",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Advanced Yolol Chip"
+            ],
+            "Children": [
+                "Professional Yolol Chip"
+            ],
+            "ResearchCosts": {
+                "Cube": 7500,
+                "Power": 2500
+            }
+        },
+        {
+            "Name": "Network Relay",
+            "Tree": "Basic",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Advanced Yolol Chip"
+            ],
+            "Children": [
+                "Professional Yolol Chip"
+            ],
+            "ResearchCosts": {
+                "Cube": 9000,
+                "Gear": 6000
+            }
+        },
+        {
+            "Name": "Professional Yolol Chip",
+            "Tree": "Basic",
+            "IsOwned": false,
+            "Recipes": [],
+            "Dependencies": [
+                "Yolol Memory Chip",
+                "Network Relay"
+            ],
+            "Children": [
+                "Reconstruction Machine"
+            ],
+            "ResearchCosts": {
+                "Cube": 10000,
+                "Power": 15000
+            }
+        },
+        {
+            "Name": "Reconstruction Machine",
+            "Tree": "Basic",
+            "IsOwned": false,
+            "Recipes": [
+                "Reconstruction Machine Fabricator Module",
+                "Reconstruction Machine Cradle Module",
+                "Reconstruction Machine Generator Module",
+                "Reconstruction Machine Terminal Module",
+                "Endoskeleton Replacement Kit"
+            ],
+            "Dependencies": [
+                "Professional Yolol Chip"
+            ],
+            "Children": [],
+            "ResearchCosts": {
+                "Cube": 10000,
+                "Power": 10000,
+                "Shield": 5000,
+                "Gear": 10000
+            }
+        }
+    ]
+}
