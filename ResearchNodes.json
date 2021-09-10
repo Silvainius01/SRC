@@ -12,7 +12,11 @@
                 "Advanced Bench Metal Bender Upgrade",
                 "Station Foundation (Inside Safe Zone)"
             ],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 2000,
+                "Power": 2000,
+                "Gear": 2000
+            }
         },
         {
             "Name": "Advanced Bench Metal Bender Upgrade",
@@ -28,7 +32,11 @@
                 "Station Plates",
                 "Station Beams"
             ],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 2000,
+                "Power": 2000,
+                "Gear": 2000
+            }
         },
         {
             "Name": "Station Plates",
@@ -45,7 +53,9 @@
                 "Station Slanted",
                 "Station Angled"
             ],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 5000
+            }
         },
         {
             "Name": "Station Beams",
@@ -60,7 +70,9 @@
                 "Station Slanted",
                 "Station Angled"
             ],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 15000
+            }
         },
         {
             "Name": "Station Corner",
@@ -74,7 +86,9 @@
             "Children": [
                 "Station Decorative"
             ],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 15000
+            }
         },
         {
             "Name": "Station Slanted",
@@ -88,7 +102,9 @@
             "Children": [
                 "Station Misc."
             ],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 15000
+            }
         },
         {
             "Name": "Station Angled",
@@ -102,7 +118,9 @@
             "Children": [
                 "Station Windows"
             ],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 150000
+            }
         },
         {
             "Name": "Station Decorative",
@@ -113,7 +131,9 @@
                 "Station Corner"
             ],
             "Children": [],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 20000
+            }
         },
         {
             "Name": "Station Misc.",
@@ -124,7 +144,9 @@
                 "Station Slanted"
             ],
             "Children": [],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 20000
+            }
         },
         {
             "Name": "Station Windows",
@@ -135,7 +157,9 @@
                 "Station Angled"
             ],
             "Children": [],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 20000
+            }
         },
         {
             "Name": "Station Foundation (Inside Safe Zone)",
@@ -151,7 +175,10 @@
                 "Basic Frames",
                 "Basic Block Modules"
             ],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Power": 2000,
+                "Gear": 2000
+            }
         },
         {
             "Name": "Basic Frames",
@@ -164,7 +191,11 @@
             "Children": [
                 "Factory Hall"
             ],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Power": 2000,
+                "Gear": 2000,
+                "Cube": 2000
+            }
         },
         {
             "Name": "Basic Block Modules",
@@ -177,7 +208,9 @@
             "Children": [
                 "Factory Hall"
             ],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 1000
+            }
         },
         {
             "Name": "Factory Hall",
@@ -200,7 +233,10 @@
             "Children": [
                 "Advanced Bench Metal Saw Upgrade"
             ],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 20000,
+                "Gear": 2000
+            }
         },
         {
             "Name": "Advanced Bench Metal Saw Upgrade",
@@ -216,7 +252,11 @@
                 "Decorative Module Bundle 1",
                 "Decorative Module Bundle 2"
             ],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 10000,
+                "Power": 1000,
+                "Gear": 2000
+            }
         },
         {
             "Name": "Decorative Module Bundle 1",
@@ -229,7 +269,9 @@
             "Children": [
                 "Decorative Module Bundle 3"
             ],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 20000
+            }
         },
         {
             "Name": "Decorative Module Bundle 2",
@@ -242,7 +284,9 @@
             "Children": [
                 "Decorative Module Bundle 4"
             ],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 20000
+            }
         },
         {
             "Name": "Decorative Module Bundle 3",
@@ -255,7 +299,9 @@
             "Children": [
                 "Solar Panels"
             ],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 25000
+            }
         },
         {
             "Name": "Decorative Module Bundle 4",
@@ -268,7 +314,9 @@
             "Children": [
                 "Solar Panels"
             ],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 25000
+            }
         },
         {
             "Name": "Solar Panels",
@@ -286,7 +334,10 @@
             "Children": [
                 "Station Foundation (Outside Safe Zone)"
             ],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 50000,
+                "Power": 20000
+            }
         },
         {
             "Name": "Station Foundation (Outside Safe Zone)",
@@ -299,7 +350,10 @@
                 "Solar Panels"
             ],
             "Children": [],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 100000,
+                "Gear": 20000
+            }
         },
         {
             "Name": "Tools & Weapons Crafting Bench",
@@ -314,7 +368,10 @@
                 "Welding Tool",
                 "Infantry Basics"
             ],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Power": 1000,
+                "Gear": 2000
+            }
         },
         {
             "Name": "Pickaxe",
@@ -329,7 +386,9 @@
                 "Bolt Tool",
                 "Cable Tool"
             ],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 400
+            }
         },
         {
             "Name": "Welding Tool",
@@ -346,7 +405,10 @@
                 "Bolt Tool",
                 "Cable Tool"
             ],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 250,
+                "Power": 250
+            }
         },
         {
             "Name": "Infantry Basics",
@@ -362,7 +424,10 @@
                 "Shotgun",
                 "Long Rifle"
             ],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Shield": 200,
+                "Gear": 1000
+            }
         },
         {
             "Name": "Buzzsaw",
@@ -378,7 +443,12 @@
             "Children": [
                 "Cutting Tool"
             ],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 250,
+                "Power": 200,
+                "Shield": 150,
+                "Gear": 200
+            }
         },
         {
             "Name": "Bolt Tool",
@@ -395,7 +465,10 @@
             "Children": [
                 "Building Tool"
             ],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 225,
+                "Gear": 450
+            }
         },
         {
             "Name": "Cable Tool",
@@ -409,7 +482,10 @@
             "Children": [
                 "Pipe Tool"
             ],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 200,
+                "Power": 500
+            }
         },
         {
             "Name": "Cutting Tool",
@@ -424,7 +500,12 @@
             "Children": [
                 "Tools & Weapons Bench Small Clamp Upgrade"
             ],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 1000,
+                "Power": 500,
+                "Shield": 300,
+                "Gear": 1000
+            }
         },
         {
             "Name": "Building Tool",
@@ -437,7 +518,11 @@
             "Children": [
                 "Tools & Weapons Bench Small Clamp Upgrade"
             ],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 500,
+                "Power": 500,
+                "Gear": 500
+            }
         },
         {
             "Name": "Pipe Tool",
@@ -452,7 +537,11 @@
             "Children": [
                 "Tools & Weapons Bench Small Clamp Upgrade"
             ],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 200,
+                "Power": 500,
+                "Gear": 300
+            }
         },
         {
             "Name": "Tools & Weapons Bench Small Clamp Upgrade",
@@ -469,7 +558,12 @@
             "Children": [
                 "Socket Tool"
             ],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 2500,
+                "Shield": 2500,
+                "Power": 2500,
+                "Gear": 2500
+            }
         },
         {
             "Name": "Socket Tool",
@@ -690,7 +784,10 @@
             "Children": [
                 "Remote Explosives"
             ],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 5000,
+                "Shield": 10000
+            }
         },
         {
             "Name": "Long Rifle",
@@ -703,7 +800,10 @@
             "Children": [
                 "Repeater Pistol"
             ],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 5000,
+                "Shield": 10000
+            }
         },
         {
             "Name": "Repeater Pistol",
@@ -716,7 +816,10 @@
             "Children": [
                 "Revolver"
             ],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 5000,
+                "Shield": 7500
+            }
         },
         {
             "Name": "Revolver",
@@ -727,7 +830,10 @@
                 "Repeater Pistol"
             ],
             "Children": [],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 5000,
+                "Shield": 12000
+            }
         },
         {
             "Name": "Tools & Weapons Bench Rifle Clamp Upgrade",
@@ -745,7 +851,10 @@
                 "Bolter",
                 "Grenade Launcher"
             ],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 25000,
+                "Shield": 50000
+            }
         },
         {
             "Name": "Remote Explosives",
@@ -758,7 +867,10 @@
             "Children": [
                 "Tools & Weapons Bench Rifle Clamp Upgrade"
             ],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 15000,
+                "Shield": 30000
+            }
         },
         {
             "Name": "Plasma Rifle",
@@ -814,7 +926,10 @@
             "Name": "Grenade Launcher",
             "Tree": "Tools/Weap.",
             "IsOwned": false,
-            "Recipes": [],
+            "Recipes": [
+                "Grenade",
+                "Grenade Launcher"
+            ],
             "Dependencies": [
                 "Tools & Weapons Bench Rifle Clamp Upgrade"
             ],
@@ -906,7 +1021,7 @@
         {
             "Name": "Basic Crafting Bench",
             "Tree": "Basic",
-            "IsOwned": false,
+            "IsOwned": true,
             "Recipes": [
                 "Basic Crafting Bench"
             ],
@@ -927,7 +1042,9 @@
                 "Basic Crafting Bench"
             ],
             "Children": [],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 300
+            }
         },
         {
             "Name": "Basic",
@@ -949,7 +1066,9 @@
             "Children": [
                 "Cargo Box"
             ],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 60
+            }
         },
         {
             "Name": "Extension and Adapter Modules",
@@ -974,7 +1093,9 @@
                 "Basic Crafting Bench"
             ],
             "Children": [],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 300
+            }
         },
         {
             "Name": "Cargo Box",
@@ -998,7 +1119,10 @@
                 "Tier 1 Generators",
                 "Fuel Rods"
             ],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 300,
+                "Gear": 50
+            }
         },
         {
             "Name": "Extra Plates Bundle",
@@ -1011,7 +1135,9 @@
             "Children": [
                 "Extra Beams Bundle"
             ],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 1000
+            }
         },
         {
             "Name": "Extra Beams Bundle",
@@ -1022,7 +1148,9 @@
                 "Extra Plates Bundle"
             ],
             "Children": [],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 1500
+            }
         },
         {
             "Name": "Control Tables, Screens, Small Devices",
@@ -1041,7 +1169,10 @@
             "Children": [
                 "Hinges & Hatches"
             ],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Power": 100,
+                "Gear": 100
+            }
         },
         {
             "Name": "Hinges & Hatches",
@@ -1058,7 +1189,11 @@
                 "Control Tables, Screens, Small Devices"
             ],
             "Children": [],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 800,
+                "Power": 150,
+                "Gear": 100
+            }
         },
         {
             "Name": "Tier 1 Thrusters",
@@ -1079,7 +1214,11 @@
             "Children": [
                 "Cockpit Modules"
             ],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 500,
+                "Power": 100,
+                "Gear": 300
+            }
         },
         {
             "Name": "Tier 1 Generators",
@@ -1097,7 +1236,11 @@
                 "Radiators",
                 "Cockpit Modules"
             ],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 1000,
+                "Power": 300,
+                "Gear": 1000
+            }
         },
         {
             "Name": "Fuel Rods",
@@ -1114,7 +1257,11 @@
                 "Small Propellant Tank",
                 "Cockpit Modules"
             ],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 300,
+                "Power": 50,
+                "Gear": 300
+            }
         },
         {
             "Name": "Small Propellant Tank",
@@ -1127,7 +1274,11 @@
                 "Fuel Rods"
             ],
             "Children": [],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 1000,
+                "Power": 500,
+                "Gear": 1000
+            }
         },
         {
             "Name": "Radiators",
@@ -1141,7 +1292,11 @@
                 "Tier 1 Generators"
             ],
             "Children": [],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 300,
+                "Power": 50,
+                "Gear": 200
+            }
         },
         {
             "Name": "Cockpit Modules",
@@ -1166,7 +1321,11 @@
                 "Ship Diagnostic Scanner",
                 "Material Point Scanner"
             ],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 1000,
+                "Power": 1000,
+                "Gear": 1000
+            }
         },
         {
             "Name": "Basic Yolol Chip",
@@ -1177,10 +1336,13 @@
                 "Cockpit Modules"
             ],
             "Children": [
-                "Yolol Rack Chip Reader",
+                "Yolol Rack Chip Readers",
                 "Navigation Receivers & Transponders"
             ],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 500,
+                "Power": 1000
+            }
         },
         {
             "Name": "Ship Diagnostic Scanner",
@@ -1195,7 +1357,10 @@
             "Children": [
                 "Crafting Bench Meter Upgrade"
             ],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 1000,
+                "Power": 4000
+            }
         },
         {
             "Name": "Material Point Scanner",
@@ -1216,7 +1381,10 @@
                 "Mining Laser",
                 "Ore Collector"
             ],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Power": 1000,
+                "Gear": 500
+            }
         },
         {
             "Name": "Tripod Autocannon",
@@ -1233,7 +1401,11 @@
             "Children": [
                 "Mounted Autocannon"
             ],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 5000,
+                "Shield": 1000,
+                "Gear": 5000
+            }
         },
         {
             "Name": "Mounted Autocannon",
@@ -1365,7 +1537,10 @@
             "Children": [
                 "Crafting Bench Cables Upgrade"
             ],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 2000,
+                "Gear": 2000
+            }
         },
         {
             "Name": "Mining Laser",
@@ -1381,7 +1556,11 @@
             "Children": [
                 "Crafting Bench Cables Upgrade"
             ],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 2000,
+                "Power": 1000,
+                "Gear": 2000
+            }
         },
         {
             "Name": "Crafting Bench Cables Upgrade",
@@ -1703,7 +1882,7 @@
             }
         },
         {
-            "Name": "Yolol Rack Chip Reader",
+            "Name": "Yolol Rack Chip Readers",
             "Tree": "Basic",
             "IsOwned": false,
             "Recipes": [],
@@ -1713,7 +1892,10 @@
             "Children": [
                 "Crafting Bench Soldering Iron Upgrade"
             ],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 2000,
+                "Power": 3000
+            }
         },
         {
             "Name": "Navigation Receivers & Transponders",
@@ -1730,7 +1912,11 @@
             "Children": [
                 "Audio Signal Device"
             ],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 1500,
+                "Power": 2000,
+                "Gear": 2000
+            }
         },
         {
             "Name": "Audio Signal Device",
@@ -1754,12 +1940,15 @@
                 "Basic Crafting Bench Soldering Iron Upgrade"
             ],
             "Dependencies": [
-                "Yolol Rack Chip Reader"
+                "Yolol Rack Chip Readers"
             ],
             "Children": [
                 "Advanced Yolol Chip"
             ],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 6000,
+                "Power": 6000
+            }
         },
         {
             "Name": "Advanced Yolol Chip",
@@ -1773,7 +1962,10 @@
                 "Network Relay",
                 "Yolol Memory Chip"
             ],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 6000,
+                "Power": 5000
+            }
         },
         {
             "Name": "Yolol Memory Chip",
@@ -1786,7 +1978,10 @@
             "Children": [
                 "Professional Yolol Chip"
             ],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 7500,
+                "Power": 2500
+            }
         },
         {
             "Name": "Network Relay",
@@ -1799,7 +1994,10 @@
             "Children": [
                 "Professional Yolol Chip"
             ],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 9000,
+                "Gear": 6000
+            }
         },
         {
             "Name": "Professional Yolol Chip",
@@ -1813,7 +2011,10 @@
             "Children": [
                 "Reconstruction Machine"
             ],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 10000,
+                "Power": 15000
+            }
         },
         {
             "Name": "Reconstruction Machine",
@@ -1830,7 +2031,12 @@
                 "Professional Yolol Chip"
             ],
             "Children": [],
-            "ResearchCosts": {}
+            "ResearchCosts": {
+                "Cube": 10000,
+                "Power": 10000,
+                "Shield": 5000,
+                "Gear": 10000
+            }
         }
     ]
 }
