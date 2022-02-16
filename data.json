@@ -1,29 +1,4 @@
 {
-    "materials": {
-        "Aegisium": 6200,
-        "Ajatite": 550,
-        "Arkanium": 12800,
-        "Bastium": 2000,
-        "Charodium": 4050,
-        "Corazium": 22000,
-        "Exorium": 4400,
-        "Haderite": 1000000000,
-        "Ice": 820,
-        "Ilmatrium": 1000000000,
-        "Karnite": 20000,
-        "Kutonium": 18000,
-        "Lukium": 22400,
-        "Merkerium": 1000000000,
-        "Nhurgite": 2900,
-        "Oninum": 1000000000,
-        "Surtrite": 4200,
-        "Tengium": 1000000000,
-        "Ukonium": 1000000000,
-        "Valkite": 550,
-        "Vokarium": 1630,
-        "Xhalium": 1000000000,
-        "Ymrium": 33000
-    },
     "objects": [
         {
             "Name": "Block of 4 Ore Crates",
@@ -43,17 +18,15 @@
         },
         {
             "Name": "Basic Crafting Bench",
-            "CraftingTime": 300.0,
+            "CraftingTime": 0.0,
             "Materials": {
-                "Ajatite": 1987.02,
-                "Bastium": 3974.04,
-                "Charodium": 4371.44,
-                "Vokarium": 9537.68
+                "Bastium": 1673.54,
+                "Vokarium": 1314.92
             },
             "Research": {
-                "Cube": 383,
-                "Power": 576,
-                "Gear": 961
+                "Cube": 59,
+                "Power": 89,
+                "Gear": 148
             },
             "Favourite": 0,
             "Hide": 0,
@@ -718,16 +691,16 @@
             "Name": "Tools & Weapons Crafting Bench",
             "CraftingTime": 0.0,
             "Materials": {
-                "Ajatite": 2392.79,
-                "Bastium": 1595.2,
-                "Charodium": 8773.58,
-                "Vokarium": 3190.39
+                "Ajatite": 1792.77,
+                "Bastium": 1195.19,
+                "Charodium": 6573.48,
+                "Vokarium": 2390.35
             },
             "Research": {
-                "Cube": 308,
-                "Power": 230,
-                "Shield": 230,
-                "Gear": 775
+                "Cube": 230,
+                "Power": 172,
+                "Shield": 172,
+                "Gear": 581
             },
             "Favourite": 0,
             "Hide": 0,
@@ -1392,15 +1365,15 @@
             "Name": "Advanced Crafting Bench",
             "CraftingTime": 0.0,
             "Materials": {
-                "Ajatite": 3645.8,
-                "Vokarium": 3645.8,
-                "Charodium": 6380.15,
-                "Bastium": 362.95
+                "Ajatite": 2311.46,
+                "Vokarium": 2311.46,
+                "Charodium": 4045.05,
+                "Bastium": 2889.33
             },
             "Research": {
-                "Cube": 254,
-                "Power": 381,
-                "Gear": 637
+                "Cube": 214,
+                "Power": 321,
+                "Gear": 537
             },
             "Favourite": 0,
             "Hide": 0,
@@ -1444,16 +1417,16 @@
             "Name": "Basic Crafting Bench Soldering Iron Upgrade",
             "CraftingTime": 0.0,
             "Materials": {
-                "Karnite": 565.5,
-                "Vokarium": 209.25,
-                "Bastium": 524.25,
-                "Kutonium": 481.5,
-                "Charodium": 314.0
+                "Karnite": 567.0,
+                "Vokarium": 210.0,
+                "Bastium": 525.0,
+                "Kutonium": 483.0,
+                "Charodium": 315.0
             },
             "Research": {
                 "Cube": 49,
                 "Power": 75,
-                "Gear": 127
+                "Gear": 128
             },
             "Favourite": 0,
             "Hide": 0,
@@ -1670,16 +1643,16 @@
         },
         {
             "Name": "Tool Bench Rifle Clamp Upgrade",
-            "CraftingTime": 86.0,
+            "CraftingTime": 0.0,
             "Materials": {
-                "Kutonium": 4634.5,
-                "Arkanium": 1390.25,
-                "Ymrium": 1853.75,
-                "Bastium": 1390.5
+                "Kutonium": 4650.75,
+                "Arkanium": 1395.25,
+                "Ymrium": 1860.25,
+                "Bastium": 1395.5
             },
             "Research": {
-                "Cube": 268,
-                "Gear": 1081
+                "Cube": 269,
+                "Gear": 1084
             },
             "Favourite": 0,
             "Hide": 0,
@@ -1687,16 +1660,16 @@
         },
         {
             "Name": "Tool Bench Small Clamp Upgrade",
-            "CraftingTime": 31.0,
+            "CraftingTime": 0.0,
             "Materials": {
-                "Aegisium": 1297.65,
-                "Vokarium": 324.3,
-                "Charodium": 973.2,
-                "Bastium": 649.05
+                "Aegisium": 1157.1,
+                "Vokarium": 289.2,
+                "Charodium": 867.9,
+                "Bastium": 578.85
             },
             "Research": {
-                "Cube": 69,
-                "Gear": 284
+                "Cube": 61,
+                "Gear": 254
             },
             "Favourite": 0,
             "Hide": 0,
@@ -1948,6 +1921,105 @@
                 "Cube": 2,
                 "Shield": 6,
                 "Gear": 6
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Advanced Yolol Chip",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Ajatite": 79.35,
+                "Bastium": 37.88,
+                "Arkanium": 33.97,
+                "Karnite": 18.9,
+                "Vokarium": 18.9
+            },
+            "Research": {
+                "Power": 13
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Basic Yolol Chip",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Ajatite": 28.35,
+                "Vokarium": 22.05,
+                "Bastium": 12.6
+            },
+            "Research": {
+                "Power": 3
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Professional Yolol Chip",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Xhallium": 126.0,
+                "Corazium": 37.8,
+                "Bastium": 30.4,
+                "Ajatite": 20.1,
+                "Vokarium": 20.1,
+                "Karnite": 17.6
+            },
+            "Research": {
+                "Cube": 3,
+                "Power": 42
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Yolol Chip Socket",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Bastium": 13.89,
+                "Ajatite": 4.63,
+                "Vokarium": 4.63
+            },
+            "Research": {
+                "Cube": 1
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Remote Explosives Stack",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Nhurgite": 150.0,
+                "Ice": 50.0,
+                "Bastium": 0.37
+            },
+            "Research": {
+                "Cube": 10,
+                "Shield": 1
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Remote Explosives Container",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Bastium": 1868.0,
+                "Vokarium": 467.0,
+                "Nhurgite": 300.0,
+                "Ice": 100.0
+            },
+            "Research": {
+                "Cube": 42,
+                "Shield": 212
             },
             "Favourite": 0,
             "Hide": 0,
