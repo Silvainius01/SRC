@@ -234,7 +234,7 @@
             // Handle calculation request.
             function RunCalculation(hiddenMats) {
                     //#region Variable initialization.
-                    var useableObjs = [];
+                    var useableRecipes = [];
                     var relevantMaterials = [];
                     var maxSingleObjectMatches = $('#maxResults').val();
                     var onlyAllResearch = $('#onlyAllResearch').is(":checked");
@@ -274,14 +274,14 @@
 
                     //#region Find matching objects.
                     var distinctResearchQty = Object.keys(targetResearch).length;
-                    $.each(recipes, function(i, obj) {
-                        if(obj.hide == 1) {
+                    $.each(recipes, function(i, recipe) {
+                        if(recipe.hide == 1) {
                             return; // Object is marked as hidden, skip it.
                         }
 
                         // If user requested certain materials be hidden, check object.
                         if (typeof hiddenMats !== 'undefined') {
-                            var objectMaterials = Object.keys(obj.materials);
+                            var objectMaterials = Object.keys(recipe.materials);
                             for (var i = 0; i < objectMaterials.length; i++) {
                                 if (hiddenMats.includes(objectMaterials[i])) {
                                     return; // Object uses a material that has been hidden, skip it.
@@ -290,18 +290,18 @@
                         }
 
                         var objResearchTypesQty = 0;
-                        $.each(obj.research, function(name, qty) {
+                        $.each(recipe.research, function(name, qty) {
                             if (name in targetResearch) {
                                 objResearchTypesQty++;
                                 if (objResearchTypesQty == distinctResearchQty || !onlyAllResearch) {
-                                    useableObjs.push(obj);
+                                    useableRecipes.push(recipe);
                                     return false; // Break out of the loop since this object is usable.
                                 }
                             }
                         });
                     });
 
-                    if (useableObjs.length == 0) {
+                    if (useableRecipes.length == 0) {
                         var text = "No results found";
                         if (typeof hiddenMats !== 'undefined') {
                             text += "<br>Press Submit to reset"
@@ -314,15 +314,15 @@
                     //#endregion
 
                     //#region Calculate how many objects need to be crafted to fulfill all research targets.
-                    $.each(useableObjs, function(i, obj) {
+                    $.each(useableRecipes, function(i, obj) {
                         obj.totalCrafts["All"] = 0;
                         for (const [key, targetQty] of Object.entries(targetResearch)) {
                             if (key in obj.research) {
                                 var amountPerCraft = obj.research[key];
                                 var craftsQty = Math.ceil(targetQty/amountPerCraft);
-                                useableObjs[i]["totalCrafts"][key] = craftsQty;
-                                if (!("totalCrafts" in useableObjs[i]) || useableObjs[i]["totalCrafts"]["All"] < craftsQty)
-                                    useableObjs[i]["totalCrafts"]["All"] = craftsQty;
+                                useableRecipes[i]["totalCrafts"][key] = craftsQty;
+                                if (!("totalCrafts" in useableRecipes[i]) || useableRecipes[i]["totalCrafts"]["All"] < craftsQty)
+                                    useableRecipes[i]["totalCrafts"]["All"] = craftsQty;
                             }
                         }
                     });
@@ -340,18 +340,18 @@
                             "value": 0
                         };
                         for (var prop in targetResearch) {
-                            var object = getBestMatchSingleResearch(prop, useableObjs);
-                            if (object == null) {
+                            var recipe = getBestMatchSingleResearch(prop, useableRecipes);
+                            if (recipe == null) {
                                 break;
                             }
-                            set.material += object["totalCrafts"][prop] * object["totalMaterials"];
-                            set.cost += object["totalCrafts"][prop] * object["estimatedCost"];
-                            set.time += object["totalCrafts"][prop] * object["craftingTime"];
-                            set.value += object["totalCrafts"][prop] * object["vendorPrice"];
-                            object["totalCrafts"]["Use"] = object["totalCrafts"][prop];
-                            set.objects.push(object);
+                            set.material += recipe["totalCrafts"][prop] * recipe["totalMaterials"];
+                            set.cost += recipe["totalCrafts"][prop] * recipe["estimatedCost"];
+                            set.time += recipe["totalCrafts"][prop] * recipe["craftingTime"];
+                            set.value += recipe["totalCrafts"][prop] * recipe["vendorPrice"];
+                            recipe["totalCrafts"]["Use"] = recipe["totalCrafts"][prop];
+                            set.objects.push(recipe);
                             // Add object's materials so they get listed.
-                            $.each(object.materials, function(name, qty) {
+                            $.each(recipe.materials, function(name, qty) {
                                 if (!relevantMaterials.includes(name)) {
                                     relevantMaterials.push(name);
                                 }
@@ -366,14 +366,14 @@
 
                     //#region Prepare to display.
                     // Sort usable objects by priority.
-                    useableObjs.sort(dynamicSort(prioritize));
+                    useableRecipes.sort(dynamicSort(prioritize));
 
                     // Prune "duplicate results" - objects that provide worse solutions depending on sorting priority.
                     var fulfilledResearch = targetResearch;
                     var objIndex = 0;
                     var deleteIndexes = []
 
-                    $.each(useableObjs, function(i, obj) {
+                    $.each(useableRecipes, function(i, obj) {
                         var usableResearchTypesQty = 0;
                         $.each(obj.research, function(name, qty) {
                             if (name in fulfilledResearch && fulfilledResearch[name] > 0) {
@@ -390,18 +390,18 @@
                     var removedItemsCount = 0;
 //console.log(useableObjs);
                     for (var i = 0; i < deleteIndexes.length; i++) {
-                        useableObjs.splice(deleteIndexes[i] - removedItemsCount, 1);
+                        useableRecipes.splice(deleteIndexes[i] - removedItemsCount, 1);
                         removedItemsCount++;
                     }
 //console.log(useableObjs);
 
                     // Enforce maxSingleObjectMatches.
-                    if (useableObjs.length > maxSingleObjectMatches) {
-                        useableObjs.length = maxSingleObjectMatches;
+                    if (useableRecipes.length > maxSingleObjectMatches) {
+                        useableRecipes.length = maxSingleObjectMatches;
                     }
 
                     // Get relevant materials to be displayed.
-                    $.each(useableObjs, function(i, obj) {
+                    $.each(useableRecipes, function(i, obj) {
                         $.each(obj.materials, function(name, qty) {
                             if (!relevantMaterials.includes(name)) {
                                 relevantMaterials.push(name);
@@ -452,7 +452,7 @@
                     }
 
                     // Iterate each usable object to be displayed.
-                    $.each(useableObjs, function(i, obj) {
+                    $.each(useableRecipes, function(i, obj) {
                         generateColumn({
                                 "material": 0,
                                 "cost": obj.estimatedCost * obj.totalCrafts["All"],
@@ -851,7 +851,7 @@
         </script>
     </head>
     <body>
-        <h2>Starbase Research Crafting Calculator v0.5.1</h2>
+        <h2>Starbase Research Crafting Calculator v0.5.2</h2>
         <form onsubmit="return false">
             <table id="calcTbl">
                 <thead>

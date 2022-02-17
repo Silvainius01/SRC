@@ -1,27 +1,96 @@
 {
-    "materials": {
-        "Aegisium": 6200,
-        "Ajatite": 550,
-        "Arkanium": 12800,
-        "Bastium": 2000,
-        "Charodium": 4050,
-        "Corazium": 22000,
-        "Exorium": 4400,
-        "Haderite": 1000000000,
-        "Ice": 820,
-        "Ilmatrium": 1000000000,
-        "Karnite": 20000,
-        "Kutonium": 18000,
-        "Lukium": 22400,
-        "Merkerium": 1000000000,
-        "Nhurgite": 2900,
-        "Oninum": 1000000000,
-        "Surtrite": 4200,
-        "Tengium": 1000000000,
-        "Ukonium": 1000000000,
-        "Valkite": 550,
-        "Vokarium": 1630,
-        "Xhalium": 1000000000,
-        "Ymrium": 33000
-    }
+    "materials": [
+        {
+            "Name": "Aegisium",
+            "MarketPrice": 6200
+        },
+        {
+            "Name": "Ajatite",
+            "MarketPrice": 550
+        },
+        {
+            "Name": "Arkanium",
+            "MarketPrice": 12800
+        },
+        {
+            "Name": "Bastium",
+            "MarketPrice": 2000
+        },
+        {
+            "Name": "Charodium",
+            "MarketPrice": 4050
+        },
+        {
+            "Name": "Corazium",
+            "MarketPrice": 22000
+        },
+        {
+            "Name": "Exorium",
+            "MarketPrice": 4400
+        },
+        {
+            "Name": "Haderite",
+            "MarketPrice": 1000000000
+        },
+        {
+            "Name": "Ice",
+            "MarketPrice": 820
+        },
+        {
+            "Name": "Ilmatrium",
+            "MarketPrice": 1000000000
+        },
+        {
+            "Name": "Karnite",
+            "MarketPrice": 20000
+        },
+        {
+            "Name": "Kutonium",
+            "MarketPrice": 18000
+        },
+        {
+            "Name": "Lukium",
+            "MarketPrice": 22400
+        },
+        {
+            "Name": "Merkerium",
+            "MarketPrice": 1000000000
+        },
+        {
+            "Name": "Nhurgite",
+            "MarketPrice": 2900
+        },
+        {
+            "Name": "Oninum",
+            "MarketPrice": 1000000000
+        },
+        {
+            "Name": "Surtrite",
+            "MarketPrice": 4200
+        },
+        {
+            "Name": "Tengium",
+            "MarketPrice": 1000000000
+        },
+        {
+            "Name": "Ukonium",
+            "MarketPrice": 1000000000
+        },
+        {
+            "Name": "Valkite",
+            "MarketPrice": 550
+        },
+        {
+            "Name": "Vokarium",
+            "MarketPrice": 1630
+        },
+        {
+            "Name": "Xhalium",
+            "MarketPrice": 1000000000
+        },
+        {
+            "Name": "Ymrium",
+            "MarketPrice": 33000
+        }
+    ]
 }
