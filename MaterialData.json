@@ -1,96 +1,96 @@
 {
-    "materials": [
-        {
+    "materials": {
+        "Aegisium": {
             "Name": "Aegisium",
             "MarketPrice": 6200
         },
-        {
+        "Ajatite": {
             "Name": "Ajatite",
             "MarketPrice": 550
         },
-        {
+        "Arkanium": {
             "Name": "Arkanium",
             "MarketPrice": 12800
         },
-        {
+        "Bastium": {
             "Name": "Bastium",
             "MarketPrice": 2000
         },
-        {
+        "Charodium": {
             "Name": "Charodium",
             "MarketPrice": 4050
         },
-        {
+        "Corazium": {
             "Name": "Corazium",
             "MarketPrice": 22000
         },
-        {
+        "Exorium": {
             "Name": "Exorium",
             "MarketPrice": 4400
         },
-        {
+        "Haderite": {
             "Name": "Haderite",
             "MarketPrice": 1000000000
         },
-        {
+        "Ice": {
             "Name": "Ice",
             "MarketPrice": 820
         },
-        {
+        "Ilmatrium": {
             "Name": "Ilmatrium",
             "MarketPrice": 1000000000
         },
-        {
+        "Karnite": {
             "Name": "Karnite",
             "MarketPrice": 20000
         },
-        {
+        "Kutonium": {
             "Name": "Kutonium",
             "MarketPrice": 18000
         },
-        {
+        "Lukium": {
             "Name": "Lukium",
             "MarketPrice": 22400
         },
-        {
+        "Merkerium": {
             "Name": "Merkerium",
             "MarketPrice": 1000000000
         },
-        {
+        "Nhurgite": {
             "Name": "Nhurgite",
             "MarketPrice": 2900
         },
-        {
+        "Oninum": {
             "Name": "Oninum",
             "MarketPrice": 1000000000
         },
-        {
+        "Surtrite": {
             "Name": "Surtrite",
             "MarketPrice": 4200
         },
-        {
+        "Tengium": {
             "Name": "Tengium",
             "MarketPrice": 1000000000
         },
-        {
+        "Ukonium": {
             "Name": "Ukonium",
             "MarketPrice": 1000000000
         },
-        {
+        "Valkite": {
             "Name": "Valkite",
             "MarketPrice": 550
         },
-        {
+        "Vokarium": {
             "Name": "Vokarium",
             "MarketPrice": 1630
         },
-        {
+        "Xhalium": {
             "Name": "Xhalium",
             "MarketPrice": 1000000000
         },
-        {
+        "Ymrium": {
             "Name": "Ymrium",
             "MarketPrice": 33000
         }
-    ]
+    }
 }
