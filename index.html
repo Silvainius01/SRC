@@ -222,13 +222,13 @@
                 });
 
                 // JSON file updated prices on 2021-08-05. *A value of 1,000,000,000 means no price found.
-                $.getJSON('data.json', function(data) {
-                    json = data;
-                    $.each(data.materials, function(i, m) {
-                        materials[i] = m;
-                    });
-                });
-                //#endregion
+                // $.getJSON('data.json', function(data) {
+                //     json = data;
+                //     $.each(data.materials, function(i, m) {
+                //         materials[i] = m;
+                //     });
+                // });
+                // //#endregion
             });
 
             // Handle calculation request.
@@ -753,25 +753,25 @@
                     buttons: {
                         Save: function () {
                             var i = $('#modIndex').val();
-                            var oldName = json.objects[i].Name;
-                            json.objects[i].Name = $('#modName').val();
-                            json.objects[i].CraftingTime = $('#modCTime').val();
-                            json.objects[i].Favourite = $('#modFav').val();
-                            json.objects[i].Hide = $('#modHide').val();
+                            var oldName = recipes[i].Name;
+                            recipes[i].Name = $('#modName').val();
+                            recipes[i].CraftingTime = $('#modCTime').val();
+                            recipes[i].Favourite = $('#modFav').val();
+                            recipes[i].Hide = $('#modHide').val();
                             $('.modRes').each(function (j, e) {
                                 var researchName = $(e).attr('id').substring(3);
-                                json.objects[i].Research[researchName] = $(e).val();
+                                recipes[i].Research[researchName] = $(e).val();
                             });
 
                             $('.modMat').each(function (j, e) {
                                 var materialName = $(e).attr('id').substring(3);
-                                json.objects[i].Materials[materialName] = $(e).val();
+                                recipes[i].Materials[materialName] = $(e).val();
                             });
                             
                             // Save to file
                             $.post({
                                 url: "json.php",
-                                data: { info: json }
+                                data: { info: recipes }
                             }).done(function(response) {
                                 var parsed = JSON.parse(response);
                                 console.log(response);
@@ -792,9 +792,9 @@
                         var objName = element.innerText;
                         var obj = null;
                         var index = null;
-                        $.each(json.objects, function(i, o) {
-                            if (o["Name"] == objName) {
-                                obj = o;
+                        $.each(recipes, function(i, r) {
+                            if (r["Name"] == objName) {
+                                obj = r;
                                 index = i;
                             }
                         });
@@ -851,7 +851,7 @@
         </script>
     </head>
     <body>
-        <h2>Starbase Research Crafting Calculator v0.5</h2>
+        <h2>Starbase Research Crafting Calculator v0.5.1</h2>
         <form onsubmit="return false">
             <table id="calcTbl">
                 <thead>
