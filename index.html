@@ -95,7 +95,7 @@
             var nf = new Intl.NumberFormat();
             var prioritize = "totalMaterials";
             var researchTypes = ['Cube', 'Power', 'Shield', 'Gear'];
-            var objects = [];
+            var recipes = [];
             var materials = [];
             var json = null;
             var hiddenMaterials = [];
@@ -135,73 +135,72 @@
                  *  }
                  */
                 var tableRows = [];
-
-                // JSON file updated prices on 2021-08-05. *A value of 1,000,000,000 means no price found.
-                $.getJSON('data.json', function(data) {
-                    json = data;
+                
+                $.getJSON('MaterialData.json', function(data) {
                     $.each(data.materials, function(i, m) {
                         materials[i] = m;
                     });
-                    $.each(data.objects, function(i, o) {
-                        //#region Initialize vars
-                        var object = new Object();
+                });
+                $.getJSON('RecipeData.json', function(data) {
+                    $.each(data.objects, function(i, r) {
+                        // Initialize vars
+                        var recipe = new Object();
                         var researchText = "";
                         var materialsText = "";
-                        object["name"] = o.Name;
-                        object["craftingTime"] = o.CraftingTime; //In seconds.
-                        object["materials"] = o.Materials;
-                        object["totalMaterials"] = 0;
-                        object["research"] = o.Research;
-                        object["totalResearch"] = 0;
-                        object["efficiency"] = 0.00;
-                        object["estimatedCost"] = 0.00;
-                        object["totalCrafts"] = { "All": 0, "Cube": 0, "Power": 0, "Gear": 0, "Shield": 0, "Use": 0 };
-                        object["favourite"] = o.Favourite;
-                        object["hide"] = o.Hide;
-                        object["vendorPrice"] = o.VendorPrice;
-                        //#endregion
+                        recipe["name"] = r.Name;
+                        recipe["craftingTime"] = r.CraftingTime; //In seconds.
+                        recipe["materials"] = r.Materials;
+                        recipe["totalMaterials"] = 0;
+                        recipe["research"] = r.Research;
+                        recipe["totalResearch"] = 0;
+                        recipe["efficiency"] = 0.00;
+                        recipe["estimatedCost"] = 0.00;
+                        recipe["totalCrafts"] = { "All": 0, "Cube": 0, "Power": 0, "Gear": 0, "Shield": 0, "Use": 0 };
+                        recipe["favourite"] = r.Favourite;
+                        recipe["hide"] = r.Hide;
+                        recipe["vendorPrice"] = r.VendorPrice;
                         
-                        //#region Process object cells.
-                        $.each(o.Research, function(j, r) {
+                        // Process object cells.
+                        $.each(r.Research, function(j, r) {
                             researchText += '<p class="leftAlign researchTd inTable">' + j + ":"
                                 + "<span class='rightFloat'>" + r + " points</span></p>";
-                            object["totalResearch"] += r;
+                            recipe["totalResearch"] += r;
                         });
-                        $.each(o.Materials, function(j, m) {
+                        $.each(r.Materials, function(j, m) {
                             var qtyInStacks = m / stackConstant;
                             materialsText += '<p class="leftAlign materialTd inTable">' + j + ":"
                                 + "<span class='rightFloat' title='" + m + "'>" + qtyInStacks.toFixed(2) + " stacks</span></p>";
-                            object["totalMaterials"] += m;
-                            object["estimatedCost"] += materials[j] * qtyInStacks;
+                            recipe["totalMaterials"] += m;
+                            recipe["estimatedCost"] += materials[j] * qtyInStacks;
                         });
-                        object["efficiency"] = (object["totalResearch"] / object["totalMaterials"]) * 100;
+                        recipe["efficiency"] = (recipe["totalResearch"] / recipe["totalMaterials"]) * 100;
                         var timeText = '';
-                        if (object["craftingTime"] == 0) {
+                        if (recipe["craftingTime"] == 0) {
                             // Subtracting 0.1 to distinguish estimations from actual times.
-                            object["craftingTime"] = Math.ceil(object["totalMaterials"] / 100) - 0.1;
+                            recipe["craftingTime"] = Math.ceil(recipe["totalMaterials"] / 100) - 0.1;
                             timeText = "<span class='rightFloat' title='Guessed time: "
-                                + formatTime(Math.ceil(object["craftingTime"])) + "'>"
-                                + Math.ceil(object["craftingTime"])
+                                + formatTime(Math.ceil(recipe["craftingTime"])) + "'>"
+                                + Math.ceil(recipe["craftingTime"])
                                 + '<img src="img/warning.png" alt="Warning: guessed crafting time." width="16" height="14"></span>';
                         } else {
-                            timeText = "<span class='rightFloat' title='" + formatTime(object["craftingTime"]) + "'>"
-                                + object["craftingTime"] + '</span>';
+                            timeText = "<span class='rightFloat' title='" + formatTime(recipe["craftingTime"]) + "'>"
+                                + recipe["craftingTime"] + '</span>';
                         }
-                        //#endregion
                         
                         // Add each object to be displayed.
                         tableRows.push([
-                            '<span onclick="modalOpen(this)">' + object["name"] + "</span>",
+                            '<span onclick="modalOpen(this)">' + recipe["name"] + "</span>",
                             timeText,
-                            object["efficiency"].toFixed(2) + '%',
-                            nf.format(object["estimatedCost"].toFixed(2)) + ' credits',
+                            recipe["efficiency"].toFixed(2) + '%',
+                            nf.format(recipe["estimatedCost"].toFixed(2)) + ' credits',
                             researchText,
                             materialsText
                         ]);
                         // Add each object to the array for subsequent queries.
-                        objects.push(object);
+                        recipes.push(recipe);
                     });
-                    //#region Initialize object table as DataTable.
+                    
+                    // Initialize object table as DataTable.
                     $('#objectData').DataTable({
                         data: tableRows,
                         columns: [
@@ -220,7 +219,14 @@
                         ],
                         scrollY: "300px"
                     });
-                    //#endregion
+                });
+
+                // JSON file updated prices on 2021-08-05. *A value of 1,000,000,000 means no price found.
+                $.getJSON('data.json', function(data) {
+                    json = data;
+                    $.each(data.materials, function(i, m) {
+                        materials[i] = m;
+                    });
                 });
                 //#endregion
             });
@@ -268,7 +274,7 @@
 
                     //#region Find matching objects.
                     var distinctResearchQty = Object.keys(targetResearch).length;
-                    $.each(objects, function(i, obj) {
+                    $.each(recipes, function(i, obj) {
                         if(obj.hide == 1) {
                             return; // Object is marked as hidden, skip it.
                         }
@@ -707,35 +713,35 @@
                 RunCalculation(hiddenMaterials);
             }
 
-            function initObject(o) {
-                var object = new Object();
-                object["name"] = o.Name;
-                object["craftingTime"] = o.CraftingTime; //In seconds.
-                object["materials"] = o.Materials;
-                object["totalMaterials"] = 0;
-                object["research"] = o.Research;
-                object["totalResearch"] = 0;
-                object["efficiency"] = 0.00;
-                object["estimatedCost"] = 0.00;
-                object["totalCrafts"] = { "All": 0, "Cube": 0, "Power": 0, "Gear": 0, "Shield": 0, "Use": 0 };
-                object["favourite"] = o.Favourite;
-                object["hide"] = o.Hide;
+            function initRecipe(r) {
+                var recipe = new Object();
+                recipe["name"] = r.Name;
+                recipe["craftingTime"] = r.CraftingTime; //In seconds.
+                recipe["materials"] = r.Materials;
+                recipe["totalMaterials"] = 0;
+                recipe["research"] = r.Research;
+                recipe["totalResearch"] = 0;
+                recipe["efficiency"] = 0.00;
+                recipe["estimatedCost"] = 0.00;
+                recipe["totalCrafts"] = { "All": 0, "Cube": 0, "Power": 0, "Gear": 0, "Shield": 0, "Use": 0 };
+                recipe["favourite"] = r.Favourite;
+                recipe["hide"] = r.Hide;
 
-                $.each(o.Research, function(j, r) {
+                $.each(r.Research, function(j, r) {
                     // ToDo: Update datatable.
                     researchText += '<p class="leftAlign researchTd inTable">' + j + ":"
                         + "<span class='rightFloat'>" + r + " points</span></p>";
-                    object["totalResearch"] += r;
+                    recipe["totalResearch"] += r;
                 });
-                $.each(o.Materials, function(j, m) {
+                $.each(r.Materials, function(j, m) {
                     var qtyInStacks = (m / stackConstant).toFixed(2);
                     materialsText += '<p class="leftAlign materialTd inTable">' + j + ":"
                         + "<span class='rightFloat' title='" + m + "'>" + qtyInStacks + " stacks</span></p>";
-                    object["totalMaterials"] += m;
+                    recipe["totalMaterials"] += m;
                     var stackQty = m/stackConstant;
-                    object["estimatedCost"] += materials[j] * stackQty;
+                    recipe["estimatedCost"] += materials[j] * stackQty;
                 });
-                object["efficiency"] = (object["totalResearch"] / object["totalMaterials"]) * 100;
+                recipe["efficiency"] = (recipe["totalResearch"] / recipe["totalMaterials"]) * 100;
 
             }
 

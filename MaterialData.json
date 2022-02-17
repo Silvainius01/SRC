@@ -1,0 +1,27 @@
+{
+    "materials": {
+        "Aegisium": 6200,
+        "Ajatite": 550,
+        "Arkanium": 12800,
+        "Bastium": 2000,
+        "Charodium": 4050,
+        "Corazium": 22000,
+        "Exorium": 4400,
+        "Haderite": 1000000000,
+        "Ice": 820,
+        "Ilmatrium": 1000000000,
+        "Karnite": 20000,
+        "Kutonium": 18000,
+        "Lukium": 22400,
+        "Merkerium": 1000000000,
+        "Nhurgite": 2900,
+        "Oninum": 1000000000,
+        "Surtrite": 4200,
+        "Tengium": 1000000000,
+        "Ukonium": 1000000000,
+        "Valkite": 550,
+        "Vokarium": 1630,
+        "Xhalium": 1000000000,
+        "Ymrium": 33000
+    }
+}
