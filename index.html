@@ -163,7 +163,7 @@
                         recipe["favourite"] = r.Favourite;
                         recipe["hide"] = r.Hide;
                         recipe["vendorPrice"] = r.VendorPrice;
-                        recipe["weigtedMaterialCost"] = 0;
+                        recipe["weightedMaterialCost"] = 0;
                         recipe["weightedEfficiency"] = 0;
                         
                         // Process object cells.
@@ -178,10 +178,10 @@
                                 + "<span class='rightFloat' title='" + m + "kv'>" + qtyInStacks.toFixed(2) + " stacks</span></p>";
                             recipe["totalMaterials"] += m;
                             recipe["estimatedCost"] += materials[j]["MarketPrice"] * qtyInStacks;
-                            recipe["weightedEfficiency"] += materials[j]["weigtedMaterialCost"] * m;
+                            recipe["weightedMaterialCost"] += materials[j]["weightedMaterialCost"] * m;
                         });
                         recipe["efficiency"] = (recipe["totalResearch"] / recipe["totalMaterials"]) * 100;
-                        recipe["weightedEfficiency"] = (recipe["totalResearch"] / recipe["weigtedMaterialCost"]) * 100;
+                        recipe["weightedEfficiency"] = (recipe["totalResearch"] / recipe["weightedMaterialCost"]) * 100;
                         efficiencyText = '<p class="leftAlign efficiencyTd inTable"> Base:' +
                                 + "<span class='rightFloat' title='Research / Total kv consumed'>" + recipe["efficiency"].toFixed(2) + "%</span></p>"
                                 + '<p class="leftAlign efficiencyTd inTable"> Weighted:' +
@@ -353,7 +353,7 @@
                             set.cost += recipe["totalCrafts"][prop] * recipe["estimatedCost"];
                             set.time += recipe["totalCrafts"][prop] * recipe["craftingTime"];
                             set.value += recipe["totalCrafts"][prop] * recipe["vendorPrice"];
-                            set.value += recipe["totalCrafts"][prop] * recipe["weigtedMaterialCost"]
+                            set.value += recipe["totalCrafts"][prop] * recipe["weightedMaterialCost"]
                             recipe["totalCrafts"]["Use"] = recipe["totalCrafts"][prop];
                             set.objects.push(recipe);
                             // Add object's materials so they get listed.
@@ -825,7 +825,7 @@
         </script>
     </head>
     <body>
-        <h2>Starbase Research Crafting Calculator v0.5.3</h2>
+        <h2>Starbase Research Crafting Calculator v0.5.4</h2>
         <form onsubmit="return false">
             <table id="calcTbl">
                 <thead>
