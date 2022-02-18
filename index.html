@@ -142,11 +142,33 @@
              *      grindEfficiency: 0
              *  }
              */
-            var tableRows = [];
+            var recipeTableRows = [];
+            var materialTableRows=[];
 
             $.getJSON('MaterialData.json', function (data) {
                 $.each(data.materials, function (i, m) {
                     materials[i] = m;
+                    materialTableRows.push([
+                        '<span onclick="modalOpen(this)">' + m["Name"] + "</span>",
+                        "Grind Index: " + m["GrindIndex"],
+                        nf.format(m["MarketPrice"].toFixed(2)) + ' credits'
+                    ]);
+                });
+
+                $('#materialData').DataTable({
+                    data: recipeTableRows,
+                    columns: [
+                        { title: "Name", width: "33%" },
+                        { title: "Grind Index", width: "33%" },
+                        { title: "Market Price", width: "34%" }
+                    ],
+                    columnDefs: [
+                        {
+                            targets: [1, 2],
+                            className: 'dt-body-right',
+                        }
+                    ],
+                    scrollY: "300px"
                 });
             });
             $.getJSON('RecipeData.json', function (data) {
@@ -187,6 +209,7 @@
                         recipe["estimatedCost"] += materials[j]["MarketPrice"] * qtyInStacks;
                         recipe["weightedMaterialCost"] += materials[j]["GrindIndex"] * m;
                     });
+
                     recipe["efficiency"] = (recipe["totalResearch"] / recipe["totalMaterials"]) * 100;
                     recipe["weightedEfficiency"] = (recipe["totalResearch"] / recipe["weightedMaterialCost"]) * 100;
                     efficiencyText = '<p class="leftAlign efficiencyTd inTable"> Base:' + "<span class='rightFloat' title='Research / Total kv consumed'>";
@@ -207,7 +230,7 @@
                     }
 
                     // Add each object to be displayed.
-                    tableRows.push([
+                    recipeTableRows.push([
                         '<span onclick="modalOpen(this)">' + recipe["name"] + "</span>",
                         timeText,
                         efficiencyText,
@@ -220,8 +243,8 @@
                 });
 
                 // Initialize object table as DataTable.
-                $('#objectData').DataTable({
-                    data: tableRows,
+                $('#recipeData').DataTable({
+                    data: recipeTableRows,
                     columns: [
                         { title: "Name", width: "28%" },
                         { title: "Crafting Time in Seconds", width: "7%" },
@@ -438,7 +461,7 @@
             //#region Load results into table.
             // Add material "header" rows.
             for (var i = 0; i < relevantMaterials.length; i++) {
-                generateMaterialRows(relevantMaterials[i]);
+                generateResearchMaterialRows(relevantMaterials[i]);
             }
             // Add total material row.
             $('#calcTbl tr:last')
@@ -564,7 +587,7 @@
             return object;
         }
 
-        function generateMaterialRows(name) {
+        function generateResearchMaterialRows(name) {
             $('#calcTbl tr:last')
                 .after('<tr id="' + name + 'Row" class="deleteMe rightAlign">'
                     + '<td>'
@@ -845,7 +868,7 @@
 </head>
 
 <body>
-    <h2>Starbase Research Crafting Calculator v0.5.12</h2>
+    <h2>Starbase Research Crafting Calculator v0.5.13</h2>
     <form onsubmit="return false">
         <table id="calcTbl">
             <thead>
@@ -896,8 +919,9 @@
     <hr>
     <h2>Materials Table</h2>
     <table id="materialData" class="hover cell-border compact row-border stripe"></table>
-    <h2>All Objects Table</h2>
-    <table id="objectData" class="hover cell-border compact row-border stripe">
+    <hr>
+    <h2>All Recipes Table</h2>
+    <table id="recipeData" class="hover cell-border compact row-border stripe">
     </table>
 </body>
 
