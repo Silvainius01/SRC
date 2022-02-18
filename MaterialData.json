@@ -2,95 +2,118 @@
     "materials": {
         "Aegisium": {
             "Name": "Aegisium",
-            "MarketPrice": 6200
+            "MarketPrice": 6200,
+            "GrindIndex": 1.5
         },
         "Ajatite": {
             "Name": "Ajatite",
-            "MarketPrice": 550
+            "MarketPrice": 550,
+            "GrindIndex": 0.5
         },
         "Arkanium": {
             "Name": "Arkanium",
-            "MarketPrice": 12800
+            "MarketPrice": 12800,
+            "GrindIndex": 2
         },
         "Bastium": {
             "Name": "Bastium",
-            "MarketPrice": 2000
+            "MarketPrice": 2000,
+            "GrindIndex": 1
         },
         "Charodium": {
             "Name": "Charodium",
-            "MarketPrice": 4050
+            "MarketPrice": 4050,
+            "GrindIndex": 1.2
         },
         "Corazium": {
             "Name": "Corazium",
-            "MarketPrice": 22000
+            "MarketPrice": 22000,
+            "GrindIndex": 4
         },
         "Exorium": {
             "Name": "Exorium",
-            "MarketPrice": 4400
+            "MarketPrice": 4400,
+            "GrindIndex": 1.5
         },
         "Haderite": {
             "Name": "Haderite",
-            "MarketPrice": 1000000000
+            "MarketPrice": 1000000000,
+            "GrindIndex": 10000
         },
         "Ice": {
             "Name": "Ice",
-            "MarketPrice": 820
+            "MarketPrice": 820,
+            "GrindIndex": 0.5
         },
         "Ilmatrium": {
             "Name": "Ilmatrium",
-            "MarketPrice": 1000000000
+            "MarketPrice": 1000000000,
+            "GrindIndex": 10000
         },
         "Karnite": {
             "Name": "Karnite",
-            "MarketPrice": 20000
+            "MarketPrice": 20000,
+            "GrindIndex": 2.5
         },
         "Kutonium": {
             "Name": "Kutonium",
-            "MarketPrice": 18000
+            "MarketPrice": 18000,
+            "GrindIndex": 3
         },
         "Lukium": {
             "Name": "Lukium",
-            "MarketPrice": 22400
+            "MarketPrice": 22400,
+            "GrindIndex": 5
         },
         "Merkerium": {
             "Name": "Merkerium",
-            "MarketPrice": 1000000000
+            "MarketPrice": 1000000000,
+            "GrindIndex": 10000
         },
         "Nhurgite": {
             "Name": "Nhurgite",
-            "MarketPrice": 2900
+            "MarketPrice": 2900,
+            "GrindIndex": 1.5
         },
         "Oninum": {
             "Name": "Oninum",
-            "MarketPrice": 1000000000
+            "MarketPrice": 1000000000,
+            "GrindIndex": 10000
         },
         "Surtrite": {
             "Name": "Surtrite",
-            "MarketPrice": 4200
+            "MarketPrice": 4200,
+            "GrindIndex": 5
         },
         "Tengium": {
             "Name": "Tengium",
-            "MarketPrice": 1000000000
+            "MarketPrice": 1000000000,
+            "GrindIndex": 10000
         },
         "Ukonium": {
             "Name": "Ukonium",
-            "MarketPrice": 1000000000
+            "MarketPrice": 1000000000,
+            "GrindIndex": 10000
         },
         "Valkite": {
             "Name": "Valkite",
-            "MarketPrice": 550
+            "MarketPrice": 550,
+            "GrindIndex": 0.5
         },
         "Vokarium": {
             "Name": "Vokarium",
-            "MarketPrice": 1630
+            "MarketPrice": 1630,
+            "GrindIndex": 1
         },
         "Xhalium": {
             "Name": "Xhalium",
-            "MarketPrice": 1000000000
+            "MarketPrice": 1000000000,
+            "GrindIndex": 10000
         },
         "Ymrium": {
             "Name": "Ymrium",
-            "MarketPrice": 33000
+            "MarketPrice": 33000,
+            "GrindIndex": 1.5
         }
     }
 }
