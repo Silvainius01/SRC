@@ -148,9 +148,14 @@
             $.getJSON('MaterialData.json', function (data) {
                 $.each(data.materials, function (i, m) {
                     materials[i] = m;
+
+                    var grindIndexText = 
+                      ' <input type="number" step="0.01" value="'+m["GrindIndex"]+'" min="0" onclick="this.select();" '
+                    + ' onblur="updateMaterialGrindIndex(this)" id="' + m["Name"] + '">'
+
                     materialTableRows.push([
                         '<span onclick="modalOpen(this)">' + m["Name"] + "</span>",
-                        "Grind Index: " + m["GrindIndex"],
+                        grindIndexText,
                         nf.format(m["MarketPrice"].toFixed(2)) + ' credits'
                     ]);
                 });
@@ -864,11 +869,15 @@
             // Between 31 seconds and 90 minutes, retun in minutes.
             return nf.format(time) + ' mins.';
         }
+        
+        function updateMaterialGrindIndex(element) {
+            var test = element;
+        };
     </script>
 </head>
 
 <body>
-    <h2>Starbase Research Crafting Calculator v0.5.14</h2>
+    <h2>Starbase Research Crafting Calculator v0.5.15</h2>
     <form onsubmit="return false">
         <table id="calcTbl">
             <thead>
@@ -918,6 +927,8 @@
     </form>
     <hr>
     <h2>Materials Table</h2>
+    <p>Grind Index: kV Multiplier for this material when used in a recipe. It represents how much effort it takes to, well, grind large quantities of it.</p>
+    <p>Market Price: How much this material sells for on the market</p>
     <table id="materialData" class="hover cell-border compact row-border stripe"></table>
     <hr>
     <h2>All Recipes Table</h2>
