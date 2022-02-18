@@ -871,13 +871,17 @@
         }
         
         function updateMaterialGrindIndex(element) {
-            var test = element;
+            var value = parseFloat(element.value);
+            if (value == 'NaN') {
+                value= materials[element.id]["GrindIndex"];
+            }
+            materials[element.id]["GrindIndex"] = value;
         };
     </script>
 </head>
 
 <body>
-    <h2>Starbase Research Crafting Calculator v0.5.15</h2>
+    <h2>Starbase Research Crafting Calculator v0.5.16</h2>
     <form onsubmit="return false">
         <table id="calcTbl">
             <thead>
