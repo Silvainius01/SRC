@@ -183,6 +183,7 @@
                         materialsText += '<p class="leftAlign materialTd inTable">' + j + ":"
                             + "<span class='rightFloat' title='" + m + "kv'>" + qtyInStacks.toFixed(2) + " stacks</span></p>";
                         recipe["totalMaterials"] += m;
+                        console.log(j);
                         recipe["estimatedCost"] += materials[j]["MarketPrice"] * qtyInStacks;
                         recipe["weightedMaterialCost"] += materials[j]["GrindIndex"] * m;
                     });
