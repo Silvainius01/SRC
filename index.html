@@ -183,18 +183,14 @@
                         materialsText += '<p class="leftAlign materialTd inTable">' + j + ":"
                             + "<span class='rightFloat' title='" + m + "kv'>" + qtyInStacks.toFixed(2) + " stacks</span></p>";
                         recipe["totalMaterials"] += m;
-                        console.log(j);
                         recipe["estimatedCost"] += materials[j]["MarketPrice"] * qtyInStacks;
                         recipe["weightedMaterialCost"] += materials[j]["GrindIndex"] * m;
                     });
                     recipe["efficiency"] = (recipe["totalResearch"] / recipe["totalMaterials"]) * 100;
                     recipe["weightedEfficiency"] = (recipe["totalResearch"] / recipe["weightedMaterialCost"]) * 100;
-                    efficiencyText = '<p class="leftAlign efficiencyTd inTable"> Base:';
-                    efficiencyText += "<span class='rightFloat' title='Research / Total kv consumed'>";
-                    efficiencyText += recipe["efficiency"].toFixed(2);
-                    efficiencyText += "%</span></p>";
-                    efficiencyText += '<p class="leftAlign efficiencyTd inTable"> Weighted:';
-                    efficiencyText += "<span class='rightFloat' title='Research / Total weighted kv consumed'>";
+                    efficiencyText = '<p class="leftAlign efficiencyTd inTable"> Base:' + "<span class='rightFloat' title='Research / Total kv consumed'>";
+                    efficiencyText += recipe["efficiency"].toFixed(2) + "%</span></p>";
+                    efficiencyText += '<p class="leftAlign efficiencyTd inTable"> Weighted:' + "<span class='rightFloat' title='Research / Total weighted kv consumed'>";
                     efficiencyText += recipe["weightedEfficiency"].toFixed(2) + "%</span></p>";
 
                     if (recipe["craftingTime"] == 0) {
@@ -227,8 +223,8 @@
                     data: tableRows,
                     columns: [
                         { title: "Name", width: "28%" },
-                        { title: "Crafting Time in Seconds", width: "10%" },
-                        { title: "Efficiency", width: "9%" },
+                        { title: "Crafting Time in Seconds", width: "7%" },
+                        { title: "Efficiency", width: "12%" },
                         { title: "Estimated Cost", width: "14%" },
                         { title: "Research", width: "17%" },
                         { title: "Materials", width: "21%" }
@@ -446,8 +442,9 @@
             // Add total material row.
             $('#calcTbl tr:last')
                 .after('<tr id="totalMaterialRow" class="deleteMe"><td>Total Material &rarr;</td></tr>');
+            $('#calcTbl tr:last')
+                .after('<tr id="weightedMaterialRow" class="deleteMe"><td>Total Weighted Material:  &rarr;</td></tr>');
 
-            //#region Add stats rows.
             // Add separator TR.
             $('#calcTbl tr:last')
                 .after('<tr id="statsSeparatorRow" class="deleteMe centerAlign"><td>Other stats</td></tr>');
@@ -455,12 +452,14 @@
             $('#calcTbl tr:last')
                 .after('<tr id="efficiencyRow" class="deleteMe"><td>Research/material efficiency</td></tr>');
             $('#calcTbl tr:last')
+                .after('<tr id="weightedEfficiencyRow" class="deleteMe"><td>Crafting time</td></tr>');
+            $('#calcTbl tr:last')
                 .after('<tr id="costRow" class="deleteMe"><td>Material estimated cost</td></tr>');
             $('#calcTbl tr:last')
                 .after('<tr id="valueRow" class="deleteMe"><td>Total vendor price</td></tr>');
             $('#calcTbl tr:last')
                 .after('<tr id="timeRow" class="deleteMe"><td>Crafting time</td></tr>');
-            //#endregion
+
 
             // Print any combinations found.
             for (var i = 0; i < combinedSets.length; i++) {
@@ -589,8 +588,11 @@
 
             // Calculate and display required materials for each object.
             var totalMaterial = 0;
+            var weightedMaterial = 0;
             for (var j = 0; j < relevantMaterials.length; j++) {
-                totalMaterial += addMaterialCell(relevantMaterials[j], sets.objects);
+                var m = addMaterialCell(relevantMaterials[j], sets.objects);
+                totalMaterial += m;
+                weightedMaterial += m * relaventMaterials[j]["GrindIndex"];
             }
 
             // Check if any object has an unknown crafting time to set the warning flag.
@@ -607,10 +609,14 @@
             $('#totalMaterialRow').find('td').eq(-1)
                 .after('<td title="' + nf.format(totalMaterial) + '" class="rightAlign">'
                     + nf.format(totalInStacks) + ' stacks' + '</td>');
+            $('#weightedMaterialRow').find('td').eq(-1)
+                .after('<td title="' + nf.format(weightedMaterial) + '" class="rightAlign">'
+                    + nf.format(totalInStacks) + ' stacks' + '</td>');
             // Add stats separator cell
             $('#statsSeparatorRow td:last').after('<td>-</td>');
             // Add stats cells.
             addStatsCell("efficiency", sets.objects);
+            addStatsCell("weightedEfficiency", sets.objects);
             addStatsCell("material", sets.material);
             addStatsCell("cost", sets.cost);
             addStatsCell("value", { "cost": sets.cost, "sell": sets.value });
@@ -631,13 +637,13 @@
 
         function addStatsCell(cell, value, warn = false) {
             var text = "";
-            if (isNaN(value) && cell == "efficiency") {
+            if (isNaN(value) && (cell == "efficiency" || cell == "weightedEfficiency")) {
                 if (value.length == 1) {
-                    text = nf.format(value[0].efficiency.toFixed(2)) + '% efficiency';
+                    text = nf.format(value[0][cell].toFixed(2)) + '% efficiency';
                 } else {
                     var efficiencySum = 0;
                     for (var i = 0; i < value.length; i++) {
-                        efficiencySum += value[i].efficiency;
+                        efficiencySum += value[i][cell];
                     }
                     text = nf.format((efficiencySum / value.length).toFixed(2)) + "% avg."
                 }
