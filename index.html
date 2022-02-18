@@ -590,9 +590,10 @@
             var totalMaterial = 0;
             var weightedMaterial = 0;
             for (var j = 0; j < relevantMaterials.length; j++) {
-                var m = addMaterialCell(relevantMaterials[j], sets.objects);
-                totalMaterial += m;
-                weightedMaterial += m * relaventMaterials[j]["GrindIndex"];
+                var mat = materials[relevantMaterials[j]];
+                var amt = addMaterialCell(relevantMaterials[j], sets.objects);
+                totalMaterial += amt;
+                weightedMaterial += amt * mat["GrindIndex"];
             }
 
             // Check if any object has an unknown crafting time to set the warning flag.
