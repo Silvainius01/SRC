@@ -447,18 +447,18 @@
 
             // Add separator TR.
             $('#calcTbl tr:last')
-                .after('<tr id="statsSeparatorRow" class="deleteMe centerAlign"><td>Other stats</td></tr>');
+                .after('<tr id="statsSeparatorRow" class="deleteMe centerAlign"><td>Other Stats</td></tr>');
             // Add 'header' rows for each stat.
             $('#calcTbl tr:last')
-                .after('<tr id="efficiencyRow" class="deleteMe"><td>Research/material efficiency</td></tr>');
+                .after('<tr id="efficiencyRow" class="deleteMe"><td>Research/Material Efficiency</td></tr>');
             $('#calcTbl tr:last')
-                .after('<tr id="weightedEfficiencyRow" class="deleteMe"><td>Crafting time</td></tr>');
+                .after('<tr id="weightedEfficiencyRow" class="deleteMe"><td>Weighted Effeciency</td></tr>');
             $('#calcTbl tr:last')
                 .after('<tr id="costRow" class="deleteMe"><td>Material estimated cost</td></tr>');
             $('#calcTbl tr:last')
-                .after('<tr id="valueRow" class="deleteMe"><td>Total vendor price</td></tr>');
+                .after('<tr id="valueRow" class="deleteMe"><td>Total Vendor Price</td></tr>');
             $('#calcTbl tr:last')
-                .after('<tr id="timeRow" class="deleteMe"><td>Crafting time</td></tr>');
+                .after('<tr id="timeRow" class="deleteMe"><td>Crafting Time</td></tr>');
 
 
             // Print any combinations found.
@@ -607,12 +607,13 @@
 
             // Add total materials row.
             var totalInStacks = (totalMaterial / stackConstant).toFixed(2);
+            var weightedInStacks = (weightedMaterial / stackConstant).toFixed(2);
             $('#totalMaterialRow').find('td').eq(-1)
-                .after('<td title="' + nf.format(totalMaterial) + '" class="rightAlign">'
+                .after('<td title="' + nf.format(totalMaterial) + 'kv" class="rightAlign">'
                     + nf.format(totalInStacks) + ' stacks' + '</td>');
             $('#weightedMaterialRow').find('td').eq(-1)
-                .after('<td title="' + nf.format(weightedMaterial) + '" class="rightAlign">'
-                    + nf.format(totalInStacks) + ' stacks' + '</td>');
+                .after('<td title="' + nf.format(weightedMaterial) + 'kv" class="rightAlign">'
+                    + nf.format(weightedInStacks) + ' stacks' + '</td>');
             // Add stats separator cell
             $('#statsSeparatorRow td:last').after('<td>-</td>');
             // Add stats cells.
