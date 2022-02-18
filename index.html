@@ -150,7 +150,7 @@
                 });
             });
             $.getJSON('RecipeData.json', function (data) {
-                $.each(data.objects, function (i, r) {
+                $.each(data.recipes, function (i, r) {
                     // Initialize vars
                     var recipe = new Object();
                     var researchText = "";
