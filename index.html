@@ -178,7 +178,7 @@
                                 + "<span class='rightFloat' title='" + m + "kv'>" + qtyInStacks.toFixed(2) + " stacks</span></p>";
                             recipe["totalMaterials"] += m;
                             recipe["estimatedCost"] += materials[j]["MarketPrice"] * qtyInStacks;
-                            recipe["weightedMaterialCost"] += materials[j]["weightedMaterialCost"] * m;
+                            recipe["weightedMaterialCost"] += materials[j]["GrindIndex"] * m;
                         });
                         recipe["efficiency"] = (recipe["totalResearch"] / recipe["totalMaterials"]) * 100;
                         recipe["weightedEfficiency"] = (recipe["totalResearch"] / recipe["weightedMaterialCost"]) * 100;
