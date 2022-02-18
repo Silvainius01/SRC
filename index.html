@@ -255,7 +255,7 @@
             // Clear previous results.
             $('.deleteMe').remove();
             // Set descending sort order if set by efficiency or vendor price.
-            if (prioritize == 'efficiency' || prioritize == 'vendorPrice')
+            if (prioritize == 'efficiency' || prioritize == 'vendorPrice' || prioritize == 'weightedEfficiency')
                 prioritize = '-' + prioritize;
             if (typeof hiddenMats === 'undefined') {
                 hiddenMaterials = [];
@@ -845,7 +845,7 @@
 </head>
 
 <body>
-    <h2>Starbase Research Crafting Calculator v0.5.4</h2>
+    <h2>Starbase Research Crafting Calculator v0.5.12</h2>
     <form onsubmit="return false">
         <table id="calcTbl">
             <thead>
@@ -894,6 +894,8 @@
         </p>
     </form>
     <hr>
+    <h2>Materials Table</h2>
+    <table id="materialData" class="hover cell-border compact row-border stripe"></table>
     <h2>All Objects Table</h2>
     <table id="objectData" class="hover cell-border compact row-border stripe">
     </table>

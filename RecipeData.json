@@ -2033,7 +2033,7 @@
                 "Valkite": 868.72
             },
             "Research": {
-                "Cube": 1159
+                "Cube": 310
             },
             "Favourite": 0,
             "Hide": 0,
@@ -2047,6 +2047,251 @@
             },
             "Research": {
                 "Cube": 312
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Ladder Module",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Valkite": 399.82
+            },
+            "Research": {
+                "Cube": 297
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Ladder Module Top A",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Valkite": 409.49
+            },
+            "Research": {
+                "Cube": 310
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Ladder Module Top B",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Valkite": 407.08
+            },
+            "Research": {
+                "Cube": 307
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Fast Travel Core Inner Body",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Vokarium": 9522.38,
+                "Charodium": 4328.35,
+                "Aegisium": 2597.02,
+                "Arkanium": 865.67
+            },
+            "Research": {
+                "Cube": 278,
+                "Power": 370,
+                "Gear": 1209
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Fast Travel Core Outer Body",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Vokarium": 8064.83,
+                "Charodium": 3665.83,
+                "Aegisium": 2199.5,
+                "Arkanium": 733.16
+            },
+            "Research": {
+                "Cube": 235,
+                "Power": 313,
+                "Gear": 1024
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Fast Travel Gate Core Center",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Charodium": 2296.03,
+                "Arkanium": 1683.76,
+                "Exorium": 1377.62,
+                "Bastium": 1148.03,
+                "Vokarium": 1148.02
+            },
+            "Research": {
+                "Cube": 132,
+                "Power": 176,
+                "Gear": 580
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Fast Travel Gate Core Support",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Bastium": 1001.78,
+                "Vokarium": 176.78
+            },
+            "Research": {
+                "Cube": 11,
+                "Gear": 105
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Large Hydrogen Propellant Tank",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Aegisium": 1284.62,
+                "Vokarium": 550.55
+            },
+            "Research": {
+                "Cube": 82,
+                "Gear": 124
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Box Thruster Body Tier 3",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Ymrium": 768.77,
+                "Charodium": 505.19,
+                "Aegisium": 439.3,
+                "Kutonium": 329.47,
+                "Vokarium": 153.75
+            },
+            "Research": {
+                "Cube": 59,
+                "Gear": 240
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Box Thruster Nozzle Tier 3",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Charodium": 643.79,
+                "Kutonium": 214.6,
+                "Aegisium": 160.95,
+                "Ymrium": 53.65
+            },
+            "Research": {
+                "Cube": 24,
+                "Power": 24,
+                "Gear": 103
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Thruster Electricity Converter Tier 3",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Vokarium": 37.93,
+                "Kutonium": 22.76,
+                "Xhalium": 15.17
+            },
+            "Research": {
+                "Power": 4,
+                "Gear": 4
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Thruster Propellant Converter Tier 3",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Aegisium": 42.49,
+                "Bastium": 25.5,
+                "Xhalium": 17.0
+            },
+            "Research": {
+                "Power": 5,
+                "Gear": 4
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Triangle thruster Base Tier 3",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Ymrium": 412.71,
+                "Charodium": 271.21,
+                "Aegisium": 235.83,
+                "Kutonium": 176.88,
+                "Vokarium": 82.54
+            },
+            "Research": {
+                "Cube": 29,
+                "Gear": 128
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Triangle Thruster Nozzle Tier 3",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Charodium": 194.24,
+                "Kutonium": 64.75,
+                "Aegisium": 48.56,
+                "Ymrium": 16.19
+            },
+            "Research": {
+                "Cube": 6,
+                "Power": 6,
+                "Gear": 21
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Maneuver Thruster Tier 3",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Kutonium": 42.25,
+                "Ymrium": 30.18,
+                "Charodium": 30.18,
+                "Vokarium": 18.1
+            },
+            "Research": {
+                "Cube": 2,
+                "Gear": 10
             },
             "Favourite": 0,
             "Hide": 0,
