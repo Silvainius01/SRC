@@ -151,7 +151,10 @@
 
                     var grindIndexText = 
                       ' <input type="number" step="0.01" value="'+m["GrindIndex"]+'" min="0" onclick="this.select();" '
-                    + ' onblur="updateMaterialGrindIndex(this)" id="' + m["Name"] + '">'
+                    + ' onblur="updateMaterialGrindIndex(this)" id="' + m["Name"] + '">';
+                    var priceText =  
+                          ' <input type="number" step="0.01" value="'+nf.format(m["MarketPrice"].toFixed(2))+'" min="0" onclick="this.select();" '
+                        + ' onblur="updateMaterialMarketPrice(this)" id="' + m["Name"] + '"> credits';
 
                     materialTableRows.push([
                         '<span onclick="modalOpen(this)">' + m["Name"] + "</span>",
@@ -388,7 +391,7 @@
                     set.cost += recipe["totalCrafts"][prop] * recipe["estimatedCost"];
                     set.time += recipe["totalCrafts"][prop] * recipe["craftingTime"];
                     set.value += recipe["totalCrafts"][prop] * recipe["vendorPrice"];
-                    set.value += recipe["totalCrafts"][prop] * recipe["weightedMaterialCost"]
+                    set.weightedMaterials += recipe["totalCrafts"][prop] * recipe["weightedMaterialCost"]
                     recipe["totalCrafts"]["Use"] = recipe["totalCrafts"][prop];
                     set.objects.push(recipe);
                     // Add object's materials so they get listed.
@@ -877,11 +880,18 @@
             }
             materials[element.id]["GrindIndex"] = value;
         };
+        function updateMaterialMarketPrice(element) {
+            var value = parseFloat(element.value);
+            if (value == 'NaN') {
+                value= materials[element.id]["MarketPrice"];
+            }
+            materials[element.id]["MarketPrice"] = value;
+        };
     </script>
 </head>
 
 <body>
-    <h2>Starbase Research Crafting Calculator v0.5.16</h2>
+    <h2>Starbase Research Crafting Calculator v0.5.17</h2>
     <form onsubmit="return false">
         <table id="calcTbl">
             <thead>
