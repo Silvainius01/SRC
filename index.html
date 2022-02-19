@@ -105,6 +105,7 @@
         var materials = [];
         var json = null;
         var hiddenMaterials = [];
+        var recipesByMaterial = {};
 
         $(function () {
             //#region Initialize object data.
@@ -148,12 +149,13 @@
             $.getJSON('MaterialData.json', function (data) {
                 $.each(data.materials, function (i, m) {
                     materials[i] = m;
+                    recipesByMaterial[m.Name] = [];
 
-                    var grindIndexText = 
-                      ' <input type="number" step="0.01" value="'+m["GrindIndex"]+'" min="0" onclick="this.select();" '
-                    + ' onblur="updateMaterialGrindIndex(this)" id="' + m["Name"] + '">';
-                    var priceText =  
-                          ' <input type="number" step="0.01" value="'+nf.format(m["MarketPrice"].toFixed(2))+'" min="0" onclick="this.select();" '
+                    var grindIndexText =
+                        ' <input type="number" step="0.01" value="' + m["GrindIndex"] + '" min="0" onclick="this.select();" '
+                        + ' onblur="updateMaterialGrindIndex(this)" id="' + m["Name"] + '">';
+                    var priceText =
+                        ' <input type="number" step="0.01" value="' + nf.format(m["MarketPrice"].toFixed(2)) + '" min="0" onclick="this.select();" '
                         + ' onblur="updateMaterialMarketPrice(this)" id="' + m["Name"] + '"> credits';
 
                     materialTableRows.push([
@@ -216,6 +218,7 @@
                         console.log(j);
                         recipe["estimatedCost"] += materials[j]["MarketPrice"] * qtyInStacks;
                         recipe["weightedMaterialCost"] += materials[j]["GrindIndex"] * m;
+                        recipesByMaterial[j].push(r.Name); // Cache this recipe for this material
                     });
 
                     recipe["efficiency"] = (recipe["totalResearch"] / recipe["totalMaterials"]) * 100;
@@ -872,26 +875,44 @@
             // Between 31 seconds and 90 minutes, retun in minutes.
             return nf.format(time) + ' mins.';
         }
-        
+
         function updateMaterialGrindIndex(element) {
             var value = parseFloat(element.value);
             if (value == 'NaN') {
-                value= materials[element.id]["GrindIndex"];
+                element.value = materials[element.id]["GrindIndex"];
+                return;
             }
             materials[element.id]["GrindIndex"] = value;
-        };
+            updateMaterialData(element.id);
+        }
         function updateMaterialMarketPrice(element) {
             var value = parseFloat(element.value);
             if (value == 'NaN') {
-                value= materials[element.id]["MarketPrice"];
+                element.value = materials[element.id]["MarketPrice"];
+                return;
             }
             materials[element.id]["MarketPrice"] = value;
+            updateMaterialData(element.id);
+        }
+        function updateMaterialData(materialName) {
+            // For each recipe using the material
+            $.each(recipesByMaterial[materialName], function (index, recipe) {
+                recipe["estimatedCost"] = 0;
+                recipe["weightedMaterialCost"] = 0;
+                // for each material in that recipe
+                $.each(recipe.materials, function (j, recipe) {
+                    var qtyInStacks = m / stackConstant;
+                    recipe["estimatedCost"] += materials[j]["MarketPrice"] * qtyInStacks;
+                    recipe["weightedMaterialCost"] += materials[j]["GrindIndex"] * m;
+                });
+                recipe["weightedEfficiency"] = (recipe["totalResearch"] / recipe["weightedMaterialCost"]) * 100;
+            });
         };
     </script>
 </head>
 
 <body>
-    <h2>Starbase Research Crafting Calculator v0.5.17</h2>
+    <h2>Starbase Research Crafting Calculator v0.5.18</h2>
     <form onsubmit="return false">
         <table id="calcTbl">
             <thead>
@@ -941,7 +962,8 @@
     </form>
     <hr>
     <h2>Materials Table</h2>
-    <p>Grind Index: kV Multiplier for this material when used in a recipe. It represents how much effort it takes to, well, grind large quantities of it.</p>
+    <p>Grind Index: kV Multiplier for this material when used in a recipe. It represents how much effort it takes to,
+        well, grind large quantities of it.</p>
     <p>Market Price: How much this material sells for on the market</p>
     <table id="materialData" class="hover cell-border compact row-border stripe"></table>
     <hr>
