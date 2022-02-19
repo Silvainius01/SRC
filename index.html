@@ -218,7 +218,7 @@
                         console.log(j);
                         recipe["estimatedCost"] += materials[j]["MarketPrice"] * qtyInStacks;
                         recipe["weightedMaterialCost"] += materials[j]["GrindIndex"] * m;
-                        recipesByMaterial[j].push(r.Name); // Cache this recipe for this material
+                        recipesByMaterial[j].push(i); // Cache this recipe for this material
                     });
 
                     recipe["efficiency"] = (recipe["totalResearch"] / recipe["totalMaterials"]) * 100;
@@ -896,8 +896,8 @@
         }
         function updateMaterialData(materialName) {
             // For each recipe using the material
-            $.each(recipesByMaterial[materialName], function (index, recipeName) {
-                recipe = recipes[recipeName];
+            $.each(recipesByMaterial[materialName], function (index, recipeId) {
+                recipe = recipes[recipeId];
                 recipe["estimatedCost"] = 0;
                 recipe["weightedMaterialCost"] = 0;
                 // for each material in that recipe
@@ -913,7 +913,7 @@
 </head>
 
 <body>
-    <h2>Starbase Research Crafting Calculator v0.5.19</h2>
+    <h2>Starbase Research Crafting Calculator v0.5.20</h2>
     <form onsubmit="return false">
         <table id="calcTbl">
             <thead>
