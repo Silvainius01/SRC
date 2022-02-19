@@ -155,7 +155,7 @@
                         ' <input type="number" step="0.01" value="' + m["GrindIndex"] + '" min="0" onclick="this.select();" '
                         + ' onblur="updateMaterialGrindIndex(this)" id="' + m["Name"] + '">';
                     var priceText =
-                        ' <input type="number" step="0.01" value="' + nf.format(m["MarketPrice"].toFixed(2)) + '" min="0" onclick="this.select();" '
+                        ' <input type="number" step="0.01" value="' + m["MarketPrice"].toFixed(2) + '" min="0" onclick="this.select();" '
                         + ' onblur="updateMaterialMarketPrice(this)" id="' + m["Name"] + '"> credits';
 
                     materialTableRows.push([
@@ -891,12 +891,13 @@
                 element.value = materials[element.id]["MarketPrice"];
                 return;
             }
-            materials[element.id]["MarketPrice"] = value;
+            materials[element.id]["MarketPrice"] = value.toFixed(2);
             updateMaterialData(element.id);
         }
         function updateMaterialData(materialName) {
             // For each recipe using the material
-            $.each(recipesByMaterial[materialName], function (index, recipe) {
+            $.each(recipesByMaterial[materialName], function (index, recipeName) {
+                recipe = recipes[recipeName];
                 recipe["estimatedCost"] = 0;
                 recipe["weightedMaterialCost"] = 0;
                 // for each material in that recipe
@@ -912,7 +913,7 @@
 </head>
 
 <body>
-    <h2>Starbase Research Crafting Calculator v0.5.18</h2>
+    <h2>Starbase Research Crafting Calculator v0.5.19</h2>
     <form onsubmit="return false">
         <table id="calcTbl">
             <thead>
