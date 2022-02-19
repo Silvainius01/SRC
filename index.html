@@ -901,10 +901,10 @@
                 recipe["estimatedCost"] = 0;
                 recipe["weightedMaterialCost"] = 0;
                 // for each material in that recipe
-                $.each(recipe.materials, function (j, recipe) {
-                    var qtyInStacks = m / stackConstant;
-                    recipe["estimatedCost"] += materials[j]["MarketPrice"] * qtyInStacks;
-                    recipe["weightedMaterialCost"] += materials[j]["GrindIndex"] * m;
+                $.each(recipe.materials, function (mat, amt) {
+                    var qtyInStacks = amt / stackConstant;
+                    recipe["estimatedCost"] += materials[mat]["MarketPrice"] * qtyInStacks;
+                    recipe["weightedMaterialCost"] += materials[mat]["GrindIndex"] * amt;
                 });
                 recipe["weightedEfficiency"] = (recipe["totalResearch"] / recipe["weightedMaterialCost"]) * 100;
             });
@@ -913,7 +913,7 @@
 </head>
 
 <body>
-    <h2>Starbase Research Crafting Calculator v0.5.20</h2>
+    <h2>Starbase Research Crafting Calculator v0.5.21</h2>
     <form onsubmit="return false">
         <table id="calcTbl">
             <thead>
