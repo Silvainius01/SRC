@@ -839,7 +839,7 @@
             "Name": "Small Cooling Cell",
             "CraftingTime": 0.0,
             "Materials": {
-                "Bastium": 14.64
+                "Bastium": 29.27
             },
             "Research": {
                 "Cube": 1
@@ -930,10 +930,10 @@
         },
         {
             "Name": "Hinge B 48x144 cm",
-            "CraftingTime": 1.0,
+            "CraftingTime": 0.0,
             "Materials": {
                 "Ajatite": 13.21,
-                "Bastium": 34.9
+                "Bastium": 34.98
             },
             "Research": {
                 "Cube": 1,
@@ -948,7 +948,7 @@
             "CraftingTime": 0.0,
             "Materials": {
                 "Ajatite": 7.13,
-                "Bastium": 28.21,
+                "Bastium": 82.54,
                 "Vokarium": 14.25
             },
             "Research": {
@@ -963,10 +963,10 @@
             "Name": "Hinge (L-profile) 24x144x36 cm",
             "CraftingTime": 0.0,
             "Materials": {
-                "Bastium": 58.95
+                "Bastium": 117.9
             },
             "Research": {
-                "Cube": 5
+                "Cube": 6
             },
             "Favourite": 0,
             "Hide": 0,
@@ -976,10 +976,10 @@
             "Name": "Hinge (C-profile) 48x144x36 cm",
             "CraftingTime": 0.0,
             "Materials": {
-                "Bastium": 73.34
+                "Bastium": 146.68
             },
             "Research": {
-                "Cube": 6
+                "Cube": 10
             },
             "Favourite": 0,
             "Hide": 0,
@@ -990,14 +990,14 @@
             "CraftingTime": 0.0,
             "Materials": {
                 "Ajatite": 13.57,
-                "Bastium": 4.07
+                "Bastium": 39.81
             },
             "Research": {
                 "Cube": 1,
                 "Gear": 1
             },
             "Favourite": 0,
-            "Hide": 1,
+            "Hide": 0,
             "VendorPrice": 0.0
         },
         {
@@ -1141,10 +1141,10 @@
             "Name": "Turret Turntable",
             "CraftingTime": 0.0,
             "Materials": {
-                "Bastium": 235.37
+                "Bastium": 443.68
             },
             "Research": {
-                "Cube": 22
+                "Cube": 65
             },
             "Favourite": 0,
             "Hide": 0,
@@ -1513,10 +1513,10 @@
                 "Ajatite": 59.61,
                 "Vokarium": 417.25,
                 "Charodium": 59.61,
-                "Bastium": 134.38
+                "Bastium": 209.16
             },
             "Research": {
-                "Cube": 11,
+                "Cube": 16,
                 "Power": 39,
                 "Gear": 10
             },
@@ -1597,14 +1597,15 @@
             "CraftingTime": 0.0,
             "Materials": {
                 "Arkanium": 566.15,
-                "Exorium": 377.44,
-                "Bastium": 1163.79,
-                "Charodium": 1037.95
+                "Exorium": 597.6,
+                "Bastium": 692.0,
+                "Charodium": 1037.95,
+                "Ajatite": 251.62
             },
             "Research": {
-                "Cube": 105,
-                "Shield": 212,
-                "Gear": 34
+                "Cube": 103,
+                "Shield": 208,
+                "Gear": 33
             },
             "Favourite": 0,
             "Hide": 0,
@@ -1617,10 +1618,10 @@
                 "Ajatite": 155.04,
                 "Vokarium": 1085.27,
                 "Charodium": 155.04,
-                "Bastium": 387.25
+                "Bastium": 619.46
             },
             "Research": {
-                "Cube": 35,
+                "Cube": 88,
                 "Power": 101,
                 "Gear": 28
             },
@@ -2292,6 +2293,542 @@
             "Research": {
                 "Cube": 2,
                 "Gear": 10
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Buzzsaw",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Bastium": 6793.5,
+                "Kutonium": 3020.0,
+                "Charodium": 3019.0,
+                "Vokarium": 2264.0
+            },
+            "Research": {
+                "Cube": 15,
+                "Shield": 48,
+                "Gear": 32
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Cutting Tool",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Surtrite": 2460.5,
+                "Vokarium": 1757.5,
+                "Kutonium": 1407.0,
+                "Charodium": 1406.0
+            },
+            "Research": {
+                "Cube": 7,
+                "Shield": 26,
+                "Gear": 17
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Pickaxe",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Charodium": 507.5,
+                "Ajatite": 338.0,
+                "Bastium": 2535.5
+            },
+            "Research": {
+                "Cube": 2,
+                "Shield": 2,
+                "Gear": 8
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Welding Tool",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Vokarium": 416.0,
+                "Bastium": 313.0,
+                "Charodium": 312.0
+            },
+            "Research": {
+                "Gear": 2
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Assault Rifle",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Charodium": 3128.0,
+                "Bastium": 1565.0,
+                "Vokarium": 1251.0,
+                "Valkite": 312.0
+            },
+            "Research": {
+                "Cube": 6,
+                "Shield": 21
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Long Rifle",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Charodium": 2467.0,
+                "Aegisium": 1766.0,
+                "Vokarium": 587.0,
+                "Valkite": 528.0,
+                "Ajatite": 528.0
+            },
+            "Research": {
+                "Cube": 6,
+                "Shield": 22
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Pistol",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Charodium": 507.0,
+                "Bastium": 233.0,
+                "Vokarium": 110.0,
+                "Ajatite": 73.0
+            },
+            "Research": {
+                "Shield": 2
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Repeater Magazine",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Bastium": 19.78,
+                "Ice": 4.37,
+                "Nhurgite": 0.52
+            },
+            "Research": {
+                "Shield": 1
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Repeater Pistol",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Charodium": 629.0,
+                "Kutonium": 243.0,
+                "Vokarium": 217.0,
+                "Aegisium": 121.0
+            },
+            "Research": {
+                "Cube": 1,
+                "Shield": 3
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Revolver",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Charodium": 612.0,
+                "Ymrium": 205.0,
+                "Vokarium": 153.0,
+                "Aegisium": 51.0
+            },
+            "Research": {
+                "Cube": 1,
+                "Shield": 3
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Shotgun",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Charodium": 2222.0,
+                "Aegisium": 669.0,
+                "Ajatite": 666.0,
+                "Valkite": 444.0,
+                "Vokarium": 444.0
+            },
+            "Research": {
+                "Cube": 9,
+                "Shield": 16
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Shotgun Magazine",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Charodium": 16.03,
+                "Nhurgite": 3.85,
+                "Vokarium": 1.06,
+                "Ice": 0.43,
+                "Bastium": 0.32
+            },
+            "Research": {
+                "Shield": 1
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Slider (T-Profile) 24x144x36cm",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Bastium": 78.25,
+                "Vokarium": 12.02,
+                "Ajatite": 6.01
+            },
+            "Research": {
+                "Cube": 2,
+                "Gear": 1
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Slider (L-Profile) 24x144x36cm",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Bastium": 80.48,
+                "Vokarium": 13.13,
+                "Ajatite": 6.56
+            },
+            "Research": {
+                "Cube": 2,
+                "Gear": 1
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Slider (C-Profile) 48x144x36cm",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Bastium": 98.27,
+                "Vokarium": 22.83,
+                "Ajatite": 11.41
+            },
+            "Research": {
+                "Cube": 3,
+                "Gear": 3
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Small Button",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Bastium": 21.87,
+                "Vokarium": 9.07
+            },
+            "Research": {
+                "Power": 1
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Pilot Chair Control Table",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Bastium": 34.22,
+                "Ajatite": 30.42,
+                "Vokarium": 11.41
+            },
+            "Research": {
+                "Cube": 1,
+                "Power": 2
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Memory Relay",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Bastium": 185.36,
+                "Vokarium": 144.14,
+                "Ajatite": 82.36
+            },
+            "Research": {
+                "Cube": 4,
+                "Power": 26
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Lamp C Base 144x48 cm",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Bastium": 17.01,
+                "Vokarium": 1.89
+            },
+            "Research": {
+                "Power": 1
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Lamp B Base 144x36 cm",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Bastium": 17.36,
+                "Vokarium": 1.93
+            },
+            "Research": {
+                "Power": 1
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Flourescent Lamp C 144x48 cm",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Ajatite": 111.17,
+                "Bastium": 86.5,
+                "Karnite": 55.58,
+                "Arkanium": 41.69,
+                "Vokarium": 1.89
+            },
+            "Research": {
+                "Cube": 6,
+                "Power": 17
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Flourescent Lamp B 144x36 cm",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Bastium": 33.68,
+                "Ajatite": 26.12,
+                "Karnite": 13.06,
+                "Arkanium": 9.8,
+                "Vokarium": 1.93
+            },
+            "Research": {
+                "Power": 4
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Bulb C [color] (R30 1820LM)",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Ajatite": 117.17,
+                "Bastium": 69.49,
+                "Karnite": 55.58,
+                "Arkanium": 41.69
+            },
+            "Research": {
+                "Cube": 6,
+                "Power": 16
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Bulb B [color] (R20 1000LM)",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Ajatite": 26.12,
+                "Bastium": 16.33,
+                "Karnite": 13.06,
+                "Arkanium": 9.8
+            },
+            "Research": {
+                "Power": 3
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Generator Unit Tier 1",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Ajatite": 197.35,
+                "Charodium": 123.35,
+                "Bastium": 98.68,
+                "Vokarium": 74.01
+            },
+            "Research": {
+                "Cube": 5,
+                "Power": 5,
+                "Gear": 22
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Generator Pipe Socket Board",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Bastium": 17.97,
+                "Vokarium": 11.98,
+                "Charodium": 9.98
+            },
+            "Research": {
+                "Gear": 1
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Generator Cooling Rack",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Bastium": 35.27,
+                "Vokarium": 10.85,
+                "Ajatite": 8.14
+            },
+            "Research": {
+                "Cube": 1,
+                "Gear": 2
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Coolant Recharge Rack",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Aegisium": 78.88,
+                "Bastium": 32.87,
+                "Vokarium": 19.72
+            },
+            "Research": {
+                "Cube": 1,
+                "Gear": 10
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Utility Tool Body",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Charodium": 862.68,
+                "Aegisium": 517.6,
+                "Bastium": 172.54,
+                "Vokarium": 172.54
+            },
+            "Research": {
+                "Cube": 73,
+                "Gear": 113
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Small Turret Turntable",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Bastium": 61.83
+            },
+            "Research": {
+                "Cube": 2
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Turret Cradle",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Bastium": 285.32,
+                "Vokarium": 71.33
+            },
+            "Research": {
+                "Gear": 1
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Ore Collector",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Aegisium": 467.53,
+                "Bastium": 335.67,
+                "Ajatite": 263.73,
+                "Exorium": 131.87
+            },
+            "Research": {
+                "Cube": 10,
+                "Shield": 46,
+                "Gear": 56
+            },
+            "Favourite": 0,
+            "Hide": 0,
+            "VendorPrice": 0.0
+        },
+        {
+            "Name": "Ore Crate",
+            "CraftingTime": 0.0,
+            "Materials": {
+                "Bastium": 398.41,
+                "Vokarium": 99.6
+            },
+            "Research": {
+                "Cube": 28,
+                "Power": 8,
+                "Gear": 8
             },
             "Favourite": 0,
             "Hide": 0,
