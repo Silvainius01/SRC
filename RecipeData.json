@@ -500,22 +500,6 @@
             "VendorPrice": 0.0
         },
         {
-            "Name": "Modular Ore Cargo Crate",
-            "CraftingTime": 0.0,
-            "Materials": {
-                "Bastium": 398.41,
-                "Vokarium": 99.6
-            },
-            "Research": {
-                "Cube": 28,
-                "Power": 8,
-                "Gear": 8
-            },
-            "Favourite": 0,
-            "Hide": 0,
-            "VendorPrice": 0.0
-        },
-        {
             "Name": "Pilot Chair",
             "CraftingTime": 0.0,
             "Materials": {
