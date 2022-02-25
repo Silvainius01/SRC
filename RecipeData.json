@@ -914,7 +914,7 @@
         },
         {
             "Name": "Hinge B 48x144 cm",
-            "CraftingTime": 0.0,
+            "CraftingTime": 1.0,
             "Materials": {
                 "Ajatite": 13.21,
                 "Bastium": 34.98
