@@ -216,8 +216,20 @@
             // Synchronously retrieve sadtech data before populating recipes.
             $.ajax({
                 url: "https://api.sadtech.io/api/items",
-                success: processSadtechData(data),
-                async: false
+                async: false,
+                success: function(data) {
+                    $.each(data.responseJson, function(i, marketData) {
+                        matName = marketData.name.split(" ")[0];
+                        if(matName in materials) {
+                            mData = {
+                                // Sadtech price is an integer, so divide by 100 to get ingame value. 
+                                CurrentPrice: marketData.currentPrice / 100,
+                                StacksAvailable: marketData.currentAvailable
+                            }
+                            materials[matName].MarketPrice = mData.CurrentPrice; 
+                        }
+                    });
+                }
             });
             
             $.getJSON('RecipeData.json', function (data) {
