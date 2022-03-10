@@ -164,9 +164,9 @@
                     materials[material.Name] = material;
                 });
 
-                // Start the request for sadtech, and only populate materials once we have the data.
+                // Start the request for sadtech, then update mat prices
                 $.getJSON("https://api.sadtech.io/api/items", function (data) {
-                    $.each(data.responseJson, function (i, marketData) {
+                    $.each(data, function (i, marketData) {
                         matName = marketData.name.split(" ")[0];
                         if (matName in materials) {
                             mData = {
@@ -177,6 +177,7 @@
                             materials[matName].MarketPrice = mData.CurrentPrice;
                         }
                     });
+                    // Only populate after we have our data
                     populateMaterialTable();
                 });
             });
@@ -915,7 +916,7 @@
 </head>
 
 <body>
-    <h2>Starbase Research Crafting Calculator v0.6.14</h2>
+    <h2>Starbase Research Crafting Calculator v0.6.15</h2>
     <p>If the Recipe Table is blank or you get errors, refreshing the page should fix it.</p>
     <form onsubmit="return false">
         <table id="calcTbl">
