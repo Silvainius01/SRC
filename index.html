@@ -196,22 +196,6 @@
                     scrollY: "300px"
                 });
             });
-            
-            processSadtechData = function(data) {
-                $.each(data.responseJson, function(i, marketData) {
-                    matName = marketData.name.split(" ")[0];
-                    if(matName in materials) {
-                        mData = {
-                            // Sadtech price is an integer, so divide by 100 to get ingame value. 
-                            CurrentPrice: marketData.currentPrice / 100,
-                            StacksAvailable: marketData.currentAvailable
-                        }
-                        materials[matName].MarketPrice = mData.CurrentPrice; 
-                    }
-                })
-            }
-            //var sadtechResponse = $.get("https://api.sadtech.io/api/items");
-            //processSadtechData(sadtechResponse);
 
             // Synchronously retrieve sadtech data before populating recipes.
             $.ajax({
@@ -964,7 +948,7 @@
 </head>
 
 <body>
-    <h2>Starbase Research Crafting Calculator v0.6.8</h2>
+    <h2>Starbase Research Crafting Calculator v0.6.9</h2>
     <p>If the Recipe Table is blank or you get errors, refreshing the page should fix it.</p>
     <form onsubmit="return false">
         <table id="calcTbl">
