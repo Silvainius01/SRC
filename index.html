@@ -146,7 +146,7 @@
             function populateMaterialTable() {
                 var materialTableRows = [];
 
-                $.each(data.materials, function (index, material) {
+                $.each(materials, function (index, material) {
                     var grindIndexText =
                         ' <input type="number" step="0.01" value="' + material["GrindIndex"] + '" min="0" onclick="this.select();" '
                         + ' onblur="updateMaterialGrindIndex(this)" id="' + material["Name"] + '">';
@@ -956,7 +956,7 @@
 </head>
 
 <body>
-    <h2>Starbase Research Crafting Calculator v0.6.10</h2>
+    <h2>Starbase Research Crafting Calculator v0.6.11</h2>
     <p>If the Recipe Table is blank or you get errors, refreshing the page should fix it.</p>
     <form onsubmit="return false">
         <table id="calcTbl">
