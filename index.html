@@ -102,10 +102,9 @@
         var prioritize = "totalMaterials";
         var researchTypes = ['Cube', 'Power', 'Shield', 'Gear'];
         var recipes = [];
-        var materials = [];
+        var materials = {};
         var json = null;
         var hiddenMaterials = [];
-        var recipesByMaterial = {};
 
         $(function () {
             //#region Initialize object data.
@@ -147,19 +146,35 @@
             var materialTableRows = [];
 
             $.getJSON('MaterialData.json', function (data) {
-                $.each(data.materials, function (i, m) {
-                    materials[i] = m;
-                    recipesByMaterial[m.Name] = [];
+
+                getOreName = function(name) {
+                    switch(name) {
+                        case "Ice":
+                            return "";
+                        case "Nhurgite":
+                        case "Karnite":
+                        case "Surtrite":
+                        case "Haderite":
+                            return " Crystal";
+                        default:
+                            return " Ore";
+                    }
+                }
+
+                $.each(data.materials, function (index, material) {
+                    materials[material.name] = material;
+                    materials.recipes = [];
+                    materials.oreName = material.Name + getOreName(material.Name);
 
                     var grindIndexText =
-                        ' <input type="number" step="0.01" value="' + m["GrindIndex"] + '" min="0" onclick="this.select();" '
-                        + ' onblur="updateMaterialGrindIndex(this)" id="' + m["Name"] + '">';
+                        ' <input type="number" step="0.01" value="' + material["GrindIndex"] + '" min="0" onclick="this.select();" '
+                        + ' onblur="updateMaterialGrindIndex(this)" id="' + material["Name"] + '">';
                     var priceText =
-                        ' <input type="number" step="0.01" value="' + m["MarketPrice"].toFixed(2) + '" min="0" onclick="this.select();" '
-                        + ' onblur="updateMaterialMarketPrice(this)" id="' + m["Name"] + '"> credits';
+                        ' <input type="number" step="0.01" value="' + material["MarketPrice"].toFixed(2) + '" min="0" onclick="this.select();" '
+                        + ' onblur="updateMaterialMarketPrice(this)" id="' + material["Name"] + '"> credits';
 
                     materialTableRows.push([
-                        '<span onclick="modalOpen(this)">' + m["Name"] + "</span>",
+                        '<span onclick="modalOpen(this)">' + material["Name"] + "</span>",
                         grindIndexText,
                         priceText
                     ]);
@@ -181,6 +196,16 @@
                     scrollY: "300px"
                 });
             });
+            
+            $.get("https://api.sadtech.io/api/items", function(data, textStatus, jqXHR) {
+                $.each(data.responseJson, function(i, marketData) {
+                    matName = marketData.name.split(" ")[0];
+                    if(matName in materials) {
+                        materials[matName].MarketPrice = marketData.currentPrice / 100; // price is an integer, so last two places are cents. 
+                    }
+                })
+            });
+            
             $.getJSON('RecipeData.json', function (data) {
                 $.each(data.recipes, function (i, r) {
                     // Initialize vars
@@ -210,15 +235,15 @@
                             + "<span class='rightFloat'>" + r + " points</span></p>";
                         recipe["totalResearch"] += r;
                     });
-                    $.each(r.Materials, function (j, m) {
-                        var qtyInStacks = m / stackConstant;
-                        materialsText += '<p class="leftAlign materialTd inTable">' + j + ":"
-                            + "<span class='rightFloat' title='" + m + "kv'>" + qtyInStacks.toFixed(2) + " stacks</span></p>";
-                        recipe["totalMaterials"] += m;
-                        console.log(j);
-                        recipe["estimatedCost"] += materials[j]["MarketPrice"] * qtyInStacks;
-                        recipe["weightedMaterialCost"] += materials[j]["GrindIndex"] * m;
-                        recipesByMaterial[j].push(i); // Cache this recipe for this material
+                    $.each(r.Materials, function (materialName, kv) {
+                        var qtyInStacks = kv / stackConstant;
+                        materialsText += '<p class="leftAlign materialTd inTable">' + materialName + ":"
+                            + "<span class='rightFloat' title='" + kv + "kv'>" + qtyInStacks.toFixed(2) + " stacks</span></p>";
+                        recipe["totalMaterials"] += kv;
+                        console.log(materialName);
+                        recipe["estimatedCost"] += materials[materialName]["MarketPrice"] * qtyInStacks;
+                        recipe["weightedMaterialCost"] += materials[materialName]["GrindIndex"] * kv;
+                        materials[materialName].recipes.push(i); // Cache this recipe for this material
                     });
 
                     recipe["efficiency"] = (recipe["totalResearch"] / recipe["totalMaterials"]) * 100;
@@ -896,7 +921,7 @@
         }
         function updateMaterialData(materialName) {
             // For each recipe using the material
-            $.each(recipesByMaterial[materialName], function (index, recipeId) {
+            $.each(materials[materialName].recipes, function (index, recipeId) {
                 recipe = recipes[recipeId];
                 recipe["estimatedCost"] = 0;
                 recipe["weightedMaterialCost"] = 0;
