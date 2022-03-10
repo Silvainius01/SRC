@@ -201,7 +201,12 @@
                 $.each(data.responseJson, function(i, marketData) {
                     matName = marketData.name.split(" ")[0];
                     if(matName in materials) {
-                        materials[matName].MarketPrice = marketData.currentPrice / 100; // price is an integer, so last two places are cents. 
+                        mData = {
+                            // Sadtech price is an integer, so divide by 100 to get ingame value. 
+                            CurrentPrice: marketData.currentPrice / 100,
+                            StacksAvailable: marketData.currentAvailable
+                        }
+                        materials[matName].MarketPrice = mData.CurrentPrice; 
                     }
                 })
             });
