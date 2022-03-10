@@ -110,6 +110,39 @@
         $(function () {
 
             $.getJSON('MaterialData.json', function (data) {
+                var materialTableRows = [];
+                function populateMaterialTable() {
+                    $.each(materials, function (index, material) {
+                        var grindIndexText =
+                            ' <input type="number" step="0.01" value="' + material["GrindIndex"] + '" min="0" onclick="this.select();" '
+                            + ' onblur="updateMaterialGrindIndex(this)" id="' + material["Name"] + '">';
+                        var priceText =
+                            ' <input type="number" step="0.01" value="' + material["MarketPrice"].toFixed(2) + '" min="0" onclick="this.select();" '
+                            + ' onblur="updateMaterialMarketPrice(this)" id="' + material["Name"] + '"> credits';
+
+                        materialTableRows.push([
+                            '<span onclick="modalOpen(this)">' + material["Name"] + "</span>",
+                            grindIndexText,
+                            priceText
+                        ]);
+                    });
+
+                    $('#materialData').DataTable({
+                        data: materialTableRows,
+                        columns: [
+                            { title: "Name", width: "33%" },
+                            { title: "Grind Index", width: "33%" },
+                            { title: "Market Price", width: "34%" }
+                        ],
+                        columnDefs: [
+                            {
+                                targets: [1, 2],
+                                className: 'dt-body-right',
+                            }
+                        ],
+                        scrollY: "300px"
+                    });
+                }
 
                 getOreName = function (name) {
                     switch (name) {
@@ -130,13 +163,9 @@
                     material.oreName = material.Name + getOreName(material.Name);
                     materials[material.Name] = material;
                 });
-            });
 
-            // Synchronously retrieve sadtech data before populating recipes.
-            $.ajax({
-                url: "https://api.sadtech.io/api/items",
-                async: false,
-                success: function (data) {
+                // Start the request for sadtech, and only populate materials once we have the data.
+                $.getJSON("https://api.sadtech.io/api/items", function (data) {
                     $.each(data.responseJson, function (i, marketData) {
                         matName = marketData.name.split(" ")[0];
                         if (matName in materials) {
@@ -148,7 +177,8 @@
                             materials[matName].MarketPrice = mData.CurrentPrice;
                         }
                     });
-                }
+                    populateMaterialTable();
+                });
             });
 
             $.getJSON('RecipeData.json', function (data) {
@@ -244,41 +274,6 @@
                     ],
                     scrollY: "300px"
                 });
-            });
-
-
-            // Populate the material table
-            var materialTableRows = [];
-
-            $.each(materials, function (index, material) {
-                var grindIndexText =
-                    ' <input type="number" step="0.01" value="' + material["GrindIndex"] + '" min="0" onclick="this.select();" '
-                    + ' onblur="updateMaterialGrindIndex(this)" id="' + material["Name"] + '">';
-                var priceText =
-                    ' <input type="number" step="0.01" value="' + material["MarketPrice"].toFixed(2) + '" min="0" onclick="this.select();" '
-                    + ' onblur="updateMaterialMarketPrice(this)" id="' + material["Name"] + '"> credits';
-
-                materialTableRows.push([
-                    '<span onclick="modalOpen(this)">' + material["Name"] + "</span>",
-                    grindIndexText,
-                    priceText
-                ]);
-            });
-
-            $('#materialData').DataTable({
-                data: materialTableRows,
-                columns: [
-                    { title: "Name", width: "33%" },
-                    { title: "Grind Index", width: "33%" },
-                    { title: "Market Price", width: "34%" }
-                ],
-                columnDefs: [
-                    {
-                        targets: [1, 2],
-                        className: 'dt-body-right',
-                    }
-                ],
-                scrollY: "300px"
             });
         });
 
@@ -920,7 +915,7 @@
 </head>
 
 <body>
-    <h2>Starbase Research Crafting Calculator v0.6.12</h2>
+    <h2>Starbase Research Crafting Calculator v0.6.13/h2>
     <p>If the Recipe Table is blank or you get errors, refreshing the page should fix it.</p>
     <form onsubmit="return false">
         <table id="calcTbl">
