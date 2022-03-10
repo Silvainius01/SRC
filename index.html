@@ -105,6 +105,7 @@
         var materials = {};
         var json = null;
         var hiddenMaterials = [];
+        var sadtechData = null;
 
         $(function () {
             //#region Initialize object data.
@@ -142,30 +143,10 @@
              *      grindEfficiency: 0
              *  }
              */
-            var recipeTableRows = [];
-            var materialTableRows = [];
-
-            $.getJSON('MaterialData.json', function (data) {
-
-                getOreName = function(name) {
-                    switch(name) {
-                        case "Ice":
-                            return "";
-                        case "Nhurgite":
-                        case "Karnite":
-                        case "Surtrite":
-                        case "Haderite":
-                            return " Crystal";
-                        default:
-                            return " Ore";
-                    }
-                }
+            function populateMaterialTable() {
+                var materialTableRows = [];
 
                 $.each(data.materials, function (index, material) {
-                    material.recipes = [];
-                    material.oreName = material.Name + getOreName(material.Name);
-                    materials[material.Name] = material;
-
                     var grindIndexText =
                         ' <input type="number" step="0.01" value="' + material["GrindIndex"] + '" min="0" onclick="this.select();" '
                         + ' onblur="updateMaterialGrindIndex(this)" id="' + material["Name"] + '">';
@@ -195,6 +176,29 @@
                     ],
                     scrollY: "300px"
                 });
+            }
+
+            $.getJSON('MaterialData.json', function (data) {
+
+                getOreName = function(name) {
+                    switch(name) {
+                        case "Ice":
+                            return "";
+                        case "Nhurgite":
+                        case "Karnite":
+                        case "Surtrite":
+                        case "Haderite":
+                            return " Crystal";
+                        default:
+                            return " Ore";
+                    }
+                }
+
+                $.each(data.materials, function (index, material) {
+                    material.recipes = [];
+                    material.oreName = material.Name + getOreName(material.Name);
+                    materials[material.Name] = material;
+                });
             });
 
             // Synchronously retrieve sadtech data before populating recipes.
@@ -215,8 +219,10 @@
                     });
                 }
             });
-            
+
             $.getJSON('RecipeData.json', function (data) {
+                var recipeTableRows = [];
+
                 $.each(data.recipes, function (i, r) {
                     // Initialize vars
                     var recipe = new Object();
@@ -308,6 +314,8 @@
                     scrollY: "300px"
                 });
             });
+            
+            populateMaterialTable();
         });
 
         // Handle calculation request.
@@ -923,10 +931,10 @@
         function updateMaterialMarketPrice(element) {
             var value = parseFloat(element.value);
             if (value == 'NaN') {
-                element.value = materials[element.id]["MarketPrice"];
+                element.value = materials[element.id].MarketPrice;
                 return;
             }
-            materials[element.id]["MarketPrice"] = value.toFixed(2);
+            materials[element.id].MarketPrice = value.toFixed(2);
             updateMaterialData(element.id);
         }
         function updateMaterialData(materialName) {
@@ -938,8 +946,8 @@
                 // for each material in that recipe
                 $.each(recipe.materials, function (mat, amt) {
                     var qtyInStacks = amt / stackConstant;
-                    recipe["estimatedCost"] += materials[mat]["MarketPrice"] * qtyInStacks;
-                    recipe["weightedMaterialCost"] += materials[mat]["GrindIndex"] * amt;
+                    recipe["estimatedCost"] += materials[mat].MarketPrice * qtyInStacks;
+                    recipe["weightedMaterialCost"] += materials[mat].GrindIndex * amt;
                 });
                 recipe["weightedEfficiency"] = (recipe["totalResearch"] / recipe["weightedMaterialCost"]) * 100;
             });
@@ -948,7 +956,7 @@
 </head>
 
 <body>
-    <h2>Starbase Research Crafting Calculator v0.6.9</h2>
+    <h2>Starbase Research Crafting Calculator v0.6.10</h2>
     <p>If the Recipe Table is blank or you get errors, refreshing the page should fix it.</p>
     <form onsubmit="return false">
         <table id="calcTbl">
