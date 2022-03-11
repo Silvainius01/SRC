@@ -173,7 +173,12 @@
                                 CurrentPrice: marketData.currentPrice,
                                 StacksAvailable: marketData.currentAvailable
                             }
-                            materials[matName].MarketPrice = mData.CurrentPrice;
+
+                            // If there isnt anything on the market, make cost absurdly high so the sort order pushes it to the bottom.
+                            if(mData.CurrentPrice <= 0) {
+                                materials[matName].MarketPrice = 100000000;
+                            }
+                            else materials[matName].MarketPrice = mData.CurrentPrice;
                         }
                     });
                     // Only populate after we have our data
@@ -915,7 +920,7 @@
 </head>
 
 <body>
-    <h2>Starbase Research Crafting Calculator v0.6.17</h2>
+    <h2>Starbase Research Crafting Calculator v0.6.18</h2>
     <p>If the Recipe Table is blank or you get errors, refreshing the page should fix it.</p>
     <p>Market Price data provided by <a href="https://sadtech.io/">sadtech.io</a></p>
     <form onsubmit="return false">
