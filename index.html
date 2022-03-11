@@ -203,7 +203,7 @@
                     recipe["favourite"] = r.Favourite;
                     recipe["hide"] = r.Hide;
                     recipe["vendorPrice"] = r.VendorPrice;
-                    recipe["weightedMaterialCost"] = 0;
+                    recipe["weightedMaterialSpent"] = 0;
                     recipe["weightedEfficiency"] = 0;
 
                     // Process object cells.
@@ -219,12 +219,12 @@
                         recipe["totalMaterials"] += kv;
                         console.log(materialName);
                         recipe["estimatedCost"] += materials[materialName].MarketPrice * qtyInStacks;
-                        recipe["weightedMaterialCost"] += materials[materialName]["GrindIndex"] * kv;
+                        recipe["weightedMaterialSpent"] += materials[materialName]["GrindIndex"] * kv;
                         materials[materialName].recipes.push(i); // Cache this recipe for this material
                     });
 
                     recipe["efficiency"] = (recipe["totalResearch"] / recipe["totalMaterials"]) * 100;
-                    recipe["weightedEfficiency"] = (recipe["totalResearch"] / recipe["weightedMaterialCost"]) * 100;
+                    recipe["weightedEfficiency"] = (recipe["totalResearch"] / recipe["weightedMaterialSpent"]) * 100;
                     efficiencyText = '<p class="leftAlign efficiencyTd inTable"> Base:' + "<span class='rightFloat' title='Research / Total kv consumed'>";
                     efficiencyText += recipe["efficiency"].toFixed(2) + "%</span></p>";
                     efficiencyText += '<p class="leftAlign efficiencyTd inTable"> Weighted:' + "<span class='rightFloat' title='Research / Total weighted kv consumed'>";
@@ -396,7 +396,7 @@
                     set.cost += recipe["totalCrafts"][prop] * recipe["estimatedCost"];
                     set.time += recipe["totalCrafts"][prop] * recipe["craftingTime"];
                     set.value += recipe["totalCrafts"][prop] * recipe["vendorPrice"];
-                    set.weightedMaterials += recipe["totalCrafts"][prop] * recipe["weightedMaterialCost"]
+                    set.weightedMaterials += recipe["totalCrafts"][prop] * recipe["weightedMaterialSpent"]
                     recipe["totalCrafts"]["Use"] = recipe["totalCrafts"][prop];
                     set.objects.push(recipe);
                     // Add object's materials so they get listed.
@@ -529,7 +529,7 @@
             return function (a, b) {
                 var x = a[property];
                 var y = b[property];
-                if (property == "estimatedCost" || property == "totalMaterials" || property == "weightedMaterialCost") {
+                if (property == "estimatedCost" || property == "totalMaterials" || property == "weightedMaterialSpent") {
                     x = a[property] * a["totalCrafts"][secondary];
                     y = b[property] * b["totalCrafts"][secondary];
                 } else if (property == "craftingTime") {
@@ -901,22 +901,23 @@
             $.each(materials[materialName].recipes, function (index, recipeId) {
                 recipe = recipes[recipeId];
                 recipe["estimatedCost"] = 0;
-                recipe["weightedMaterialCost"] = 0;
+                recipe["weightedMaterialSpent"] = 0;
                 // for each material in that recipe
                 $.each(recipe.materials, function (mat, amt) {
                     var qtyInStacks = amt / stackConstant;
                     recipe["estimatedCost"] += materials[mat].MarketPrice * qtyInStacks;
-                    recipe["weightedMaterialCost"] += materials[mat].GrindIndex * amt;
+                    recipe["weightedMaterialSpent"] += materials[mat].GrindIndex * amt;
                 });
-                recipe["weightedEfficiency"] = (recipe["totalResearch"] / recipe["weightedMaterialCost"]) * 100;
+                recipe["weightedEfficiency"] = (recipe["totalResearch"] / recipe["weightedMaterialSpent"]) * 100;
             });
         };
     </script>
 </head>
 
 <body>
-    <h2>Starbase Research Crafting Calculator v0.6.16</h2>
+    <h2>Starbase Research Crafting Calculator v0.6.17</h2>
     <p>If the Recipe Table is blank or you get errors, refreshing the page should fix it.</p>
+    <p>Market Price data provided by <a href="https://sadtech.io/">sadtech.io</a></p>
     <form onsubmit="return false">
         <table id="calcTbl">
             <thead>
@@ -944,7 +945,7 @@
                 <option value="estimatedCost">Material Cost</option>
                 <option value="craftingTime">Crafting Time</option>
                 <option value="vendorPrice">Vendor Price</option>
-                <option value="weightedMaterialCost">Weighted Material Cost</option>
+                <option value="weightedMaterialSpent">Weighted Material Spent</option>
                 <option value="weightedEfficiency">Weighted Efficiency</option>
             </select>
         </p>
@@ -968,7 +969,7 @@
     <h2>Materials Table</h2>
     <p>Grind Index: kV Multiplier for this material when used in a recipe. It represents how much effort it takes to,
         well, grind large quantities of it.</p>
-    <p>Market Price: How much this material sells for on the market</p>
+    <p>Market Price: How much this material sells for on the market.</p>
     <table id="materialData" class="hover cell-border compact row-border stripe"></table>
     <hr>
     <h2>All Recipes Table</h2>
