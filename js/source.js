@@ -69,7 +69,7 @@ $(function () {
         $.getJSON("https://api.sadtech.io/api/items", function (data) {
             $.each(data, function (i, marketData) {
                 matName = marketData.name.split(" ")[0];
-                if (matName in materials) {
+                if (matName in materials && marketData.name === getOreName(matName)) {
                     mData = {
                         CurrentPrice: marketData.currentPrice,
                         StacksAvailable: marketData.currentAvailable
