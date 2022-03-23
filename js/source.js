@@ -7,6 +7,7 @@ var materials = {};
 var json = null;
 var hiddenMaterials = [];
 var sadtechData = null;
+var recipesInited = false;
 
 $(function () {
 
@@ -48,14 +49,14 @@ $(function () {
         getOreName = function (name) {
             switch (name) {
                 case "Ice":
-                    return "";
+                    return name;
                 case "Nhurgite":
                 case "Karnite":
                 case "Surtrite":
                 case "Haderite":
-                    return " Crystal";
+                    return name+" Crystal";
                 default:
-                    return " Ore";
+                    return name+" Ore";
             }
         }
 
@@ -67,6 +68,12 @@ $(function () {
 
         // Start the request for sadtech, then update mat prices
         $.getJSON("https://api.sadtech.io/api/items", function (data) {
+
+            // Wait for recipes to be added before processing
+            while (recipesInited == false) {
+                continue;
+            }
+
             $.each(data, function (i, marketData) {
                 matName = marketData.name.split(" ")[0];
                 if (matName in materials && marketData.name === getOreName(matName)) {
@@ -80,6 +87,7 @@ $(function () {
                         materials[matName].MarketPrice = 100000000;
                     }
                     else materials[matName].MarketPrice = mData.CurrentPrice;
+                    updateMaterialData(matName); // This will refresh recipe cost datas so the calculator uses the right values.
                 }
             });
             // Only populate after we have our data
@@ -160,6 +168,8 @@ $(function () {
             // Add each object to the array for subsequent queries.
             recipes.push(recipe);
         });
+
+        recipesInited = true;
 
         // Initialize object table as DataTable.
         $('#recipeData').DataTable({
